@@ -9,7 +9,11 @@ Shape::Shape(unsigned int shape[][SPRITE_SIZE] = { 0 })
 
 Shape::~Shape()
 {
-	
+	// Deallocate the dynamically allocated memory (2D array)
+	for (int i = 0; i < SPRITE_SIZE; i++) {
+		delete[] m_shape[i];
+	}
+	delete[] m_shape;
 }
 
 
