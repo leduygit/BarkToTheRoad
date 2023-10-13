@@ -1,0 +1,1 @@
+#include "ObstacleFactory.h"

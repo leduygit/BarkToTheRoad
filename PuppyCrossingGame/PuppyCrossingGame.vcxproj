@@ -127,17 +127,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animal.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="ConcreteLane.h" />
+    <ClInclude Include="GrassLane.h" />
+    <ClInclude Include="Lane.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="SpringFactory.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleFactory.h" />
     <ClInclude Include="PuppyCrossingGame.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="SpringMap.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="ConcreteLane.cpp" />
+    <ClCompile Include="GrassLane.cpp" />
+    <ClCompile Include="Lane.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="SpringFactory.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleFactory.cpp" />
     <ClCompile Include="PuppyCrossingGame.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="SpringMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />
