@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "PuppyCrossingGame.h"
+#include "Shape.h"
 
 #define MAX_LOADSTRING 100
 
@@ -13,6 +14,12 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+RenderState render_state; // info of the pixels on screen
+
+#include "Shape.h"
+
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -38,6 +45,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_PUPPYCROSSINGGAME));
 
     MSG msg;
+
 
     // Main message loop:
     while (GetMessage(&msg, nullptr, 0, 0))
@@ -125,6 +133,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_SIZE:
+    {
+        RECT clientRect;
+        GetClientRect(hWnd, &clientRect);
+        render_state = RenderState(clientRect.bottom - clientRect.top, clientRect.right - clientRect.left);
+    }
+    break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -143,13 +158,46 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: Add any drawing code that uses hdc here...
-            EndPaint(hWnd, &ps);
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+
+        int width = render_state.getWidth();
+        int height = render_state.getHeight();
+
+        // Get a pointer to the memory in your RenderState
+        unsigned int* pixel = render_state.getMemoryPointer();
+
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                *pixel++ = 0xFFFF0000 + x * y; // Red color
+            }
         }
-        break;
+
+        unsigned int a[SPRITE_SIZE][SPRITE_SIZE];
+        Shape test(a);
+        test.render(150, 20, render_state);
+
+        // Create a compatible DC for double buffering to avoid flickering.
+        HDC memDC = CreateCompatibleDC(hdc);
+        HBITMAP hBitmap = CreateCompatibleBitmap(hdc, width, height);
+        SelectObject(memDC, hBitmap);
+
+        // Copy the memory from your RenderState to the bitmap in the memory DC.
+        SetDIBitsToDevice(memDC, 0, 0, width, height, 0, 0, 0, height, render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS);
+
+        // Blit the content from the memory DC to the window's DC.
+        BitBlt(hdc, 0, 0, width, height, memDC, 0, 0, SRCCOPY);
+
+        // Clean up the resources.
+        DeleteObject(hBitmap);
+        DeleteDC(memDC);
+
+        EndPaint(hWnd, &ps);
+    }
+    break;
+
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
