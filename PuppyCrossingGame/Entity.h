@@ -9,7 +9,9 @@ private:
 	int m_width;
 	int m_height;
 public:
-	void render() const;
+	Entity() = default;
+	Entity(COORD pos, Shape s) : m_position{ pos }, m_shape{ s } {}
+	void render();
 	void move(COORD pos);
-	virtual bool isImpact(const Entity& obj) const;
+	// virtual bool isImpact(const Entity& obj) const;
 };

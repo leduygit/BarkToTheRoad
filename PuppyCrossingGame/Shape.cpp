@@ -16,20 +16,16 @@ Shape::Shape(unsigned int shape[SPRITE_SIZE][SPRITE_SIZE])
 Shape::~Shape()
 {
     // Deallocate the dynamically allocated memory (2D array)
-    for (int i = 0; i < SPRITE_SIZE; i++) {
-        delete[] m_shape[i];
-    }
-    delete[] m_shape;
+    // for (int i = 0; i < SPRITE_SIZE; i++) {
+    //    delete[] m_shape[i];
+    //}
+    //delete[] m_shape;
 }
 
-void Shape::render(int offset_x, int offset_y, RenderState& render_state)
-{
-    unsigned int* pixel = render_state.getMemoryPointer();
-    int window_width = render_state.getWidth();
-    for (int y = 0; y < SPRITE_SIZE; ++y)
-    {
-        unsigned int* changedPixel = pixel + offset_x + (offset_y + y) * window_width;
-        for (int x = 0; x < SPRITE_SIZE; ++x)
-            *changedPixel++ = m_shape[x][y];
+void Shape::render(int offset_x, int offset_y) {
+    for (int x = 0; x < SPRITE_SIZE; x++) {
+        for (int y = 0; y < SPRITE_SIZE; y++) {
+            Global::drawer.draw_rect({ offset_x + x, offset_y + y, offset_x + x, offset_y + y }, m_shape[x][y]);
+        }
     }
 }
