@@ -1,15 +1,14 @@
+// Shape.h
 #pragma once
-
-#define SPRITE_SIZE 90
+#include "RenderState.h"
 
 class Shape
 {
 private:
-	unsigned int m_shape[SPRITE_SIZE][SPRITE_SIZE] = { 0 };
-public:
-	Shape(unsigned int shape[][SPRITE_SIZE]);
-	~Shape();
-	unsigned int getShape();
-	void render(int offset_x, int offset_y, int width, int height, unsigned int* pixel);
-};
+    unsigned int** m_shape;
 
+public:
+    Shape(unsigned int shape[SPRITE_SIZE][SPRITE_SIZE] = nullptr);
+    ~Shape();
+    void render(int offset_x, int offset_y, RenderState& render_state);
+};

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "PuppyCrossingGame.h"
+#include "Shape.h"
 
 #define MAX_LOADSTRING 100
 
@@ -13,30 +14,6 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
-struct RenderState
-{
-    int height, width;
-    void* memory; // pointer to the memory adress of the color info;
-    BITMAPINFO bitmapinfo; // color
-
-    RenderState(int _h = 0, int _w = 0)
-    {
-        height = _h;
-        width = _w;
-        int sz = width * height * sizeof(unsigned int);
-
-        if (memory) VirtualFree(memory, 0, MEM_RELEASE);
-        memory = VirtualAlloc(0, sz, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-
-        bitmapinfo.bmiHeader.biSize = sizeof(bitmapinfo.bmiHeader);
-        bitmapinfo.bmiHeader.biWidth = width;
-        bitmapinfo.bmiHeader.biHeight = height;
-        bitmapinfo.bmiHeader.biPlanes = 1;
-        bitmapinfo.bmiHeader.biBitCount = 32;
-        bitmapinfo.bmiHeader.biCompression = BI_RGB;
-    }
-};
 
 RenderState render_state; // info of the pixels on screen
 
@@ -161,8 +138,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         RECT clientRect;
         GetClientRect(hWnd, &clientRect);
         render_state = RenderState(clientRect.bottom - clientRect.top, clientRect.right - clientRect.left);
-
     }
+    break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -185,27 +162,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
 
-        // Your RenderState object (renderState) should be defined and filled with data.
-        unsigned int a[90][90];
-        Shape testObj(a);
-        unsigned int* pixel = (unsigned int*)render_state.memory;
+        int width = render_state.getWidth();
+        int height = render_state.getHeight();
 
-        for (int x = 0; x < render_state.width; ++x)
-            for (int y = 0; y < render_state.height; ++y)
-                pixel[x * render_state.height + y] = 0xff00ff + x;
+        // Get a pointer to the memory in your RenderState
+        unsigned int* pixel = render_state.getMemoryPointer();
 
-        testObj.render(50, 50, render_state.width, render_state.height, (unsigned int*)render_state.memory);
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                *pixel++ = 0xFFFF0000 + x * y; // Red color
+            }
+        }
+
+        unsigned int a[SPRITE_SIZE][SPRITE_SIZE];
+        Shape test(a);
+        test.render(150, 20, render_state);
 
         // Create a compatible DC for double buffering to avoid flickering.
         HDC memDC = CreateCompatibleDC(hdc);
-        HBITMAP hBitmap = CreateCompatibleBitmap(hdc, render_state.width, render_state.height);
+        HBITMAP hBitmap = CreateCompatibleBitmap(hdc, width, height);
         SelectObject(memDC, hBitmap);
 
         // Copy the memory from your RenderState to the bitmap in the memory DC.
-        SetDIBitsToDevice(memDC, 0, 0, render_state.width, render_state.height, 0, 0, 0, render_state.height, render_state.memory, &render_state.bitmapinfo, DIB_RGB_COLORS);
+        SetDIBitsToDevice(memDC, 0, 0, width, height, 0, 0, 0, height, render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS);
 
         // Blit the content from the memory DC to the window's DC.
-        BitBlt(hdc, 0, 0, render_state.width, render_state.height, memDC, 0, 0, SRCCOPY);
+        BitBlt(hdc, 0, 0, width, height, memDC, 0, 0, SRCCOPY);
 
         // Clean up the resources.
         DeleteObject(hBitmap);
@@ -214,6 +196,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         EndPaint(hWnd, &ps);
     }
     break;
+
 
     case WM_DESTROY:
         PostQuitMessage(0);
