@@ -130,9 +130,11 @@
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="ConcreteLane.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="GrassLane.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="renderer.h" />
     <ClInclude Include="RenderState.h" />
     <ClInclude Include="SpringFactory.h" />
     <ClInclude Include="Entity.h" />
@@ -149,9 +151,11 @@
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="ConcreteLane.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="GrassLane.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="renderer.cpp" />
     <ClCompile Include="RenderState.cpp" />
     <ClCompile Include="SpringFactory.cpp" />
     <ClCompile Include="Entity.cpp" />

@@ -1,6 +1,7 @@
 #include "RenderState.h"
 #include "assert.h"
 
+#include <memoryapi.h>
 RenderState::RenderState(int _h, int _w)
 {
     m_height = _h;
@@ -8,12 +9,7 @@ RenderState::RenderState(int _h, int _w)
     int sz = m_width * m_height * sizeof(unsigned int);
 
     // No need to check if m_memory is nullptr, as it's initialized as nullptr.
-    m_memory = (unsigned int*)malloc(sz); // Use malloc to allocate memory
-    if (m_memory == nullptr) {
-        assert(0);
-        // Handle memory allocation failure, e.g., throw an exception or return an error code.
-    }
-
+    m_memory = VirtualAlloc(0, sz, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE); // Use malloc to allocate memory
 
     m_bitmapinfo.bmiHeader.biSize = sizeof(m_bitmapinfo.bmiHeader);
     m_bitmapinfo.bmiHeader.biWidth = m_width;
