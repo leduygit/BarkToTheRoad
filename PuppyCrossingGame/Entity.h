@@ -5,12 +5,15 @@ class Entity
 {
 private:
 	COORD m_position;
-	Shape m_shape;
+	COORD m_new_position;
+	Shape* m_shape;
 	int m_width;
 	int m_height;
+	int m_velo_x;
+	int m_velo_y;
 public:
 	Entity() = default;
-	Entity(COORD pos, Shape s) : m_position{ pos }, m_shape{ s } {}
+	Entity(COORD pos, Shape* s) : m_position{ pos }, m_shape{ s } {}
 	void render();
 	void move(COORD pos);
 	// virtual bool isImpact(const Entity& obj) const;
