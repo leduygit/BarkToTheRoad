@@ -15,18 +15,18 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 	switch (uMsg)
 	{
-		case WM_CLOSE:
-		case WM_DESTROY:
-			window_should_close = true;
-		case WM_SIZE:
-		{
-			RECT clientRect;
-			GetClientRect(hWnd, &clientRect);
-			render_state = RenderState(clientRect.bottom - clientRect.top, clientRect.right - clientRect.left);
-		}
-		break;
-		default:
-			result = DefWindowProc(hWnd, uMsg, wParam, lParam);
+	case WM_CLOSE:
+	case WM_DESTROY:
+		window_should_close = true;
+	case WM_SIZE:
+	{
+		RECT clientRect;
+		GetClientRect(hWnd, &clientRect);
+		render_state = RenderState(clientRect.bottom - clientRect.top, clientRect.right - clientRect.left);
+	}
+	break;
+	default:
+		result = DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
 	return result;
 }
@@ -48,8 +48,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			a[i][j] = 0xFF0000FF;
 		}
 	}
-	Shape s(a);
-	Entity e({ 100, 100 }, s);
+	Shape s("image/dog_stay_1.txt");
+	Entity e({ 100, 100 }, &s);
 	Global::drawer.set_render_state(render_state);
 	while (!window_should_close) {
 		MSG message;
@@ -65,7 +65,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 		}
 		e.render();
-		
+
 
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
 	}
