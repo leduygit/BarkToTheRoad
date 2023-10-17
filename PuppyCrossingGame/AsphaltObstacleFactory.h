@@ -5,6 +5,6 @@
 class AsphaltObstacleFactory: ObstacleFactory
 {
 public:
-	Obstacle* createObstacle() override;
+	Obstacle* createObstacle(COORD pos) override;
 };
 

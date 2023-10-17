@@ -52,7 +52,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	//Shape s("image/dog_stay_1.txt");
 	//Entity e({ 100, 100 }, &s);
 	AsphaltObstacleFactory fact;
-	Obstacle* e = fact.createObstacle();
+	Obstacle* e = fact.createObstacle({100, 100});
 	Global::drawer.set_render_state(render_state);
 	while (!window_should_close) {
 		MSG message;
