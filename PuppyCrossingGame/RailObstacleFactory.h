@@ -4,5 +4,5 @@
 
 class RailObstacleFactory: public ObstacleFactory {
 public:
-	Obstacle* createObstacle() override;
+	Obstacle* createObstacle(COORD pos) override;
 };
