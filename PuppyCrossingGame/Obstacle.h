@@ -3,7 +3,7 @@
 class Obstacle : public Entity
 {
 private:
-	int a;
+	int a = 5;
 public:
-
+	void move();
 };

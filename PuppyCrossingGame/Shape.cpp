@@ -1,31 +1,45 @@
 // Shape.cpp
 #include "Shape.h"
 
-Shape::Shape(unsigned int shape[SPRITE_SIZE][SPRITE_SIZE])
-{
-    // Initialize m_shape as a dynamic 2D array
-    m_shape = new unsigned int* [SPRITE_SIZE];
-    for (int x = 0; x < SPRITE_SIZE; ++x)
-    {
-        m_shape[x] = new unsigned int[SPRITE_SIZE];
-        for (int y = 0; y < SPRITE_SIZE; ++y)
-            m_shape[x][y] = shape ? shape[x][y] : 0xFF00FF; // Set the color to purple if shape is not provided
-    }
-}
+Shape::Shape(std::string fileName) : m_fileName(fileName) {}
 
-Shape::~Shape()
-{
-    // Deallocate the dynamically allocated memory (2D array)
-    // for (int i = 0; i < SPRITE_SIZE; i++) {
-    //    delete[] m_shape[i];
-    //}
-    //delete[] m_shape;
-}
+Shape::~Shape() {}
 
 void Shape::render(int offset_x, int offset_y) {
-    for (int x = 0; x < SPRITE_SIZE; x++) {
-        for (int y = 0; y < SPRITE_SIZE; y++) {
-            Global::drawer.draw_rect({ offset_x + x, offset_y + y, offset_x + x, offset_y + y }, m_shape[x][y]);
+    std::ifstream ifs(m_fileName);
+    int width, height;
+    ifs >> width >> height;
+    if (!ifs.is_open())
+        return;
+    for (int x = 0; x < height; x++)
+    {
+        for (int y = 0; y < width; y++) {
+            std::string colorHex;
+            ifs >> colorHex;
+            unsigned int m_shape;
+            if (sscanf_s(colorHex.c_str(), "0x%8X", &m_shape) != 1) {
+            }
+            if (m_shape != 0x00000000)
+                Global::drawer.draw_rect({ offset_x + x, offset_y + y, offset_x + x, offset_y + y }, m_shape);
         }
     }
+    ifs.close();
+}
+
+void Shape::loadShapeFromFile(const char* url)
+{
+    /*
+    std::ifstream ifs(url);
+    if (!ifs.is_open())
+        return ;
+    for (int i = 0; i < m_height; i++)
+    {
+        for (int j = 0; j < m_width; j++) {
+            std::string colorHex;
+            ifs >> colorHex;
+            if (sscanf_s(colorHex.c_str(), "0x%8X", &m_shape[i][j]) != 1) {
+            }
+        }
+    }
+    */
 }
