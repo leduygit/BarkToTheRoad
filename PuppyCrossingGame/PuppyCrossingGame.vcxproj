@@ -128,13 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="AsphaltObstacleFactory.h" />
+    <ClInclude Include="BusObstacle.h" />
+    <ClInclude Include="CarObstacle.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="ConcreteLane.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="GrassLane.h" />
+    <ClInclude Include="GrassObstacleFactory.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LaneFactory.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="RailObstacleFactory.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="RenderState.h" />
     <ClInclude Include="SpringFactory.h" />
@@ -147,16 +152,22 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SpringMap.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TrainObstacle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="AsphaltObstacleFactory.cpp" />
+    <ClCompile Include="BusObstacle.cpp" />
+    <ClCompile Include="CarObstacle.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="ConcreteLane.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="GrassLane.cpp" />
+    <ClCompile Include="GrassObstacleFactory.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LaneFactory.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="RailObstacleFactory.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="RenderState.cpp" />
     <ClCompile Include="SpringFactory.cpp" />
@@ -166,6 +177,7 @@
     <ClCompile Include="PuppyCrossingGame.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SpringMap.cpp" />
+    <ClCompile Include="TrainObstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />

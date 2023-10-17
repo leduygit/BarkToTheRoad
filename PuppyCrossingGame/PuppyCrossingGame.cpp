@@ -4,6 +4,7 @@
 #include "RenderState.h"
 #include "Global.h"
 #include "renderer.h"
+#include "AsphaltObstacleFactory.h"
 
 bool window_should_close = false;
 
@@ -48,8 +49,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			a[i][j] = 0xFF0000FF;
 		}
 	}
-	Shape s("image/dog_stay_1.txt");
-	Entity e({ 100, 100 }, &s);
+	//Shape s("image/dog_stay_1.txt");
+	//Entity e({ 100, 100 }, &s);
+	AsphaltObstacleFactory fact;
+	Obstacle* e = fact.createObstacle({100, 100});
 	Global::drawer.set_render_state(render_state);
 	while (!window_should_close) {
 		MSG message;
@@ -64,7 +67,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 				*pixels++ = 0xFFFF5500;
 			}
 		}
-		e.render();
+		e->render();
 
 
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
