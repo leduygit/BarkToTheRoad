@@ -14,6 +14,7 @@ private:
     */
     std::string m_fileName;
 public:
+    Shape() = default;
     Shape(std::string fileName);
     ~Shape();
     void render(int offset_x, int offset_y);
