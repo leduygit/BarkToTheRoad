@@ -4,13 +4,15 @@
 class Entity
 {
 private:
-	COORD m_position;
 	COORD m_new_position;
-	Shape* m_shape;
 	//int m_width;
 	//int m_height;
 	int m_velo_x;
 	int m_velo_y;
+
+protected:
+	COORD m_position;
+	Shape* m_shape;
 public:
 	Entity() = default;
 	Entity(COORD pos, Shape* s);

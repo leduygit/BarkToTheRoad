@@ -5,5 +5,7 @@ class Obstacle : public Entity
 private:
 	int a = 5;
 public:
-	void move();
+	void render() {
+		Entity::render();
+	}
 };
