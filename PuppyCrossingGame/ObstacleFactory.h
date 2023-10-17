@@ -3,6 +3,6 @@
 class ObstacleFactory
 {
 public:
-	virtual Obstacle* createObstacle();
+	virtual Obstacle* createObstacle() = 0;
 };
 

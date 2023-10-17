@@ -133,6 +133,7 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="GrassLane.h" />
     <ClInclude Include="Lane.h" />
+    <ClInclude Include="LaneFactory.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="RenderState.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="GrassLane.cpp" />
     <ClCompile Include="Lane.cpp" />
+    <ClCompile Include="LaneFactory.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="RenderState.cpp" />
