@@ -51,9 +51,6 @@
     <ClInclude Include="Lane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConcreteLane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GrassLane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -93,6 +90,12 @@
     <ClInclude Include="TrainObstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AsphaltLane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassObstacle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PuppyCrossingGame.cpp">
@@ -120,9 +123,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Lane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ConcreteLane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GrassLane.cpp">
@@ -162,6 +162,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TrainObstacle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsphaltLane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassObstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

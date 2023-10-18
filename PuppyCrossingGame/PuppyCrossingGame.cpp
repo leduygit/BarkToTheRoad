@@ -6,6 +6,7 @@
 #include "renderer.h"
 #include "AsphaltObstacleFactory.h"
 #include "AsphaltLane.h"
+#include "GrassLane.h"
 
 bool window_should_close = false;
 
@@ -52,9 +53,13 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	}
 	//Shape s("image/dog_stay_1.txt");
 	//Entity e({ 100, 100 }, &s);
-	AsphaltLane lane{ {0, 100}, "image/road.txt" };
-	AsphaltObstacleFactory fact;
-	Obstacle* e = fact.createObstacle({100, 100});
+	// 
+	//AsphaltLane lane{ {0, 100}, "image/road.txt" };
+	//AsphaltObstacleFactory fact;
+	//Obstacle* e = fact.createObstacle({100, 100});
+	
+	GrassLane lane{ {0, 100}, "image/grassland.txt" };
+	lane.spawnObstacle(3);
 	Global::drawer.set_render_state(render_state);
 	while (!window_should_close) {
 		MSG message;
@@ -69,7 +74,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 				*pixels++ = 0xFFFF5500;
 			}
 		}
-		lane.render();
+		lane.renderAll();
 
 
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
