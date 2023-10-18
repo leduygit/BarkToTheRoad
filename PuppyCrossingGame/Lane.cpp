@@ -2,9 +2,11 @@
 
 void Lane::render()
 {
-	for (int i = 0; i < 10; i++) {
-		m_shape.render(m_position.X + 90 * i, m_position.Y);
-	}
+	int x = 0;
+	/*for (int i = 0; i < 10; i++) {
+		m_shape.render(x, m_position.Y);
+		x += 90;
+	}*/
 
 	for (auto obs : m_obs)
 		obs->render();
@@ -12,6 +14,8 @@ void Lane::render()
 
 void Lane::addObstacle()
 {
+	int x = randomInt(0, 1000);
+	if (x % 8 < 6) return;
 	Obstacle* newObstacle = m_fact->createObstacle(m_position);
 	if (newObstacle) 
 	{

@@ -9,6 +9,9 @@
 
 bool window_should_close = false;
 
+Shape s("image/dog_stay_1.txt");
+Entity e({ 100, 100 }, & s);
+
 RenderState render_state;
 
 
@@ -34,6 +37,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 }
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+	srand(time(NULL));
 	WNDCLASS window_class{};
 	window_class.style = CS_HREDRAW | CS_VREDRAW;
 	window_class.lpszClassName = L"My Window Class";
@@ -56,7 +60,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	AsphaltLane lane{ {0, 100}, "image/road.txt", AsphaltFactory };
 	lane.addObstacle();
 	AsphaltObstacleFactory fact;
-	Obstacle* e = fact.createObstacle({100, 100});
 	Global::drawer.set_render_state(render_state);
 	while (!window_should_close) {
 		MSG message;
@@ -72,12 +75,11 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 		}
 
-		for (int i = 0; i < 5; ++i)
-		{
-			lane.addObstacle();
-			lane.moveObstacle();
-			lane.render();
-		}
+		lane.addObstacle();
+		lane.moveObstacle();
+		lane.render();
+		e.move({ 100, 500 });
+		e.render();
 
 
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
