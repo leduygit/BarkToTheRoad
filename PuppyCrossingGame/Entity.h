@@ -19,4 +19,5 @@ public:
 	void render();
 	void move(COORD pos);
 	// virtual bool isImpact(const Entity& obj) const;
+	bool isCollison(const Entity& e);
 };

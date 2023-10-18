@@ -22,4 +22,6 @@ public:
     void set_file_name(std::string file_name) {
         m_fileName = file_name;
     }
+
+    void getSize(int& width, int& height);
 };

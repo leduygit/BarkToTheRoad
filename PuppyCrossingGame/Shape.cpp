@@ -43,3 +43,10 @@ void Shape::loadShapeFromFile(const char* url)
     }
     */
 }
+
+void Shape::getSize(int& width, int& height)
+{
+    std::ifstream ifs(m_fileName);
+    ifs >> width >> height;
+    ifs.close();
+}

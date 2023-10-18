@@ -10,8 +10,10 @@ protected:
 	std::vector<Obstacle*> m_obs{};
 public:
 	Lane() = default;
-	Lane(COORD pos, std::string file_name) : m_position{ pos }, m_shape{ file_name } {}
+	Lane(COORD pos, std::string file_name, ObstacleFactory* fact) : 
+		m_position{ pos }, m_shape{ file_name }, m_fact{ fact }  {}
 	void render();
-	// void moveObstacle();
+	void addObstacle();
+	void moveObstacle();
 };
 
