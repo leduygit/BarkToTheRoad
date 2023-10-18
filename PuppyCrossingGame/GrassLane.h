@@ -9,7 +9,6 @@ public:
 
 	void spawnObstacle(int num);
 	using Lane::render;
-	void renderAll();
 private:
 };
 

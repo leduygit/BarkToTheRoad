@@ -19,12 +19,3 @@ void GrassLane::spawnObstacle(int num)
 		num--;
 	}
 }
-
-void GrassLane::renderAll()
-{
-	Lane::render();
-	for (auto x : m_obs)
-	{
-		x->render();
-	}
-}
