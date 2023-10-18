@@ -57,10 +57,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	//Shape s("image/dog_stay_1.txt");
 	//Entity e({ 100, 100 }, &s);
 	ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
-	AsphaltLane lane{ {0, 100}, "image/road.txt", AsphaltFactory };
-	lane.addObstacle();
-	AsphaltObstacleFactory fact;
+	Lane lane[10];
+	for (SHORT i = 0; i < 5; ++i)
+	{
+		lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
+	}
+
 	Global::drawer.set_render_state(render_state);
+
 	while (!window_should_close) {
 		MSG message;
 		while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
@@ -75,13 +79,16 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 		}
 
-		lane.addObstacle();
-		lane.moveObstacle();
-		lane.render();
-		e.move({ 100, 500 });
-		e.render();
+		for (int i = 0; i < 5; ++i)
+		{
+			lane[i].moveObstacle();
+			lane[i].render();
+			lane[i].addObstacle();
+		}
+		//e.move({ 100, 500 });
+		//e.render();
 
-
+		
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
 	}
 }
