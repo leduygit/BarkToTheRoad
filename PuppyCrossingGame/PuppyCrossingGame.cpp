@@ -10,6 +10,9 @@
 
 bool window_should_close = false;
 
+Shape s("image/dog_stay_1.txt");
+Entity e({ 100, 100 }, & s);
+
 RenderState render_state;
 
 
@@ -35,6 +38,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 }
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+	srand(time(NULL));
 	WNDCLASS window_class{};
 	window_class.style = CS_HREDRAW | CS_VREDRAW;
 	window_class.lpszClassName = L"My Window Class";
@@ -53,14 +57,16 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	}
 	//Shape s("image/dog_stay_1.txt");
 	//Entity e({ 100, 100 }, &s);
-	// 
-	//AsphaltLane lane{ {0, 100}, "image/road.txt" };
-	//AsphaltObstacleFactory fact;
-	//Obstacle* e = fact.createObstacle({100, 100});
-	
-	GrassLane lane{ {0, 100}, "image/grassland.txt" };
-	lane.spawnObstacle(3);
+	ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
+	Lane lane[10];
+	for (SHORT i = 0; i < 5; ++i)
+	{
+		lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
+	}
+	DWORD lastAddObstacleTime = 0;
+
 	Global::drawer.set_render_state(render_state);
+
 	while (!window_should_close) {
 		MSG message;
 		while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
@@ -74,9 +80,33 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 				*pixels++ = 0xFFFF5500;
 			}
 		}
-		lane.render();
 
+		DWORD currentTime = GetTickCount(); // Get the current time in milliseconds
 
+		
+
+		for (int i = 0; i < 5; ++i)
+		{
+			lane[i].moveObstacle();
+			lane[i].render();
+			/*if (currentTime - lastAddObstacleTime >= 3000) {
+				lane[i].addObstacle();
+				lastAddObstacleTime = currentTime; // Update the last call time
+			}*/
+		}
+
+		if (currentTime - lastAddObstacleTime >= 2000)
+		{
+			int id = randomInt(0, 100);
+			id %= 5;
+			lane[id].addObstacle();
+			lastAddObstacleTime = currentTime; // Update the last call time
+		}
+
+		//e.move({ 100, 500 });
+		//e.render();
+
+		
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
 	}
 }

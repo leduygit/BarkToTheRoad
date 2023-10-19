@@ -8,4 +8,10 @@ public:
 	void render() {
 		Entity::render();
 	}
+
+	COORD getPos()
+	{
+		return m_position;
+	}
+	
 };
