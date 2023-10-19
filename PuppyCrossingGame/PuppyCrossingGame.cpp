@@ -6,6 +6,7 @@
 #include "renderer.h"
 #include "AsphaltObstacleFactory.h"
 #include "AsphaltLane.h"
+#include "GrassLane.h"
 
 bool window_should_close = false;
 
@@ -63,7 +64,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
 	}
 	DWORD lastAddObstacleTime = 0;
-
 
 	Global::drawer.set_render_state(render_state);
 

@@ -18,6 +18,9 @@ void Lane::render()
 		Obstacle* obs = m_obs[i];
 		obs->render();
 	}
+
+	for (auto x : m_obs)
+		x->render();
 }
 
 void Lane::addObstacle()
