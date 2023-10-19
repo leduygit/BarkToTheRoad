@@ -62,6 +62,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	{
 		lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
 	}
+	DWORD lastAddObstacleTime = 0;
+
 
 	Global::drawer.set_render_state(render_state);
 
@@ -79,12 +81,28 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 		}
 
+		DWORD currentTime = GetTickCount(); // Get the current time in milliseconds
+
+		
+
 		for (int i = 0; i < 5; ++i)
 		{
 			lane[i].moveObstacle();
 			lane[i].render();
-			lane[i].addObstacle();
+			/*if (currentTime - lastAddObstacleTime >= 3000) {
+				lane[i].addObstacle();
+				lastAddObstacleTime = currentTime; // Update the last call time
+			}*/
 		}
+
+		if (currentTime - lastAddObstacleTime >= 2000)
+		{
+			int id = randomInt(0, 100);
+			id %= 5;
+			lane[id].addObstacle();
+			lastAddObstacleTime = currentTime; // Update the last call time
+		}
+
 		//e.move({ 100, 500 });
 		//e.render();
 

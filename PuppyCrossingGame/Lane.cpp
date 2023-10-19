@@ -22,7 +22,7 @@ void Lane::render()
 
 void Lane::addObstacle()
 {
-	//int x = randomInt(0, 1000);
+	int x = randomInt(0, 1000);
 	//if (x < 600) return;
 	if (m_obsSize >= 5) return;
 	if (m_obsSize != 0 && busModel.isCollison(*m_obs[m_obsSize - 1]) == true) return;
