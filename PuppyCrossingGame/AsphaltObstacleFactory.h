@@ -2,7 +2,7 @@
 #include "ObstacleFactory.h"
 #include "CarObstacle.h"
 #include "BusObstacle.h"
-class AsphaltObstacleFactory: ObstacleFactory
+class AsphaltObstacleFactory: public ObstacleFactory
 {
 public:
 	Obstacle* createObstacle(COORD pos) override;
