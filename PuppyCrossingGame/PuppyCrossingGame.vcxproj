@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Animal.h" />
     <ClInclude Include="AsphaltLane.h" />
+    <ClInclude Include="AsphaltLaneFactory.h" />
     <ClInclude Include="AsphaltObstacleFactory.h" />
     <ClInclude Include="BusObstacle.h" />
     <ClInclude Include="CarObstacle.h" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="AsphaltLane.cpp" />
+    <ClCompile Include="AsphaltLaneFactory.cpp" />
     <ClCompile Include="AsphaltObstacleFactory.cpp" />
     <ClCompile Include="BusObstacle.cpp" />
     <ClCompile Include="CarObstacle.cpp" />

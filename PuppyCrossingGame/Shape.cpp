@@ -6,11 +6,11 @@ Shape::Shape(std::string fileName)
     std::ifstream ifs(fileName);
     if (!ifs.is_open())
         return ;
-    ifs >> m_height >> m_width;
+    ifs >> m_width >> m_height;
     m_shape = new unsigned int* [m_height];
     for (int i = 0; i < m_height; i++)
     {
-        m_shape[i] = new unsigned int[m_height];
+        m_shape[i] = new unsigned int[m_width];
         for (int j = 0; j < m_width; j++) {
             std::string colorHex;
             ifs >> colorHex;
@@ -28,7 +28,7 @@ void Shape::render(int offset_x, int offset_y) {
     {
         for (int y = 0; y < m_width; y++) {
             if (m_shape[x][y] != 0x00000000)
-                Global::drawer.draw_rect({ offset_x + x, offset_y + y, offset_x + x, offset_y + y }, m_shape[x][y]);
+                Global::drawer.draw_rect({ offset_x + y, offset_y + m_height - x - 1, offset_x + y, offset_y + m_height - x - 1 }, m_shape[x][y]);
         }
     }
 }

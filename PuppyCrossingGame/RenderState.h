@@ -2,8 +2,6 @@
 
 #include "framework.h"
 
-#define SPRITE_SIZE 90
-
 class RenderState
 {
     int m_height, m_width;
