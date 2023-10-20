@@ -4,7 +4,8 @@
 class LaneFactory
 {
 public:
-	virtual Lane* createLane(COORD pos) = 0;
+	//	Lane(COORD pos, std::string file_name, ObstacleFactory* fact);
+	virtual Lane* createLane(COORD pos, std::string file_name, ObstacleFactory *fact) = 0;
 private:
 };
 
