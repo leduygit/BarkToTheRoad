@@ -28,7 +28,7 @@ void Shape::render(int offset_x, int offset_y) {
     {
         for (int y = 0; y < m_width; y++) {
             if (m_shape[x][y] != 0x00000000)
-                Global::drawer.draw_rect({ offset_x + x, offset_y + y, offset_x + x, offset_y + y }, m_shape[x][y]);
+                Global::drawer.draw_rect({ offset_x + y, offset_y + m_height - x - 1, offset_x + y, offset_y + m_height - x - 1 }, m_shape[x][y]);
         }
     }
 }

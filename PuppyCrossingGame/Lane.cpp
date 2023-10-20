@@ -9,7 +9,7 @@ Lane::Lane(COORD pos, std::string file_name, ObstacleFactory* fact) :
 void Lane::render()
 {
 	int x = 0;
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 14; i++) {
 		m_shape.render(x, m_position.Y);
 		x += 90;
 	}
