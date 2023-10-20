@@ -49,12 +49,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	HWND window = CreateWindowA("My Window Class", "My First Game", WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
 	HDC hdc = GetDC(window);
 
-	unsigned int a[SPRITE_SIZE][SPRITE_SIZE];
-	for (int i = 0; i < SPRITE_SIZE; i++) {
-		for (int j = 0; j < SPRITE_SIZE; j++) {
-			a[i][j] = 0xFF0000FF;
-		}
-	}
 	//Shape s("image/dog_stay_1.txt");
 	//Entity e({ 100, 100 }, &s);
 	ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
@@ -95,7 +89,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}*/
 		}
 
-		if (currentTime - lastAddObstacleTime >= 2000)
+		//if (currentTime - lastAddObstacleTime >= 2000)
 		{
 			int id = randomInt(0, 100);
 			id %= 5;

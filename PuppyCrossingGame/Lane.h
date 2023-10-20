@@ -9,7 +9,7 @@ protected:
 	Shape m_shape{};
 	ObstacleFactory* m_fact{};
 	int m_obsSize = 0;
-	Obstacle* m_obs[10];
+	std::vector<Obstacle*> m_obs;
 	Obstacle busModel;
 public:
 	Lane() = default;

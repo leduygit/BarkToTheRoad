@@ -14,26 +14,25 @@ void Lane::render()
 		x += 90;
 	}
 
-	for (int i = 0; i < m_obsSize; ++i) {
-		Obstacle* obs = m_obs[i];
+	for (auto obs: m_obs) {
 		obs->render();
 	}
 
-	for (auto x : m_obs)
-		x->render();
+	for (auto obs : m_obs)
+		obs->render();
 }
 
 void Lane::addObstacle()
 {
 	int x = randomInt(0, 1000);
 	if (x < 600) return;
-	if (m_obsSize >= 5) return;
-	if (m_obsSize != 0 && busModel.isCollison(*m_obs[m_obsSize - 1]) == true) return;
+	if (m_obs.size() >= 5) return;
+	if (m_obs.size() != 0 && busModel.isCollison(*m_obs[m_obs.size() - 1]) == true) return;
 
 	// if there's no Collison with the newest Obstacle
 	Obstacle* newObstacle = m_fact->createObstacle(m_position);
 	if (newObstacle) 
-		m_obs[m_obsSize++] = newObstacle;
+		m_obs.push_back(newObstacle);
 	else
 		delete newObstacle;
 	
@@ -41,12 +40,11 @@ void Lane::addObstacle()
 
 void Lane::moveObstacle()
 {
-	for (int i = 0; i < m_obsSize; ++i)
+	for (auto obs : m_obs)
 	{
-		Obstacle* obs = m_obs[i];
 		COORD pos = obs->getPos();
 		SHORT x = 100; 
-		obs->move({ pos.X + x, pos.Y });
+		obs->move({ static_cast<short>(pos.X + x), pos.Y });
 	}
 }
 
