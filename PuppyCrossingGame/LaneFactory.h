@@ -5,7 +5,7 @@ class LaneFactory
 {
 public:
 	//	Lane(COORD pos, std::string file_name, ObstacleFactory* fact);
-	virtual Lane* createLane(COORD pos, std::string file_name, ObstacleFactory *fact) = 0;
+	virtual Lane* createLane(COORD pos) = 0;
 private:
 };
 

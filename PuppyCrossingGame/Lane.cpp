@@ -1,9 +1,12 @@
 #include "Lane.h"
+Shape Lane::m_shape; // Initialize the protected static member variable
+ObstacleFactory* Lane::m_fact = nullptr;
 
-Lane::Lane(COORD pos, std::string file_name, ObstacleFactory* fact) :
-	m_position{ pos }, m_shape{ file_name }, m_fact{ fact }
+Lane::Lane(COORD pos) :
+	m_position{ pos }
 {
 	busModel = BusObstacle(m_position);
+	m_shape = Shape("image/road.txt");
 }
 
 void Lane::render()
@@ -33,8 +36,7 @@ void Lane::addObstacle()
 	Obstacle* newObstacle = m_fact->createObstacle(m_position);
 	if (newObstacle) 
 		m_obs.push_back(newObstacle);
-	else
-		delete newObstacle;
+
 	
 }
 
