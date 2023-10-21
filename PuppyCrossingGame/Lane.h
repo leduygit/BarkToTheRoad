@@ -6,12 +6,12 @@ class Lane
 {
 protected:
 	COORD m_position{};
-	static ObstacleFactory* m_fact;
-	static Shape m_shape;
 	int m_obsSize = 0;
 	std::vector<Obstacle*> m_obs;
 	Obstacle busModel;
 public:
+	ObstacleFactory* m_fact;
+	Shape m_shape;
 
 
 	Lane() = default;

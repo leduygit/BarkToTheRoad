@@ -1,6 +1,4 @@
 #include "Lane.h"
-Shape Lane::m_shape; // Initialize the protected static member variable
-ObstacleFactory* Lane::m_fact = nullptr;
 
 Lane::Lane(COORD pos) :
 	m_position{ pos }

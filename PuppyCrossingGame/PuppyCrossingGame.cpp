@@ -58,6 +58,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	Map m(&fact);
 	m.addLane();
 
+	GrassLane gL({ 0, 100 });
+	AsphaltLane aL({ 0, 0 });
+	
+
 
 	Global::drawer.set_render_state(render_state);
 
@@ -78,7 +82,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		//DWORD currentTime = GetTickCount(); // Get the current time in milliseconds
 
 		m.render();
-
+		//aL.render();
+		//gL.render();
 		
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
 	}
