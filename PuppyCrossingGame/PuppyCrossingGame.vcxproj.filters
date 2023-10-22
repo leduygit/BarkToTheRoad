@@ -96,7 +96,13 @@
     <ClInclude Include="GrassObstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AsphaltLaneFactory.h">
+    <ClInclude Include="SpringLaneFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SummerLaneFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinterLaneFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -173,7 +179,16 @@
     <ClCompile Include="GrassObstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AsphaltLaneFactory.cpp">
+    <ClCompile Include="SpringLaneFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SummerLaneFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WinterLaneFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RailLane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,13 +1,19 @@
 #pragma once
 #include "Lane.h"
+#include "AsphaltObstacleFactory.h"
 
 class AsphaltLane : public Lane
 {
 public:
     AsphaltLane() = default;
-    AsphaltLane(COORD pos, std::string file_name, ObstacleFactory* fact) : 
-        Lane(pos, file_name, fact) {}
+    AsphaltLane(COORD pos) : 
+        Lane(pos)
+    {
+        m_fact = new AsphaltObstacleFactory();
+        m_shape = Shape("image/road.txt");
+    }
 
     using Lane::render;
 private:
 };
+

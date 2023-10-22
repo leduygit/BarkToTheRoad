@@ -7,6 +7,11 @@
 #include "AsphaltObstacleFactory.h"
 #include "AsphaltLane.h"
 #include "GrassLane.h"
+#include "RailLane.h"
+#include "Map.h"
+#include "SummerLaneFactory.h"
+
+
 
 bool window_should_close = false;
 
@@ -49,16 +54,13 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	HWND window = CreateWindowA("My Window Class", "My First Game", WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
 	HDC hdc = GetDC(window);
 
-	//Shape s("image/train.txt");
-	//Entity e({ 100, 100 }, &s);
-	ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
-	Lane lane[10];
-	for (SHORT i = 0; i < 6; ++i)
-	{
-		lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
-	}
-	DWORD lastAddObstacleTime = 0;
+	SummerLaneFactory fact;
+	Map m(&fact);
+	m.addLane();
 
+	GrassLane gL({ 0, 100 });
+	AsphaltLane aL({ 0, 0 });
+	
 
 
 	Global::drawer.set_render_state(render_state);
@@ -73,32 +75,15 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		unsigned int* pixels = render_state.getMemoryPointer();
 		for (int i = 0; i < render_state.getWidth(); i++) {
 			for (int j = 0; j < render_state.getHeight(); j++) {
-				*pixels++ = 0xFFFFFFFF;
+				*pixels++ = 0xFFFFFF55;
 			}
 		}
 
-		DWORD currentTime = GetTickCount(); // Get the current time in milliseconds
+		//DWORD currentTime = GetTickCount(); // Get the current time in milliseconds
 
-		
-
-		for (int i = 0; i < 6; ++i)
-		{
-			lane[i].moveObstacle();
-			lane[i].render();
-		}
-
-		if (currentTime - lastAddObstacleTime >= 1500)
-		{
-			int id = randomInt(0, 100);
-			id %= 6;
-			lane[id].addObstacle();
-			lastAddObstacleTime = currentTime; // Update the last call time
-		}
-		//s.render(100, 100);
-
-		//e.move({ 100, 500 });
-		//e.render();
-
+		m.render();
+		//aL.render();
+		//gL.render();
 		
 		StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(), 0, 0, render_state.getWidth(), render_state.getHeight(), render_state.getMemoryPointer(), render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
 	}

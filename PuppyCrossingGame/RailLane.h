@@ -1,9 +1,15 @@
 #pragma once
 #include "Lane.h"
+#include "RailObstacleFactory.h"
 class RailLane: public Lane
 {
 public:
 	RailLane() = default;
-	RailLane(COORD pos, std::string file_name, ObstacleFactory* fact): Lane(pos, file_name, fact) {}
+	RailLane(COORD pos): Lane(pos) {
+		m_fact = new RailObstacleFactory();
+		m_shape = Shape("image/railway_lane.txt");
+	}
 };
+
+
 
