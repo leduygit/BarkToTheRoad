@@ -2,5 +2,6 @@
 
 void MoveUpCommand::execute(Character& c)
 {
-	c.move({ 100, 500 });
+	COORD currentPostition = c.getPos();
+	c.move({ static_cast<short>(currentPostition.X), static_cast<short> (currentPostition.Y + 90) });
 }
