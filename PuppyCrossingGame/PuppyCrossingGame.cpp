@@ -7,6 +7,9 @@
 #include "AsphaltObstacleFactory.h"
 #include "AsphaltLane.h"
 #include "GrassLane.h"
+#include "InputHandler.h"
+#include "Character.h"
+#include "MoveUpCommand.h"
 
 bool window_should_close = false;
 
@@ -14,6 +17,8 @@ Shape s("image/dog_stay_1.txt");
 Entity e({ 100, 100 }, & s);
 
 RenderState render_state;
+InputHandler ih;
+Command* command = nullptr;
 
 
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -24,6 +29,10 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	case WM_CLOSE:
 	case WM_DESTROY:
 		window_should_close = true;
+		break;
+	case WM_KEYDOWN:
+		command = ih.handleInput(wParam);
+		break;
 	case WM_SIZE:
 	{
 		RECT clientRect;
@@ -49,19 +58,20 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	HWND window = CreateWindowA("My Window Class", "My First Game", WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
 	HDC hdc = GetDC(window);
 
-	//Shape s("image/train.txt");
+	Shape s("image/dog_stay_1.txt");
 	//Entity e({ 100, 100 }, &s);
-	ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
+	//ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
 	Lane lane[10];
 	for (SHORT i = 0; i < 6; ++i)
 	{
-		lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
+		//lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
 	}
 	DWORD lastAddObstacleTime = 0;
-
-
+	MoveUpCommand *move_up = new MoveUpCommand;
+	ih.set_move_up(move_up);
 
 	Global::drawer.set_render_state(render_state);
+	Character c{ {100, 100}, &s };
 
 	while (!window_should_close) {
 		MSG message;
@@ -79,20 +89,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 		DWORD currentTime = GetTickCount(); // Get the current time in milliseconds
 
-		
-
-		for (int i = 0; i < 6; ++i)
-		{
-			lane[i].moveObstacle();
-			lane[i].render();
-		}
-
-		if (currentTime - lastAddObstacleTime >= 1500)
-		{
-			int id = randomInt(0, 100);
-			id %= 6;
-			lane[id].addObstacle();
-			lastAddObstacleTime = currentTime; // Update the last call time
+		c.render();
+		if (command != nullptr) {
+			command->execute(c);
 		}
 		//s.render(100, 100);
 

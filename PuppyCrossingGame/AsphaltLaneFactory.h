@@ -5,6 +5,6 @@
 class AsphaltLaneFactory : public LaneFactory
 {
 public:
-	Lane* createLane(COORD pos) override;
+	Lane* createLane(COORD pos);
 };
 
