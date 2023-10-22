@@ -7,7 +7,7 @@ public:
 	GrassLane() = default;
 	GrassLane(COORD pos);
 
-	void spawnObstacle(int num);
+	void spawnObstacle();
 	using Lane::render;
 private:
 };

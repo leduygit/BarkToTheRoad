@@ -22,7 +22,7 @@ void Map::addLane()
 {
     for (short i = 0; i < 7; ++i)
     {
-        m_lane[i] = m_fact->createLane({0 , (SHORT)90 * i });
+        m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
     }
     return;
 }

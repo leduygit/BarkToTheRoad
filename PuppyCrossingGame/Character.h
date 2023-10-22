@@ -10,5 +10,6 @@ public:
 	Character(COORD pos, Shape* s) : Entity(pos, s) {}
 	void Bark();
 	bool isFinish(); // isDead checking
+	COORD getPos();
 };
 

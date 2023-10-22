@@ -16,9 +16,6 @@
 
 bool window_should_close = false;
 
-Shape s("image/dog_stay_1.txt");
-Entity e({100, 100}, &s);
-
 RenderState render_state;
 InputHandler ih;
 Command* command = nullptr;
@@ -61,22 +58,15 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
                               CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
   HDC hdc = GetDC(window);
   Shape s("image/dog_stay_1.txt");
-  // Entity e({ 100, 100 }, &s);
-  // ObstacleFactory* AsphaltFactory = new AsphaltObstacleFactory();
-  Lane lane[10];
-  for (SHORT i = 0; i < 6; ++i) {
-    // lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
-  }
+  //Lane lane[10];
+
   DWORD lastAddObstacleTime = 0;
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
 
-  GrassLane gL({0, 100});
-  AsphaltLane aL({0, 0});
-
   Global::drawer.set_render_state(render_state);
-  Character c{{100, 100}, &s};
+  Character c{{90, 90}, &s};
 
   while (!window_should_close) {
     MSG message;
@@ -92,20 +82,13 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
       }
     }
     DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
-    // s.render(100, 100);
-
-    // e.move({ 100, 500 });
-    // e.render();
-    // DWORD currentTime = GetTickCount(); // Get the current time
-    // in milliseconds
 
     m.render();
     c.render();
     if (command != nullptr) {
         command->execute(c);
+        command = nullptr;
     }
-    // aL.render();
-    // gL.render();
 
     StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
                   0, 0, render_state.getWidth(), render_state.getHeight(),

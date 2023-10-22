@@ -4,12 +4,12 @@ GrassLane::GrassLane(COORD pos)
 {
 	m_position = pos;
 	m_fact = new GrassObstacleFactory();
-	m_shape = Shape("image/grassland.txt");
-
+	m_shape = Shape("image/grass_lane.txt");
 }
 
-void GrassLane::spawnObstacle(int num)
+void GrassLane::spawnObstacle()
 {
+	int num = randomInt(1, 4);
 	bool obs_array[14]{};
 	GrassObstacleFactory fac;
 	while (num)
