@@ -9,6 +9,6 @@
 class WinterLaneFactory
 {
 public:
-	Lane* createLane(COORD pos, std::string file_name, ObstacleFactory* fact);
+	Lane* createLane(COORD pos);
 };
 

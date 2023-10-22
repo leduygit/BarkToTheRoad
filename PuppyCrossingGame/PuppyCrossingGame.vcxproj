@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClInclude Include="Animal.h" />
     <ClInclude Include="AsphaltLane.h" />
-    <ClInclude Include="AsphaltLaneFactory.h" />
     <ClInclude Include="AsphaltObstacleFactory.h" />
     <ClInclude Include="BusObstacle.h" />
     <ClInclude Include="CarObstacle.h" />
@@ -155,14 +154,16 @@
     <ClInclude Include="PuppyCrossingGame.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="SpringLaneFactory.h" />
     <ClInclude Include="SpringMap.h" />
+    <ClInclude Include="SummerLaneFactory.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TrainObstacle.h" />
+    <ClInclude Include="WinterLaneFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="AsphaltLane.cpp" />
-    <ClCompile Include="AsphaltLaneFactory.cpp" />
     <ClCompile Include="AsphaltObstacleFactory.cpp" />
     <ClCompile Include="BusObstacle.cpp" />
     <ClCompile Include="CarObstacle.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="LaneFactory.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MoveUpCommand.cpp" />
+    <ClCompile Include="RailLane.cpp" />
     <ClCompile Include="RailObstacleFactory.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="RenderState.cpp" />
@@ -186,8 +188,11 @@
     <ClCompile Include="ObstacleFactory.cpp" />
     <ClCompile Include="PuppyCrossingGame.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="SpringLaneFactory.cpp" />
     <ClCompile Include="SpringMap.cpp" />
+    <ClCompile Include="SummerLaneFactory.cpp" />
     <ClCompile Include="TrainObstacle.cpp" />
+    <ClCompile Include="WinterLaneFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />

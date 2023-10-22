@@ -5,10 +5,12 @@ class GrassLane : public Lane
 {
 public:
 	GrassLane() = default;
-	GrassLane(COORD pos, std::string file_name);
+	GrassLane(COORD pos);
 
 	void spawnObstacle(int num);
 	using Lane::render;
 private:
 };
+
+
 

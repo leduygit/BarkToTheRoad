@@ -1,9 +1,11 @@
 #include "GrassLane.h"
 
-GrassLane::GrassLane(COORD pos, std::string file_name)
+GrassLane::GrassLane(COORD pos)
 {
 	m_position = pos;
-	m_shape = Shape{ file_name };
+	m_fact = new GrassObstacleFactory();
+	m_shape = Shape("image/grassland.txt");
+
 }
 
 void GrassLane::spawnObstacle(int num)
