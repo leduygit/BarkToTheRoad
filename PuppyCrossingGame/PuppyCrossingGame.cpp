@@ -68,8 +68,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     // lane[i] = Lane({ 0, 100 * i }, "image/road.txt", AsphaltFactory);
   }
   DWORD lastAddObstacleTime = 0;
-  MoveUpCommand* move_up = new MoveUpCommand;
-  ih.set_move_up(move_up);
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
