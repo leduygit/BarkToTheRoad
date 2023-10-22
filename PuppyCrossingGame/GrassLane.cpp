@@ -4,7 +4,14 @@ GrassLane::GrassLane(COORD pos)
 {
 	m_position = pos;
 	m_fact = new GrassObstacleFactory();
-	m_shape = Shape("image/grass_lane.txt");
+	int rand = randomInt(0, 9);
+	if (rand % 2) {
+		m_shape = Shape("image/grass_lane.txt");
+	}
+	else {
+		m_shape = Shape("image/grass_lane_1.txt");
+	}
+	spawnObstacle();
 }
 
 void GrassLane::spawnObstacle()
