@@ -94,11 +94,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
       }
     }
     DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
-
-    c.render();
-    if (command != nullptr) {
-      command->execute(c);
-    }
     // s.render(100, 100);
 
     // e.move({ 100, 500 });
@@ -107,6 +102,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     // in milliseconds
 
     m.render();
+    c.render();
+    if (command != nullptr) {
+        command->execute(c);
+    }
     // aL.render();
     // gL.render();
 
