@@ -18,9 +18,6 @@ void Lane::render()
 	for (auto obs: m_obs) {
 		obs->render();
 	}
-
-	for (auto obs : m_obs)
-		obs->render();
 }
 
 void Lane::addObstacle()
