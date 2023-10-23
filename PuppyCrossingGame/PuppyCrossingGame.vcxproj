@@ -142,6 +142,9 @@
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LaneFactory.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MoveDownCommand.h" />
+    <ClInclude Include="MoveLeftCommand.h" />
+    <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="MoveUpCommand.h" />
     <ClInclude Include="RailObstacleFactory.h" />
     <ClInclude Include="renderer.h" />
@@ -177,6 +180,9 @@
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LaneFactory.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MoveDownCommand.cpp" />
+    <ClCompile Include="MoveLeftCommand.cpp" />
+    <ClCompile Include="MoveRightCommand.cpp" />
     <ClCompile Include="MoveUpCommand.cpp" />
     <ClCompile Include="RailLane.cpp" />
     <ClCompile Include="RailObstacleFactory.cpp" />

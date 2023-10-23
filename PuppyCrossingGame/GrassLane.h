@@ -1,15 +1,18 @@
 #pragma once
 #include "Lane.h"
 #include "GrassObstacleFactory.h"
+#include <string>
+#include <time.h>
 class GrassLane : public Lane
 {
 public:
 	GrassLane() = default;
 	GrassLane(COORD pos);
 
-	void spawnObstacle(int num);
-	using Lane::render;
+	void spawnObstacle();
+	void render() override;
 private:
+	Shape m_lanes[14];
 };
 
 
