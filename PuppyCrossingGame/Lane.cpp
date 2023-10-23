@@ -31,8 +31,6 @@ void Lane::addObstacle()
 	Obstacle* newObstacle = m_fact->createObstacle(m_position);
 	if (newObstacle) 
 		m_obs.push_back(newObstacle);
-
-	
 }
 
 void Lane::moveObstacle()
