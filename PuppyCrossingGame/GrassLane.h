@@ -1,6 +1,8 @@
 #pragma once
 #include "Lane.h"
 #include "GrassObstacleFactory.h"
+#include <string>
+#include <time.h>
 class GrassLane : public Lane
 {
 public:
@@ -8,8 +10,9 @@ public:
 	GrassLane(COORD pos);
 
 	void spawnObstacle();
-	using Lane::render;
+	void render() override;
 private:
+	Shape m_lanes[14];
 };
 
 
