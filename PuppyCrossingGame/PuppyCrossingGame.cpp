@@ -54,7 +54,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
   RegisterClass(&window_class);
 
   HWND window = CreateWindowA("My Window Class", "My First Game",
-                                WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME | WS_VISIBLE, CW_USEDEFAULT,
+                                WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
                                 CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
   HDC hdc = GetDC(window);
   Shape s("image/dog_stay_1.txt");
