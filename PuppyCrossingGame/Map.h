@@ -9,6 +9,9 @@ public:
 	Map() = default;
 	Map(LaneFactory* fact);
 	bool checkCollision(Entity& e);
+	void moveObstacle();
+	void addObstacle();
+
 	void render();
 	void addLane();
 };

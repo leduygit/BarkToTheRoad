@@ -17,7 +17,7 @@ public:
 	Lane() = default;
 	Lane(COORD pos);
 	virtual void render();
-	void addObstacle();
-	void moveObstacle();
+	virtual void addObstacle();
+	virtual void moveObstacle();
 };
 
