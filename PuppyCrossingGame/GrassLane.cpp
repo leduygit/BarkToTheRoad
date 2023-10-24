@@ -1,17 +1,18 @@
 #include "GrassLane.h"
 
+
 GrassLane::GrassLane(COORD pos)
 {
 	m_position = pos;
 	m_fact = new GrassObstacleFactory();
-	m_shape = Shape("image/grass_0.txt");
+	m_shape = *MyShape[GRASS_0];
 	for (int i = 0; i < 14; i++) {
 		int rand = randomInt(1, 100);
 		if (rand % 2)
-			m_lanes[i] = Shape("image/grass_0.txt");
+			m_lanes[i] = *MyShape[GRASS_0];
 		else {
-			rand = randomInt(0, 3);
-			m_lanes[i] = Shape("image/grass_" + std::to_string(rand + 1) + ".txt");
+			rand = randomInt(1, 4);
+			m_lanes[i] = *MyShape[rand + GRASS_0];
 		}
 	}
 	spawnObstacle();

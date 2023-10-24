@@ -1,6 +1,7 @@
 #include "TrainObstacle.h"
+
 TrainObstacle::TrainObstacle(COORD pos)
 {
-	m_shape = new Shape("image/train_right.txt");
+	m_shape = MyShape[TRAIN_RIGHT];
 	m_position = pos;
 }

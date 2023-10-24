@@ -2,6 +2,8 @@
 #include "ObstacleFactory.h"
 #include "BusObstacle.h"
 #include "vector"
+#include "LoadShape.h"
+
 class Lane
 {
 protected:

@@ -141,6 +141,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LaneFactory.h" />
+    <ClInclude Include="LoadShape.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MoveDownCommand.h" />
     <ClInclude Include="MoveLeftCommand.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LaneFactory.cpp" />
+    <ClCompile Include="LoadShape.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MoveDownCommand.cpp" />
     <ClCompile Include="MoveLeftCommand.cpp" />

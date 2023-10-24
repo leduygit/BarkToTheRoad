@@ -14,6 +14,8 @@
 #include "framework.h"
 #include "renderer.h"
 
+
+
 bool window_should_close = false;
 
 RenderState render_state;
@@ -59,7 +61,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
   HDC hdc = GetDC(window);
   Shape s("image/dog_stay_1.txt");
   //Lane lane[10];
-
+  initShape();
   DWORD lastAddObstacleTime = 0;
   SummerLaneFactory fact;
   Map m(&fact);
