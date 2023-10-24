@@ -1,7 +1,8 @@
 #include "BusObstacle.h"
 
+
 BusObstacle::BusObstacle(COORD pos)
 {
-	m_shape = new Shape("image/car_right.txt");
+	m_shape = MyShape[CAR_RIGHT];
 	m_position = pos;
 }

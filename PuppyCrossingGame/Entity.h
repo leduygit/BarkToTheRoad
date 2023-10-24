@@ -1,6 +1,7 @@
 #pragma once
 #include "windows.h"
-#include "Shape.h"
+#include "Global.h"
+#include "LoadShape.h"
 class Entity
 {
 private:

@@ -1,10 +1,12 @@
 #include "Lane.h"
 
+
+
 Lane::Lane(COORD pos) :
 	m_position{ pos }
 {
 	busModel = BusObstacle(m_position);
-	m_shape = Shape("image/road.txt");
+	m_shape = *MyShape[ROAD];
 }
 
 void Lane::render()

@@ -10,7 +10,7 @@ public:
         Lane(pos)
     {
         m_fact = new AsphaltObstacleFactory();
-        m_shape = Shape("image/road.txt");
+        m_shape = *MyShape[ROAD];
     }
 
     using Lane::render;

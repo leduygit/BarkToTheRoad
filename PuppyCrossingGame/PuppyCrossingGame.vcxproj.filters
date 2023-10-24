@@ -123,6 +123,9 @@
     <ClInclude Include="MoveRightCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LoadShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PuppyCrossingGame.cpp">
@@ -225,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MoveRightCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
