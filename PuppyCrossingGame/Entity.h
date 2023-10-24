@@ -4,7 +4,6 @@
 class Entity
 {
 private:
-	COORD m_new_position;
 	//int m_width;
 	//int m_height;
 	int m_velo_x;
@@ -12,6 +11,7 @@ private:
 
 protected:
 	COORD m_position;
+	COORD m_new_position;
 	Shape* m_shape;
 public:
 	Entity() = default;

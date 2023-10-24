@@ -19,6 +19,7 @@ bool window_should_close = false;
 RenderState render_state;
 InputHandler ih;
 Command* command = nullptr;
+Character* c = new Character;
 
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
   LRESULT result = 0;
@@ -29,7 +30,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
       window_should_close = true;
       break;
     case WM_KEYDOWN:
-      command = ih.handleInput(wParam);
+      command = ih.handleInput(wParam, *c);
       break;
     case WM_SIZE: {
       RECT clientRect;
@@ -66,7 +67,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
   m.addLane();
 
   Global::drawer.set_render_state(render_state);
-  Character c{{90, 90}, &s};
+  c = new Character{ {90, 90}, &s };
 
   while (!window_should_close) {
     MSG message;
@@ -87,9 +88,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     m.moveObstacle();
 
     m.render();
-    c.render();
+    c->render();
     if (command != nullptr) {
-        command->execute(c);
+        command->execute(*c);
         command = nullptr;
     }
 
