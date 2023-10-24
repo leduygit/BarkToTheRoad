@@ -60,16 +60,17 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
                                 CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
   HDC hdc = GetDC(window);
-  Shape s("image/dog_stay_1.txt");
   //Lane lane[10];
   initShape();
+  Shape* moving = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
+  Shape* staying = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
   DWORD lastAddObstacleTime = 0;
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
 
   Global::drawer.set_render_state(render_state);
-  c = new Character{ {90, 90}, &s };
+  c = new Character{ {90, 90}, staying, moving, 3 };
 
   while (!window_should_close) {
     MSG message;
