@@ -7,8 +7,9 @@ InputHandler::InputHandler() {
     move_right = new MoveRightCommand;
 }
 
-Command* InputHandler::handleInput(WPARAM key)
+Command* InputHandler::handleInput(WPARAM key, const Character& c)
 {
+    if (!c.isStanding()) return nullptr;
     switch (key)
     {
     case VK_UP:

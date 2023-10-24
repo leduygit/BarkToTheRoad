@@ -10,7 +10,7 @@ class InputHandler
 public:
 	InputHandler();
 
-	Command* handleInput(WPARAM key);
+	Command* handleInput(WPARAM key, const Character& c);
 private:
 	MoveUpCommand* move_up;
 	MoveDownCommand* move_down;
