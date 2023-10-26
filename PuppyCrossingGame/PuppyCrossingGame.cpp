@@ -1,5 +1,4 @@
 #include "AsphaltLane.h"
-#include "AsphaltObstacleFactory.h"
 #include "Character.h"
 #include "Entity.h"
 #include "Global.h"
@@ -10,8 +9,6 @@
 #include "RailLane.h"
 #include "RenderState.h"
 #include "Shape.h"
-#include "SummerLaneFactory.h"
-#include "framework.h"
 #include "renderer.h"
 
 

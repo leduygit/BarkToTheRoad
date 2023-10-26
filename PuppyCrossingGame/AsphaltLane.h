@@ -1,6 +1,6 @@
 #pragma once
 #include "Lane.h"
-#include "AsphaltObstacleFactory.h"
+#include "ObstacleFactory.h"
 
 class AsphaltLane : public Lane
 {

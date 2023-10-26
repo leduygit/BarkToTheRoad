@@ -15,3 +15,36 @@ public:
 	}
 	
 };
+
+class BusObstacle : public Obstacle
+{
+public:
+	BusObstacle(COORD pos);
+
+};
+
+class CarObstacle :public Obstacle
+{
+public:
+	CarObstacle(COORD pos = { 0, 0 });
+};
+
+class GrassObstacle : public Obstacle
+{
+public:
+	GrassObstacle() = default;
+	GrassObstacle(COORD pos);
+private:
+};
+
+class TrainObstacle : public Obstacle
+{
+public:
+	TrainObstacle() = default;
+	TrainObstacle(COORD pos);
+private:
+};
+
+
+
+
