@@ -24,3 +24,11 @@ Obstacle* AsphaltObstacleFactory::createObstacle(COORD pos)
         return new CarObstacle(coord);
     return nullptr;
 }
+
+Obstacle* GrassObstacleFactory::createObstacle(COORD pos) {
+    return new GrassObstacle(pos);
+}
+
+Obstacle* RailObstacleFactory::createObstacle(COORD pos) {
+    return new TrainObstacle(pos);
+}

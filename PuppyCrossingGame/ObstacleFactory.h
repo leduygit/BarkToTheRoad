@@ -16,5 +16,16 @@ public:
 	Obstacle* createObstacle(COORD pos) override;
 };
 
+class GrassObstacleFactory : public ObstacleFactory {
+public:
+	Obstacle* createObstacle(COORD pos) override;
+};
+
+
+class RailObstacleFactory : public ObstacleFactory {
+public:
+	Obstacle* createObstacle(COORD pos) override;
+};
+
 
 

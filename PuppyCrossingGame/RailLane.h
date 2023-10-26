@@ -1,6 +1,5 @@
 #pragma once
 #include "Lane.h"
-#include "RailObstacleFactory.h"
 class RailLane: public Lane
 {
 public:

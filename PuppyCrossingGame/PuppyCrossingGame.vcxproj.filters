@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -40,9 +34,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ObstacleFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpringFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lane.h">
@@ -69,22 +60,7 @@
     <ClInclude Include="LaneFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GrassObstacleFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RailObstacleFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AsphaltLane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpringLaneFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SummerLaneFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WinterLaneFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
@@ -128,9 +104,6 @@
     <ClCompile Include="ObstacleFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpringFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Lane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -155,22 +128,7 @@
     <ClCompile Include="LaneFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GrassObstacleFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RailObstacleFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AsphaltLane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpringLaneFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SummerLaneFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WinterLaneFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RailLane.cpp">

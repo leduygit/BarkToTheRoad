@@ -132,7 +132,6 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="GrassLane.h" />
-    <ClInclude Include="GrassObstacleFactory.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LaneFactory.h" />
@@ -142,22 +141,15 @@
     <ClInclude Include="MoveLeftCommand.h" />
     <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="MoveUpCommand.h" />
-    <ClInclude Include="RailObstacleFactory.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="RenderState.h" />
-    <ClInclude Include="SpringFactory.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstacleFactory.h" />
     <ClInclude Include="PuppyCrossingGame.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shape.h" />
-    <ClInclude Include="SpringLaneFactory.h" />
     <ClInclude Include="SpringMap.h" />
-    <ClInclude Include="SummerLaneFactory.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="WinterLaneFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AsphaltLane.cpp" />
@@ -165,7 +157,6 @@
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="GrassLane.cpp" />
-    <ClCompile Include="GrassObstacleFactory.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LaneFactory.cpp" />
@@ -176,19 +167,14 @@
     <ClCompile Include="MoveRightCommand.cpp" />
     <ClCompile Include="MoveUpCommand.cpp" />
     <ClCompile Include="RailLane.cpp" />
-    <ClCompile Include="RailObstacleFactory.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="RenderState.cpp" />
-    <ClCompile Include="SpringFactory.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleFactory.cpp" />
     <ClCompile Include="PuppyCrossingGame.cpp" />
     <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="SpringLaneFactory.cpp" />
     <ClCompile Include="SpringMap.cpp" />
-    <ClCompile Include="SummerLaneFactory.cpp" />
-    <ClCompile Include="WinterLaneFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />
