@@ -45,3 +45,13 @@ void Lane::moveObstacle()
 	}
 }
 
+bool Lane::checkCollision(Entity& e)
+{
+	for (auto obstacle : m_obs)
+	{
+		if (obstacle->isCollison(e))
+			return true;
+	}
+	return false;
+}
+
