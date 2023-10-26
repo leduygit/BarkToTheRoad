@@ -10,6 +10,12 @@ bool Character::isFinish()
 	return false;
 }
 
+void Character::setPos(COORD pos)
+{
+	m_position = pos;
+	m_new_position = pos;
+}
+
 COORD Character::getPos()
 {
 	return m_position;

@@ -37,20 +37,20 @@ bool Entity::isCollison(const Entity& e)
 	// get size
 	m_shape->getSize(width, height);
 	e.m_shape->getSize(eWidth, eHeight);
+	int thisLeft = m_position.X;
+	int thisRight = m_position.X + width;
+	int thisTop = m_position.Y;
+	int thisBottom = m_position.Y + height;
 
-	// checking if not collison
+	int otherLeft = e.m_position.X;
+	int otherRight = e.m_position.X + eWidth;
+	int otherTop = e.m_position.Y;
+	int otherBottom = e.m_position.Y + eHeight;
 
-	// Case 1: our Entity on the left 
-	if (m_position.X + width < e.m_position.X)
-		return false;
-	if (m_position.Y + height < e.m_position.Y)
-		return false;
-	// Case 2: other Entity on the left
-	if (e.m_position.X + eWidth < m_position.X)
-		return false;
-	if (e.m_position.Y + eHeight < m_position.Y)
-		return false;
+	if (thisRight > otherLeft && thisLeft < otherRight &&
+		thisBottom > otherTop && thisTop < otherBottom) {
+		return true;
+	}
 
-	// otherwise these 2 will have collison
-	return true;
+	return false;
 }

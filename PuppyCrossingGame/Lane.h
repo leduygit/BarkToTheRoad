@@ -20,5 +20,6 @@ public:
 	virtual void render();
 	virtual void addObstacle();
 	virtual void moveObstacle();
+	virtual bool checkCollision(Entity& e);
 };
 

@@ -94,6 +94,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
         command = nullptr;
     }
 
+    if (m.checkCollision(*c)) {
+        c->setPos({ 90, 90 });
+    }
+
     StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
                   0, 0, render_state.getWidth(), render_state.getHeight(),
                   render_state.getMemoryPointer(),

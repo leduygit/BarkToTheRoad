@@ -22,6 +22,7 @@ public:
 	bool isStanding() const;
 	void render();
 	void move(COORD pos);
+	void setPos(COORD pos);
 	COORD getPos();
 };
 

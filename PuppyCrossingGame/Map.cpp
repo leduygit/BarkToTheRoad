@@ -9,12 +9,14 @@ Map::Map(LaneFactory* fact)
 
 bool Map::checkCollision(Entity& e)
 {
+    for (int i = 0; i < m_lane_number; ++i)
+        if (m_lane[i]->checkCollision(e)) return true;
     return false;
 }
 
 void Map::moveObstacle()
 {
-    for (int i = 0; i < 7; ++i)
+    for (int i = 0; i < m_lane_number; ++i)
         m_lane[i]->moveObstacle();
 }
 
@@ -28,13 +30,13 @@ void Map::addObstacle()
 
 void Map::render()
 {
-    for (int i = 0; i < 7; ++i)
+    for (int i = 0; i < m_lane_number; ++i)
         m_lane[i]->render();
 }
 
 void Map::addLane()
 {
-    for (short i = 0; i < 7; ++i)
+    for (short i = 0; i < m_lane_number; ++i)
     {
         m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
     }
