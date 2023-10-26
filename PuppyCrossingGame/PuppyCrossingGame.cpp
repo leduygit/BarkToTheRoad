@@ -1,5 +1,4 @@
 #include "AsphaltLane.h"
-#include "AsphaltObstacleFactory.h"
 #include "Character.h"
 #include "Entity.h"
 #include "Global.h"

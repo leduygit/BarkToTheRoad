@@ -39,9 +39,6 @@
     <ClInclude Include="Obstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ObstacleFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,28 +69,13 @@
     <ClInclude Include="LaneFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AsphaltObstacleFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GrassObstacleFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RailObstacleFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CarObstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BusObstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TrainObstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AsphaltLane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GrassObstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpringLaneFactory.h">
@@ -143,9 +125,6 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Animal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ObstacleFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -176,28 +155,13 @@
     <ClCompile Include="LaneFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AsphaltObstacleFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GrassObstacleFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RailObstacleFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CarObstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BusObstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TrainObstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AsphaltLane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GrassObstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpringLaneFactory.cpp">

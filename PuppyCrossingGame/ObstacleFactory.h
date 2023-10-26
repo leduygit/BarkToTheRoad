@@ -10,3 +10,11 @@ public:
 	virtual Obstacle* createObstacle(COORD pos) = 0;
 };
 
+class AsphaltObstacleFactory : public ObstacleFactory
+{
+public:
+	Obstacle* createObstacle(COORD pos) override;
+};
+
+
+
