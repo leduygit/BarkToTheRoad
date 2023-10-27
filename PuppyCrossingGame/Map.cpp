@@ -9,9 +9,8 @@ Map::Map(LaneFactory* fact)
     m_fact = fact;
 }
 
-bool Map::checkCollision(Character& e)
+bool Map::checkCollision(Entity& e)
 {
-    if (e.getPos().X < 0 || e.getPos().X >= 1260 || e.getPos().Y < 0) return true;
     for (int i = 0; i < m_lane_number; ++i)
         if (m_lane[i]->checkCollision(e)) return true;
     return false;
