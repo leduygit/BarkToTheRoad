@@ -4,6 +4,8 @@
 #include "Global.h"
 #include "fstream"
 
+bool isInside(COORD pos);
+
 class Shape
 {
 private:

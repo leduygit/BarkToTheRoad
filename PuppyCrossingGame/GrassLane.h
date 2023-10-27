@@ -9,9 +9,7 @@ public:
 	void moveObstacle() override;
 	void spawnObstacle();
 	void render() override;
-	bool isValid() override {
-		return false;
-	}
+	bool checkCollision(Entity& e) override;
 private:
 	Shape m_lanes[14];
 };

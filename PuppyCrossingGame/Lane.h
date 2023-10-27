@@ -2,7 +2,6 @@
 #include "ObstacleFactory.h"
 #include "vector"
 #include "LoadShape.h"
-#include "Character.h"
 
 class Lane
 {
@@ -20,10 +19,8 @@ public:
 	Lane(COORD pos);
 	virtual void render();
 	virtual void addObstacle();
+	virtual void removeObstacle();
 	virtual void moveObstacle();
-	virtual bool checkCollision(Character& e);
-	virtual bool isValid() {
-		return true;
-	}
+	virtual bool checkCollision(Entity& e);
 };
 
