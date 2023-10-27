@@ -86,6 +86,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
 
     m.addObstacle();
     m.moveObstacle();
+    m.removeObstacle();
 
     m.render();
     c->render();

@@ -26,8 +26,14 @@ void Map::addObstacle()
 {
     if (randomInt(0, 100) <= 90) return;
     int id = randomInt(0, 100);
-    id %= 7;
+    id %= m_lane_number;
     m_lane[id]->addObstacle();
+}
+
+void Map::removeObstacle()
+{
+    for (int i = 0; i < m_lane_number; ++i)
+        m_lane[i]->removeObstacle();
 }
 
 void Map::render()

@@ -19,6 +19,7 @@ public:
 	Lane(COORD pos);
 	virtual void render();
 	virtual void addObstacle();
+	virtual void removeObstacle();
 	virtual void moveObstacle();
 	virtual bool checkCollision(Entity& e);
 };
