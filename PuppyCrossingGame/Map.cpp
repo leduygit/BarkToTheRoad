@@ -1,4 +1,6 @@
 #include "Map.h"
+#define NUM_LANE 8
+
 
 LaneFactory* Map::m_fact;
 

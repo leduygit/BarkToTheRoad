@@ -6,7 +6,7 @@ RenderState::RenderState(int _h, int _w)
 {
     m_height = _h;
     m_width = _w;
-    int sz = m_width * m_height * sizeof(unsigned int);
+    int sz = m_width * m_height * 8;
 
     // No need to check if m_memory is nullptr, as it's initialized as nullptr.
     m_memory = VirtualAlloc(0, sz, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE); // Use malloc to allocate memory

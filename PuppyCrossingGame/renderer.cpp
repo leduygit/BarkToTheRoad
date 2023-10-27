@@ -10,9 +10,9 @@ void Renderer::clear_screen() {
 }
 
 void Renderer::draw_rect(RECT r, unsigned int color) {
-	for (int y = r.top; y <= r.bottom; y++) {
+	for (int y = max(0, r.top); y <= min(r.bottom, 720); y++) {
 		unsigned int* pixels = m_rs.getMemoryPointer() + r.left + y * m_rs.getWidth();
-		for (int x = r.left; x <= r.right; x++) {
+		for (int x = max(0, r.left); x <= min(r.right, 1280); x++) {
 			*pixels++ = color;
 		}
 	}

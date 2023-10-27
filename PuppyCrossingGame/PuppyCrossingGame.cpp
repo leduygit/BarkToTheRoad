@@ -35,7 +35,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
       RECT clientRect;
       GetClientRect(hWnd, &clientRect);
       render_state = RenderState(clientRect.bottom - clientRect.top,
-                                 clientRect.right - clientRect.left);
+                                 clientRect.right - clientRect.left + 30);
     } break;
     default:
       result = DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -55,7 +55,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
 
   HWND window = CreateWindowA("My Window Class", "My First Game",
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
-                                CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
+                                CW_USEDEFAULT, 1280 - 5, 720 + 40, 0, 0, hInstance, 0);
   HDC hdc = GetDC(window);
   //Lane lane[10];
   initShape();
