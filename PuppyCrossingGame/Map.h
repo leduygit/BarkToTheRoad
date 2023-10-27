@@ -1,5 +1,6 @@
 #pragma once
 #include "LaneFactory.h"
+#include "Character.h"
 class Map
 {
 private:

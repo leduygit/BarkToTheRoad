@@ -34,11 +34,6 @@ void GrassLane::render()
 	}
 }
 
-bool GrassLane::checkCollision(Entity& e)
-{
-	return false;
-}
-
 void GrassLane::moveObstacle()
 {
 	return;
