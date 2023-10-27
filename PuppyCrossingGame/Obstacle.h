@@ -4,6 +4,11 @@ class Obstacle : public Entity
 {
 private:
 	int a = 5;
+protected:
+	enum ObstacleType {
+		MOVING, STANDING
+	};
+	ObstacleType m_type{MOVING};
 public:
 	void render() {
 		Entity::render();
