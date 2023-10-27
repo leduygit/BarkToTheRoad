@@ -67,7 +67,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
   m.addLane();
 
   Global::drawer.set_render_state(render_state);
-  c = new Character{ {90, 90}, staying, moving, 3 };
+  c = new Character{ {1170, 90}, staying, moving, 3 };
 
   while (!window_should_close) {
     MSG message;
@@ -90,7 +90,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     m.render();
     c->render();
     if (command != nullptr) {
-        command->execute(*c);
+        if (command->isValidMove(*c, m)) {
+            command->execute(*c);
+        }
         command = nullptr;
     }
 

@@ -4,6 +4,7 @@
 #include "MoveDownCommand.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
+#include "Map.h"
 
 class InputHandler
 {
