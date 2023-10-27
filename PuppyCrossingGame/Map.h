@@ -13,6 +13,7 @@ public:
 	bool checkCollision(Character& e);
 	void moveObstacle();
 	void addObstacle();
+	void removeObstacle();
 
 	void render();
 	void addLane();

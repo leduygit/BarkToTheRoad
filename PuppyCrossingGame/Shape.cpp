@@ -1,6 +1,13 @@
 // Shape.cpp
 #include "Shape.h"
 
+bool isInside(COORD pos)
+{
+    if (pos.X < 0 || pos.X > 1280) 
+        return false;
+    return true;
+}
+
 Shape::Shape(std::string fileName)
 {
     std::ifstream ifs(fileName);
