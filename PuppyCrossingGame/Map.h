@@ -11,6 +11,7 @@ public:
 	Map() = default;
 	Map(LaneFactory* fact);
 	bool checkCollision(Character& e);
+	bool checkCollisionWithStaticObstacle(Character& e);
 	void moveObstacle();
 	void addObstacle();
 

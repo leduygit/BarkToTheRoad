@@ -9,7 +9,7 @@ void MoveLeftCommand::execute(Character& c)
 bool MoveLeftCommand::isValidMove(Character& c, Map& m)
 {
 	c.setPos({ static_cast<short>(c.getPos().X - 90), c.getPos().Y });
-	bool is_collision = m.checkCollision(c);
+	bool is_collision = m.checkCollisionWithStaticObstacle(c);
 	c.setPos({ static_cast<short>(c.getPos().X + 90), c.getPos().Y });
 
 	return !is_collision;
