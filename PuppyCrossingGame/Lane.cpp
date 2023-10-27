@@ -44,7 +44,7 @@ void Lane::moveObstacle()
 	}
 }
 
-bool Lane::checkCollision(Entity& e)
+bool Lane::checkCollision(Character& e)
 {
 	for (auto obstacle : m_obs)
 	{
