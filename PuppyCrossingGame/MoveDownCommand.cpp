@@ -11,7 +11,6 @@ bool MoveDownCommand::isValidMove(Character& c, Map& m)
 {
 	c.setPos({ c.getPos().X, static_cast<short>(c.getPos().Y - 90) });
 	bool is_collision = m.checkCollisionWithStaticObstacle(c);
-	bool is_collision = m.checkCollision(c);
 	c.setPos({ c.getPos().X, static_cast<short>(c.getPos().Y + 90) });
 
 	return !is_collision;
