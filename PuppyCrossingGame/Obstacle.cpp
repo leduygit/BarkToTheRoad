@@ -25,7 +25,6 @@ GrassObstacle::GrassObstacle(COORD pos)
 		m_shape = MyShape[BUSH_2];
 	}
 	m_position = pos;
-	m_type = STANDING;
 }
 
 TrainObstacle::TrainObstacle(COORD pos)

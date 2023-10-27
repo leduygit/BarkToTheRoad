@@ -1,6 +1,5 @@
 #pragma once
 #include "LaneFactory.h"
-#include "Character.h"
 class Map
 {
 private:
@@ -10,7 +9,7 @@ private:
 public:
 	Map() = default;
 	Map(LaneFactory* fact);
-	bool checkCollision(Character& e);
+	bool checkCollision(Entity& e);
 	void moveObstacle();
 	void addObstacle();
 	void removeObstacle();
