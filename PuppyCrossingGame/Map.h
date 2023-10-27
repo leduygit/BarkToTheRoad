@@ -3,7 +3,7 @@
 class Map
 {
 private:
-	int m_lane_number{ 7 };
+	int m_lane_number{ 8 };
 	Lane* m_lane[10];
 	static LaneFactory* m_fact;
 public:

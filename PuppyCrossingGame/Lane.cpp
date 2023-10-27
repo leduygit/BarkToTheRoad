@@ -1,7 +1,6 @@
 #include "Lane.h"
 
 
-
 Lane::Lane(COORD pos) :
 	m_position{ pos }
 {
