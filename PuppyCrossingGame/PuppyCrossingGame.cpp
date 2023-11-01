@@ -88,8 +88,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     m.moveObstacle(*c);
     m.removeObstacle();
 
-    m.render();
-    c->render();
     if (command != nullptr) {
         if (command->isValidMove(*c, m)) {
             command->execute(*c, m);
@@ -101,6 +99,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
         int rand = randomInt(1, 13);
         c->setPos({ static_cast<short>(90 * rand), 0 });
     }
+
+    m.render();
+    c->render();
 
     StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
                   0, 0, render_state.getWidth(), render_state.getHeight(),

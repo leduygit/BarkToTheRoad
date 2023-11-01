@@ -78,6 +78,6 @@ COORD Lane::getCollision(Character& c)
 		if (obstacle->isCollison(c))
 			return obstacle->getPos();
 	}
-	return c.getPos();
+	return { -1, -1 };
 }
 
