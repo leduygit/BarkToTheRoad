@@ -98,7 +98,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     }
 
     if (m.checkCollision(*c)) {
-        c->setPos({ 90, 90 });
+        int rand = randomInt(1, 13);
+        c->setPos({ static_cast<short>(90 * rand), 0 });
     }
 
     StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),

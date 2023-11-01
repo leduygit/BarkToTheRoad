@@ -16,11 +16,11 @@ Lane* SpringLaneFactory::createLane(COORD pos)
 }
 
 Lane* SummerLaneFactory::createLane(COORD pos) {
-	int random = randomInt(1, 1000) % 4;
-	if (random == 0) return new AsphaltLane(pos);
-	else if (random == 1) return new GrassLane(pos);
-	else if (random == 2) new RailLane(pos);
-	return new RiverLane(pos);
+	int random = randomInt(1, 1000);
+	if (random <= 400) return new AsphaltLane(pos);
+	else if (random <= 650) return new GrassLane(pos);
+	else if (random <= 850) return new RiverLane(pos);
+	return new RailLane(pos);
 }
 
 Lane* WinterLaneFactory::createLane(COORD pos)
