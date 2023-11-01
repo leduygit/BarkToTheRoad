@@ -20,15 +20,17 @@ bool Map::checkCollisionWithStaticObstacle(Character& e)
 {
     if (e.getPos().X < 0 || e.getPos().X >= 1260 || e.getPos().Y < 0) return true;
     for (int i = 0; i < m_lane_number; i++) {
-        if (m_lane[i]->checkCollision(e) && !m_lane[i]->isValid()) return true;
+        if (m_lane[i]->checkCollision(e) && !m_lane[i]->isStaticLane()) return true;
     }
     return false;
 }
 
-void Map::moveObstacle()
+void Map::moveObstacle(Character &c)
 {
-    for (int i = 0; i < m_lane_number; ++i)
+    for (int i = 0; i < m_lane_number; ++i) {
         m_lane[i]->moveObstacle();
+        m_lane[i]->moveObstacle(c);
+    }
 }
 
 void Map::addObstacle()
@@ -53,7 +55,8 @@ void Map::render()
 
 void Map::addLane()
 {
-    for (short i = 0; i < m_lane_number; ++i)
+    m_lane[0] = new GrassLane({ 0, static_cast<short>(0) });
+    for (short i = 1; i < m_lane_number; ++i)
     {
         m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
     }

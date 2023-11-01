@@ -33,3 +33,9 @@ TrainObstacle::TrainObstacle(COORD pos)
 	m_shape = MyShape[TRAIN_RIGHT];
 	m_position = pos;
 }
+
+RaftObstacle::RaftObstacle(COORD pos)
+{
+	m_shape = MyShape[ROAD];
+	m_position = pos;
+}

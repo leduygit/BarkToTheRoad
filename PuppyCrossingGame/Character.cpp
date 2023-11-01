@@ -31,6 +31,13 @@ void Character::move(COORD pos) {
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / m_total_state), static_cast<short>((m_new_position.Y - m_position.Y) / m_total_state) };
 }
 
+void Character::moveInRaft(COORD pos)
+{
+	m_is_standing = true;
+	m_new_position = pos;
+	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 30), static_cast<short>((m_new_position.Y - m_position.Y) / 30) };
+}
+
 void Character::render() {
 	if (m_position.X == m_new_position.X && m_position.Y == m_new_position.Y) {
 		m_is_standing = true;

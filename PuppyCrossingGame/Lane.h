@@ -19,11 +19,12 @@ public:
 	Lane() = default;
 	Lane(COORD pos);
 	virtual void render();
-	virtual void addObstacle();
+	virtual void addObstacle();	
 	virtual void removeObstacle();
 	virtual void moveObstacle();
 	virtual bool checkCollision(Character& e);
-	virtual bool isValid() {
+	virtual void moveObstacle(Character& c) {}
+	virtual bool isStaticLane() {
 		return true;
 	}
 };

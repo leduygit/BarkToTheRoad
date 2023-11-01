@@ -27,5 +27,10 @@ public:
 	Obstacle* createObstacle(COORD pos) override;
 };
 
+class RiverObstacleFactory : public ObstacleFactory {
+public:
+	Obstacle* createObstacle(COORD pos) override;
+};
+
 
 

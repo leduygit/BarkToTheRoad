@@ -141,6 +141,7 @@
     <ClInclude Include="MoveLeftCommand.h" />
     <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="MoveUpCommand.h" />
+    <ClInclude Include="RailLane.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="RenderState.h" />
     <ClInclude Include="Entity.h" />
@@ -148,8 +149,10 @@
     <ClInclude Include="ObstacleFactory.h" />
     <ClInclude Include="PuppyCrossingGame.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RiverLane.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SpringMap.h" />
+    <ClInclude Include="SummerLane.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AsphaltLane.cpp" />
@@ -173,8 +176,10 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleFactory.cpp" />
     <ClCompile Include="PuppyCrossingGame.cpp" />
+    <ClCompile Include="RiverLane.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SpringMap.cpp" />
+    <ClCompile Include="SummerLane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />
