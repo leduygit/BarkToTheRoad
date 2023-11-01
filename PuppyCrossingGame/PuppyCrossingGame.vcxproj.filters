@@ -84,6 +84,15 @@
     <ClInclude Include="LoadShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RiverLane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RailLane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SummerLane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PuppyCrossingGame.cpp">
@@ -153,6 +162,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LoadShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RiverLane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SummerLane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -32,3 +32,8 @@ Obstacle* GrassObstacleFactory::createObstacle(COORD pos) {
 Obstacle* RailObstacleFactory::createObstacle(COORD pos) {
     return new TrainObstacle(pos);
 }
+
+Obstacle* RiverObstacleFactory::createObstacle(COORD pos)
+{
+    return new RaftObstacle(pos);
+}

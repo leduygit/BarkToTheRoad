@@ -9,7 +9,7 @@ public:
 	void moveObstacle() override;
 	void spawnObstacle();
 	void render() override;
-	bool isValid() override {
+	bool isStaticLane() override {
 		return false;
 	}
 private:

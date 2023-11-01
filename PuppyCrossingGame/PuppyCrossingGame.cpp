@@ -85,7 +85,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
     m.addObstacle();
-    m.moveObstacle();
+    m.moveObstacle(*c);
     m.removeObstacle();
 
     m.render();

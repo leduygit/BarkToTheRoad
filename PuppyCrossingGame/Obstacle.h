@@ -51,6 +51,11 @@ public:
 private:
 };
 
-
+class RaftObstacle : public Obstacle
+{
+public:
+	RaftObstacle() = default;
+	RaftObstacle(COORD pos);
+};
 
 

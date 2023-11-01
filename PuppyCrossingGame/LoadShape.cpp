@@ -19,4 +19,5 @@ void initShape() {
 	MyShape[13] = new Shape("image/dog_stay_2.txt");
 	MyShape[14] = new Shape("image/dog_jump_1.txt");
 	MyShape[15] = new Shape("image/dog_jump_2.txt");
+	MyShape[16] = new Shape("image/railway_lane.txt");
 }

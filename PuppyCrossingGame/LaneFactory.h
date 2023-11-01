@@ -3,6 +3,7 @@
 #include "AsphaltLane.h"
 #include "GrassLane.h"
 #include "RailLane.h"
+#include "RiverLane.h"
 
 class LaneFactory
 {
