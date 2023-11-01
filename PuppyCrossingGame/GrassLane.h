@@ -4,7 +4,7 @@ class GrassLane : public Lane
 {
 public:
 	GrassLane() = default;
-	GrassLane(COORD pos);
+	GrassLane(const COORD &pos);
 	void addObstacle() override;
 	void moveObstacle() override;
 	void spawnObstacle();

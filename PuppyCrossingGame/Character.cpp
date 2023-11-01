@@ -10,7 +10,7 @@ bool Character::isFinish()
 	return false;
 }
 
-void Character::setPos(COORD pos)
+void Character::setPos(const COORD &pos)
 {
 	m_position = pos;
 	m_new_position = pos;
@@ -25,13 +25,13 @@ bool Character::isStanding() const {
 	return m_is_standing;
 }
 
-void Character::move(COORD pos) {
+void Character::move(const COORD &pos) {
 	m_is_standing = false;
-	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y};
+	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y};// 
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / m_total_state), static_cast<short>((m_new_position.Y - m_position.Y) / m_total_state) };
 }
 
-void Character::moveInRaft(COORD pos)
+void Character::moveInRaft(const COORD &pos)
 {
 	m_is_standing = true;
 	m_new_position = pos;
@@ -44,8 +44,8 @@ void Character::render() {
 		m_last_state = 0;
 	}
 	else {
-		m_position.X += m_delta.X;
-		m_position.Y += m_delta.Y;
+		m_position.X += (2 * m_delta.X > m_new_position.X - m_position.X || m_new_position.X - m_position.X < m_delta.X) ? m_delta.X : m_new_position.X - m_position.X;
+		m_position.Y += (2 * m_delta.Y > m_new_position.Y - m_position.Y || m_new_position.Y - m_position.Y < m_delta.Y) ? m_delta.Y : m_new_position.Y - m_position.Y;
 	}
 
 	if (m_is_standing) {

@@ -2,11 +2,10 @@
 
 int randomInt(int l, int r)
 {
-	int x = l + rand() % (r - l + 1);
-	return x;
+	return l + rand() % (r - l + 1);
 }
 
-Obstacle* AsphaltObstacleFactory::createObstacle(COORD pos)
+Obstacle* AsphaltObstacleFactory::createObstacle(const COORD &pos)
 {
     // pos = position of the lane
 
@@ -14,7 +13,7 @@ Obstacle* AsphaltObstacleFactory::createObstacle(COORD pos)
     x %= 2;
     // index of the Obstacle
 
-    COORD coord({ 0, pos.Y });
+    COORD coord({ -100, pos.Y });
 
 
 
@@ -25,15 +24,15 @@ Obstacle* AsphaltObstacleFactory::createObstacle(COORD pos)
     return nullptr;
 }
 
-Obstacle* GrassObstacleFactory::createObstacle(COORD pos) {
+Obstacle* GrassObstacleFactory::createObstacle(const COORD &pos) {
     return new GrassObstacle(pos);
 }
 
-Obstacle* RailObstacleFactory::createObstacle(COORD pos) {
-    return new TrainObstacle(pos);
+Obstacle* RailObstacleFactory::createObstacle(const COORD &pos) {
+    return new TrainObstacle({ static_cast<short>(pos.X - 300), pos.Y });
 }
 
-Obstacle* RiverObstacleFactory::createObstacle(COORD pos)
+Obstacle* RiverObstacleFactory::createObstacle(const COORD &pos)
 {
-    return new RaftObstacle(pos);
+    return new RaftObstacle({ static_cast<short>(pos.X - 100), pos.Y });
 }

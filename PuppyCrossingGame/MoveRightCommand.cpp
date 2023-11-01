@@ -1,6 +1,6 @@
 #include "MoveRightCommand.h"
 
-void MoveRightCommand::execute(Character& c)
+void MoveRightCommand::execute(Character& c, Map& m)
 {
 	COORD currentPostition = c.getPos();
 	c.move({ static_cast<short>(currentPostition.X + 90), static_cast<short> (currentPostition.Y) });

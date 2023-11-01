@@ -1,7 +1,7 @@
 #include "Lane.h"
 
 
-Lane::Lane(COORD pos) :
+Lane::Lane(const COORD &pos) :
 	m_position{ pos }
 {
 	busModel = BusObstacle(m_position);
@@ -69,5 +69,15 @@ bool Lane::checkCollision(Character& e)
 			return true;
 	}
 	return false;
+}
+
+COORD Lane::getCollision(Character& c)
+{
+	for (auto obstacle : m_obs)
+	{
+		if (obstacle->isCollison(c))
+			return obstacle->getPos();
+	}
+	return c.getPos();
 }
 

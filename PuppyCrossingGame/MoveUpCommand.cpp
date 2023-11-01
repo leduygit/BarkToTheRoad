@@ -1,6 +1,6 @@
 #include "MoveUpCommand.h"
 
-void MoveUpCommand::execute(Character& c)
+void MoveUpCommand::execute(Character& c, Map& m)
 {
 	COORD currentPostition = c.getPos();
 	c.move({ static_cast<short>(currentPostition.X), static_cast<short> (currentPostition.Y + 90) });

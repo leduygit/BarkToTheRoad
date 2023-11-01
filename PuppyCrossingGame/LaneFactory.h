@@ -8,27 +8,27 @@
 class LaneFactory
 {
 public:
-	//	Lane(COORD pos, std::string file_name, ObstacleFactory* fact);
-	virtual Lane* createLane(COORD pos) = 0;
+	//	Lane(const COORD &pos, std::string file_name, ObstacleFactory* fact);
+	virtual Lane* createLane(const COORD &pos) = 0;
 private:
 };
 
 class SpringLaneFactory : public LaneFactory
 {
 public:
-	Lane* createLane(COORD pos) override;
+	Lane* createLane(const COORD &pos) override;
 };
 
 class SummerLaneFactory : public LaneFactory
 {
 public:
-	Lane* createLane(COORD pos) override;
+	Lane* createLane(const COORD &pos) override;
 };
 
 class WinterLaneFactory
 {
 public:
-	Lane* createLane(COORD pos);
+	Lane* createLane(const COORD &pos);
 };
 
 

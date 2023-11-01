@@ -5,9 +5,10 @@ class RiverLane : public Lane
 {
 public:
 	RiverLane() = default;
-	RiverLane(COORD pos);
+	RiverLane(const COORD &pos);
 	void moveObstacle(Character& c) override;
 	bool checkCollision(Character& e) override;
+	bool isRiverLane() override;
 private:
 	Shape m_lanes[14];
 };

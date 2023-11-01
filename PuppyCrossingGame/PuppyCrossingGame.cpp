@@ -92,7 +92,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
     c->render();
     if (command != nullptr) {
         if (command->isValidMove(*c, m)) {
-            command->execute(*c);
+            command->execute(*c, m);
         }
         command = nullptr;
     }

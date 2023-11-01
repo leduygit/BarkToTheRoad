@@ -16,6 +16,7 @@ public:
 	void moveObstacle(Character &c);
 	void addObstacle();
 	void removeObstacle();
+	COORD jumpOnRaft(Character &c);
 
 	void render();
 	void addLane();
