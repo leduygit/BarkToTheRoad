@@ -4,12 +4,14 @@ BusObstacle::BusObstacle(COORD pos)
 {
 	m_shape = MyShape[CAR_RIGHT];
 	m_position = pos;
+	setRate(Global::HIGH_SPEED);
 }
 
 CarObstacle::CarObstacle(COORD pos)
 {
 	m_shape = MyShape[CAR_RIGHT];
 	m_position = pos;
+	setRate(Global::HIGH_SPEED);
 }
 
 GrassObstacle::GrassObstacle(COORD pos)
@@ -32,6 +34,7 @@ TrainObstacle::TrainObstacle(COORD pos)
 {
 	m_shape = MyShape[TRAIN_RIGHT];
 	m_position = pos;
+	setRate(Global::MEDIUM_SPEED);
 }
 
 RaftObstacle::RaftObstacle(COORD pos)

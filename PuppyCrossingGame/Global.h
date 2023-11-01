@@ -7,4 +7,7 @@
 namespace Global {
 	extern RenderState default_render_state;
 	extern Renderer drawer;
+	extern int LOW_SPEED;
+	extern int MEDIUM_SPEED;
+	extern int HIGH_SPEED;
 }

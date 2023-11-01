@@ -18,7 +18,7 @@ public:
 	{
 		return m_position;
 	}
-	
+	using Entity::setRate;
 };
 
 class BusObstacle : public Obstacle
