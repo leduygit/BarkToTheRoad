@@ -19,7 +19,7 @@ public:
 	Entity() = default;
 	Entity(const COORD &pos, Shape* s);
 	void render();
-	void move(COORD pos);
+	void move(const COORD& pos);
 	void setRate(int rate) {
 		m_rate = rate;
 	}
