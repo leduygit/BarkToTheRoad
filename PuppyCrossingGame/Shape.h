@@ -4,7 +4,9 @@
 #include "Global.h"
 #include "fstream"
 
-bool isInside(COORD pos);
+bool operator == (const COORD& p1, const COORD& p2);
+
+bool isInside(const COORD &pos);
 
 class Shape
 {

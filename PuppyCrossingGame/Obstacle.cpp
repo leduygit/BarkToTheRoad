@@ -1,20 +1,20 @@
 #include "Obstacle.h"
 
-BusObstacle::BusObstacle(COORD pos)
+BusObstacle::BusObstacle(const COORD &pos)
 {
 	m_shape = MyShape[CAR_RIGHT];
 	m_position = pos;
 	setRate(Global::HIGH_SPEED);
 }
 
-CarObstacle::CarObstacle(COORD pos)
+CarObstacle::CarObstacle(const COORD &pos)
 {
 	m_shape = MyShape[CAR_RIGHT];
 	m_position = pos;
 	setRate(Global::HIGH_SPEED);
 }
 
-GrassObstacle::GrassObstacle(COORD pos)
+GrassObstacle::GrassObstacle(const COORD &pos)
 {
 	int random = rand() % 3;
 	if (random == 1) {
@@ -30,15 +30,15 @@ GrassObstacle::GrassObstacle(COORD pos)
 	m_type = STANDING;
 }
 
-TrainObstacle::TrainObstacle(COORD pos)
+TrainObstacle::TrainObstacle(const COORD &pos)
 {
 	m_shape = MyShape[TRAIN_RIGHT];
 	m_position = pos;
 	setRate(Global::MEDIUM_SPEED);
 }
 
-RaftObstacle::RaftObstacle(COORD pos)
+RaftObstacle::RaftObstacle(const COORD &pos)
 {
-	m_shape = MyShape[ROAD];
+	m_shape = MyShape[LOG];
 	m_position = pos;
 }

@@ -16,6 +16,9 @@ public:
 	void moveObstacle(Character &c);
 	void addObstacle();
 	void removeObstacle();
+	COORD jumpOnRaft(Character &c);
+
+	bool isRiverLane(COORD pos);
 
 	void render();
 	void addLane();

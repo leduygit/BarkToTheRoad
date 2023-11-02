@@ -14,16 +14,16 @@ private:
 	COORD m_delta;
 public:
 	Character() = default;
-	Character(COORD pos, Shape* standing, Shape* moving, int total = 1) : 
+	Character(const COORD &pos, Shape* standing, Shape* moving, int total = 1) : 
 		Entity(pos, standing), m_total_state{ total },  m_standing_shape{ standing },
 		m_initial_shape{ moving }, m_moving_shape{ moving } {}
 	void Bark();
 	bool isFinish(); // isDead checking
 	bool isStanding() const;
 	void render();
-	void move(COORD pos);
-	void moveInRaft(COORD pos);
-	void setPos(COORD pos);
+	void move(const COORD &pos);
+	void moveInRaft(const COORD &pos);
+	void setPos(const COORD &pos);
 	COORD getPos();
 };
 

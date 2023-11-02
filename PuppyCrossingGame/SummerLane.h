@@ -4,6 +4,6 @@ class SummerLane: public Lane
 {
 public:
 	SummerLane() = default;
-	SummerLane(COORD pos, std::string file_name, ObstacleFactory* fact) {}
+	SummerLane(const COORD &pos, std::string file_name, ObstacleFactory* fact) {}
 };
 

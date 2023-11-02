@@ -6,7 +6,7 @@ class AsphaltLane : public Lane
 {
 public:
     AsphaltLane() = default;
-    AsphaltLane(COORD pos) : 
+    AsphaltLane(const COORD &pos) : 
         Lane(pos)
     {
         m_fact = new AsphaltObstacleFactory();
