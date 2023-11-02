@@ -1,9 +1,14 @@
 // Shape.cpp
 #include "Shape.h"
 
-bool isInside(COORD pos)
+bool operator==(const COORD& p1, const COORD& p2)
 {
-    if (pos.X < 0 || pos.X > 1280) 
+    return p1.X == p2.X && p1.Y == p2.Y;
+}
+
+bool isInside(const COORD &pos)
+{
+    if (pos.X > 1280) 
         return false;
     return true;
 }

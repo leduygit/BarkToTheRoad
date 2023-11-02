@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(COORD pos, Shape* s)
+Entity::Entity(const COORD &pos, Shape* s)
 {
 	m_position = pos;
 	m_shape = s;
@@ -23,7 +23,7 @@ void Entity::render() {
 	m_shape->render(m_position.X, m_position.Y);
 }
 
-void Entity::move(COORD pos) {
+void Entity::move(const COORD &pos) {
 	m_new_position = pos;
 	m_velo_x = (pos.X - m_position.X) / 30;
 	m_velo_y = (pos.Y - m_position.Y) / 30;

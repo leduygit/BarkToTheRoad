@@ -1,6 +1,6 @@
 #include "RiverLane.h"
 
-RiverLane::RiverLane(COORD pos) : 
+RiverLane::RiverLane(const COORD &pos) : 
 	Lane(pos)
 {
 	m_fact = new RiverObstacleFactory();
@@ -33,5 +33,10 @@ bool RiverLane::checkCollision(Character& e)
 	{
 		if (e.isCollison(*obs)) return false;
 	}
+	return true;
+}
+
+bool RiverLane::isRiverLane()
+{
 	return true;
 }

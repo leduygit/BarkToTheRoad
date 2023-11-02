@@ -16,9 +16,9 @@ protected:
 	Shape* m_shape;
 public:
 	Entity() = default;
-	Entity(COORD pos, Shape* s);
+	Entity(const COORD &pos, Shape* s);
 	void render();
-	void move(COORD pos);
+	void move(const COORD &pos);
 	// virtual bool isImpact(const Entity& obj) const;
 	virtual bool isCollison(const Entity& e);
 };

@@ -1,7 +1,7 @@
 #include "GrassLane.h"
 
 
-GrassLane::GrassLane(COORD pos)
+GrassLane::GrassLane(const COORD &pos)
 {
 	m_position = pos;
 	m_fact = new GrassObstacleFactory();

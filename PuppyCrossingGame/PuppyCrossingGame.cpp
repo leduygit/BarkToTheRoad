@@ -90,9 +90,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,
 
     m.render();
     c->render();
+
     if (command != nullptr) {
         if (command->isValidMove(*c, m)) {
-            command->execute(*c);
+            command->execute(*c, m);
         }
         command = nullptr;
     }

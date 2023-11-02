@@ -24,21 +24,21 @@ public:
 class BusObstacle : public Obstacle
 {
 public:
-	BusObstacle(COORD pos);
+	BusObstacle(const COORD &pos);
 
 };
 
 class CarObstacle :public Obstacle
 {
 public:
-	CarObstacle(COORD pos = { 0, 0 });
+	CarObstacle(const COORD &pos = { 0, 0 });
 };
 
 class GrassObstacle : public Obstacle
 {
 public:
 	GrassObstacle() = default;
-	GrassObstacle(COORD pos);
+	GrassObstacle(const COORD &pos);
 	//bool checkCollision(const Entity& otherEntity) const override;
 private:
 };
@@ -47,7 +47,7 @@ class TrainObstacle : public Obstacle
 {
 public:
 	TrainObstacle() = default;
-	TrainObstacle(COORD pos);
+	TrainObstacle(const COORD &pos);
 private:
 };
 
@@ -55,7 +55,7 @@ class RaftObstacle : public Obstacle
 {
 public:
 	RaftObstacle() = default;
-	RaftObstacle(COORD pos);
+	RaftObstacle(const COORD &pos);
 };
 
 
