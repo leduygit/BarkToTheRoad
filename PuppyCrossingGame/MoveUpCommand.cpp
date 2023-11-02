@@ -3,7 +3,11 @@
 void MoveUpCommand::execute(Character& c, Map& m)
 {
 	COORD currentPostition = c.getPos();
-	c.move({ static_cast<short>(currentPostition.X), static_cast<short> (currentPostition.Y + 90) });
+	COORD newPosition = { static_cast<short>(currentPostition.X), static_cast<short> (currentPostition.Y + 90) };
+	c.setPos(newPosition);
+	newPosition = m.jumpOnRaft(c);
+	c.setPos(currentPostition);
+	c.move(newPosition);
 }
 
 bool MoveUpCommand::isValidMove(Character& c, Map& m)
