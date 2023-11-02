@@ -25,8 +25,8 @@ void Entity::render() {
 
 void Entity::move(const COORD &pos) {
 	m_new_position = pos;
-	m_velo_x = (pos.X - m_position.X) / 30;
-	m_velo_y = (pos.Y - m_position.Y) / 30;
+	m_velo_x = (pos.X - m_position.X) / m_rate;
+	m_velo_y = (pos.Y - m_position.Y) / m_rate;
 }
 
 bool Entity::isCollison(const Entity& e)
