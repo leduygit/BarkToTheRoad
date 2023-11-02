@@ -50,7 +50,7 @@ void Map::removeObstacle()
 COORD Map::jumpOnRaft(Character &c)
 {
     COORD pos = c.getPos();
-    for (SHORT k = -45; k <= 45; k+= 90) {
+    for (SHORT k = -30; k <= 60; k+= 90) {
         c.setPos({ pos.X + k, pos.Y });
         for (int i = 0; i < m_lane_number; ++i)
         {
@@ -59,11 +59,16 @@ COORD Map::jumpOnRaft(Character &c)
                 COORD pos = m_lane[i]->getCollision(c);
                 COORD dummy = { -1, -1 };
                 if (!(pos == dummy))
-                    return pos;
+                    return { pos.X + 40, pos.Y };
             }
         }
     }
     return pos;
+}
+
+bool Map::isRiverLane(COORD pos)
+{
+    return m_lane[pos.Y / 90]->isRiverLane();
 }
 
 void Map::render()

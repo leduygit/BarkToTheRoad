@@ -36,6 +36,6 @@ TrainObstacle::TrainObstacle(const COORD &pos)
 
 RaftObstacle::RaftObstacle(const COORD &pos)
 {
-	m_shape = MyShape[ROAD];
+	m_shape = MyShape[LOG];
 	m_position = pos;
 }
