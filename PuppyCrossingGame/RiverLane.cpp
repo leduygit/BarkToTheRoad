@@ -4,7 +4,7 @@ RiverLane::RiverLane(const COORD &pos) :
 	Lane(pos)
 {
 	m_fact = new RiverObstacleFactory();
-	m_shape = *MyShape[BUSH_2];
+	m_shape = *MyShape[RIVER];
 }
 
 void RiverLane::moveObstacle(Character& c)

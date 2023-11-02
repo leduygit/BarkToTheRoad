@@ -18,6 +18,8 @@ public:
 	void removeObstacle();
 	COORD jumpOnRaft(Character &c);
 
+	bool isRiverLane(COORD pos);
+
 	void render();
 	void addLane();
 };
