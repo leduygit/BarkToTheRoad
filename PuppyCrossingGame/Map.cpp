@@ -11,17 +11,20 @@ Map::Map(LaneFactory* fact)
 
 bool Map::checkCollision(Character& e)
 {
-    for (int i = 0; i < m_lane_number; ++i)
-        if (m_lane[i]->checkCollision(e)) return true;
+    COORD pos = e.getPos();
+    int i = pos.Y / 90;
+    if (i >= m_lane_number) return false;
+    if (m_lane[i]->checkCollision(e)) return true;
     return false;
 }
 
 bool Map::checkCollisionWithStaticObstacle(Character& e)
 {
     if (e.getPos().X < 0 || e.getPos().X >= 1260 || e.getPos().Y < 0) return true;
-    for (int i = 0; i < m_lane_number; i++) {
-        if (m_lane[i]->checkCollision(e) && !m_lane[i]->isStaticLane()) return true;
-    }
+    COORD pos = e.getPos();
+    int i = pos.Y / 90;
+    if (i >= m_lane_number) return false;
+    if (m_lane[i]->checkCollision(e) && !m_lane[i]->isStaticLane()) return true;
     return false;
 }
 
@@ -52,15 +55,15 @@ COORD Map::jumpOnRaft(Character &c)
     COORD pos = c.getPos();
     for (SHORT k = -30; k <= 60; k+= 90) {
         c.setPos({ pos.X + k, pos.Y });
-        for (int i = 0; i < m_lane_number; ++i)
+        COORD pos = c.getPos();
+        int i = pos.Y / 90;
+        if (i >= m_lane_number) continue;
+        if (m_lane[i]->isRiverLane())
         {
-            if (m_lane[i]->isRiverLane())
-            {
-                COORD pos = m_lane[i]->getCollision(c);
-                COORD dummy = { -1, -1 };
-                if (!(pos == dummy))
-                    return { pos.X + 40, pos.Y };
-            }
+            COORD pos = m_lane[i]->getCollision(c);
+            COORD dummy = { -1, -1 };
+            if (!(pos == dummy))
+                return { pos.X + 40, pos.Y };
         }
     }
     return pos;
@@ -68,7 +71,9 @@ COORD Map::jumpOnRaft(Character &c)
 
 bool Map::isRiverLane(COORD pos)
 {
-    return m_lane[pos.Y / 90]->isRiverLane();
+    int i = pos.Y / 90;
+    if (i >= m_lane_number) return false;
+    return m_lane[i]->isRiverLane();
 }
 
 void Map::render()
@@ -85,4 +90,19 @@ void Map::addLane()
         m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
     }
     return;
+}
+
+void Map::loadGame(std::ifstream& fin)
+{
+
+}
+
+void Map::saveGame(std::ofstream& fout)
+{
+    // output game state to file
+    fout << m_lane_number << std::endl;
+    for (int i = 0; i < m_lane_number; ++i)
+    {
+		//m_lane[i]->saveGame(fout);
+	}
 }

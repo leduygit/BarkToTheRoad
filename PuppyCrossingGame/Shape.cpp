@@ -8,7 +8,7 @@ bool operator==(const COORD& p1, const COORD& p2)
 
 bool isInside(const COORD &pos)
 {
-    if (pos.X > 1280) 
+    if (pos.X > WINDOW_WIDTH) 
         return false;
     return true;
 }
