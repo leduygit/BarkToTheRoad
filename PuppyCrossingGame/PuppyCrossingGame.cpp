@@ -10,6 +10,8 @@
 #include "RenderState.h"
 #include "Shape.h"
 #include "renderer.h"
+#include "Button.h"
+#include "Screen.h"
 
 
 
@@ -19,6 +21,7 @@ RenderState render_state;
 InputHandler ih;
 Command* command = nullptr;
 Character* c = new Character;
+Screen *s;
 
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
   LRESULT result = 0;
@@ -28,6 +31,9 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     case WM_DESTROY:
       window_should_close = true;
       break;
+    case WM_LBUTTONUP:
+        s->clickButton();
+        break;
     case WM_KEYDOWN:
       command = ih.handleInput(wParam, *c);
       break;
@@ -52,14 +58,15 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   RegisterClass(&window_class);
 
-  HWND window = CreateWindowA("My Window Class", "My First Game",
+  Global::window = CreateWindowA("My Window Class", "My First Game",
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
                                 CW_USEDEFAULT, 1280 - 5, 720 + 40, 0, 0, hInstance, 0);
-  HDC hdc = GetDC(window);
+  HDC hdc = GetDC(Global::window);
   //Lane lane[10];
   initShape();
   Shape* moving = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
   Shape* staying = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
+  Shape* buttonState = new Shape[3]{ *MyShape[ROAD], *MyShape[RIVER], *MyShape[TRAIN_RIGHT]};
   DWORD lastAddObstacleTime = 0;
   SummerLaneFactory fact;
   Map m(&fact);
@@ -67,10 +74,13 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   Global::drawer.set_render_state(render_state);
   c = new Character{ {1170, 90}, staying, moving, 3 };
+  Button b{ {90, 90}, buttonState };
+  s = new Screen{ MyShape[TRAIN_RIGHT] };
+  s->addButton(&b);
 
   while (!window_should_close) {
     MSG message;
-    while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
+    while (PeekMessage(&message, Global::window, 0, 0, PM_REMOVE)) {
       TranslateMessage(&message);
       DispatchMessage(&message);
     }
@@ -83,24 +93,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     }
     DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
-    m.addObstacle();
-    m.moveObstacle(*c);
-    m.removeObstacle();
-
-    m.render();
-    c->render();
-
-    if (command != nullptr) {
-        if (command->isValidMove(*c, m)) {
-            command->execute(*c, m);
-        }
-        command = nullptr;
-    }
-
-    if (m.checkCollision(*c)) {
-        int rand = randomInt(1, 13);
-        c->setPos({ static_cast<short>(90 * rand), 0 });
-    }
+    s->render();
 
     StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
                   0, 0, render_state.getWidth(), render_state.getHeight(),

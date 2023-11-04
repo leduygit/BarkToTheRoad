@@ -2,7 +2,7 @@
 #include <windows.h>
 #include "Global.h"
 enum ButtonState {
-	NORMAL, FOCUSED
+	NORMAL, FOCUSED, CLICKED
 };
 class Button
 {
@@ -12,11 +12,15 @@ public:
 		: m_pos{ pos }, m_shape{ shape }, m_state{ state } {}
 
 	void render();
-	void changeState() {
-		if (m_state == NORMAL) m_state = FOCUSED;
-		else m_state = NORMAL;
+	void setState(ButtonState s) {
+		m_state = s;
 	}
-	virtual void onClick() {}
+	bool isInside(POINT p) const;
+	bool isHovering() const;
+	virtual void onClick() {
+		OutputDebugStringA("Clicked");
+		m_state = CLICKED;
+	}
 private:
 	COORD m_pos{};
 	ButtonState m_state{};
