@@ -2,9 +2,9 @@
 
 TrafficLight::TrafficLight()
 {
-	m_shape[RED_LIGHT] = MyShape[GRASS_0];
-	m_shape[GREEN_LIGHT] = MyShape[DOG_JUMP_1];
-	m_color = GREEN_LIGHT;
+	m_shape[RED] = MyShape[ShapeIndex::RED_LIGHT];
+	m_shape[GREEN] = MyShape[ShapeIndex::GREEN_LIGHT];
+	m_color = GREEN;
 	m_redDuration = 3000;
 	m_greenDuration = 5000;
 	m_lastTime = GetTickCount();
@@ -26,9 +26,9 @@ void TrafficLight::update()
 	// update light color
 	int current_time = GetTickCount();
 	int duration = current_time - m_lastTime;
-	int desireDuration = (m_color == RED_LIGHT) ? m_redDuration : m_greenDuration;
+	int desireDuration = (m_color == RED) ? m_redDuration : m_greenDuration;
 	if (duration >= desireDuration) {
-		m_color = (m_color == RED_LIGHT) ? GREEN_LIGHT : RED_LIGHT;
+		m_color = (m_color == RED) ? GREEN : RED;
 		m_lastTime = current_time;
 	}
 }
@@ -40,5 +40,5 @@ COORD TrafficLight::getPos()
 
 bool TrafficLight::isRed()
 {
-	return (m_color == RED_LIGHT);
+	return (m_color == RED);
 }
