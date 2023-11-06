@@ -29,6 +29,13 @@ void Entity::move(const COORD &pos) {
 	m_velo_y = (pos.Y - m_position.Y) / m_rate;
 }
 
+void Entity::stopMoving()
+{
+	m_velo_x = 0;
+	m_velo_y = 0;
+	m_new_position = m_position;
+}
+
 bool Entity::isCollison(const Entity& e)
 {
 	int width, height; // my Entity size

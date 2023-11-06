@@ -20,7 +20,7 @@ GrassLane::GrassLane(const COORD &pos)
 
 void GrassLane::addObstacle()
 {
-	
+	return;
 }
 
 void GrassLane::render()

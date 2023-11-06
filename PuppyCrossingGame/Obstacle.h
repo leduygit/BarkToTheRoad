@@ -10,9 +10,6 @@ protected:
 	};
 	ObstacleType m_type{MOVING};
 public:
-	void render() {
-		Entity::render();
-	}
 
 	COORD getPos()
 	{

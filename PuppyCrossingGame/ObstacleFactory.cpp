@@ -13,7 +13,7 @@ Obstacle* AsphaltObstacleFactory::createObstacle(const COORD &pos)
     x %= 2;
     // index of the Obstacle
 
-    COORD coord({ -100, pos.Y });
+    COORD coord({ -120, pos.Y });
 
 
 

@@ -54,13 +54,12 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   HWND window = CreateWindowA("My Window Class", "My First Game",
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
-                                CW_USEDEFAULT, 1280 - 5, 720 + 40, 0, 0, hInstance, 0);
+                                CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
   HDC hdc = GetDC(window);
   //Lane lane[10];
   initShape();
   Shape* moving = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
   Shape* staying = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
-  DWORD lastAddObstacleTime = 0;
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
@@ -75,14 +74,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
       DispatchMessage(&message);
     }
 
-    unsigned int* pixels = render_state.getMemoryPointer();
-    for (int i = 0; i < render_state.getWidth(); i++) {
-      for (int j = 0; j < render_state.getHeight(); j++) {
-        *pixels++ = 0xFFFFFF55;
-      }
-    }
-    DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
+    //DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
+
+    
     m.addObstacle();
     m.moveObstacle(*c);
     m.removeObstacle();
@@ -106,5 +101,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   0, 0, render_state.getWidth(), render_state.getHeight(),
                   render_state.getMemoryPointer(),
                   render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    Sleep(2);
   }
 }

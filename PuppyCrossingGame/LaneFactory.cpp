@@ -11,7 +11,7 @@ Lane* SpringLaneFactory::createLane(const COORD &pos)
 	int random = randomInt(1, 1000) % 4;
 	if (random == 0) return new AsphaltLane(pos);
 	else if (random == 1) return new GrassLane(pos);
-	else if (random == 2) new RailLane(pos);
+	else if (random == 2) return new RailLane(pos);
 	return new RiverLane(pos);
 }
 

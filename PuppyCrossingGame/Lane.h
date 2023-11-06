@@ -3,6 +3,7 @@
 #include "vector"
 #include "LoadShape.h"
 #include "Character.h"
+#include "TrafficLight.h"
 
 class Lane
 {
@@ -10,7 +11,7 @@ protected:
 	COORD m_position{};
 	int m_obsSize = 0;
 	std::vector<Obstacle*> m_obs;
-	Obstacle busModel;
+	TrafficLight m_light;
 public:
 	ObstacleFactory* m_fact;
 	Shape m_shape;

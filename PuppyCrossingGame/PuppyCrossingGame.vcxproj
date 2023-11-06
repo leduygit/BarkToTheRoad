@@ -153,6 +153,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SpringMap.h" />
     <ClInclude Include="SummerLane.h" />
+    <ClInclude Include="TrafficLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AsphaltLane.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SpringMap.cpp" />
     <ClCompile Include="SummerLane.cpp" />
+    <ClCompile Include="TrafficLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />
