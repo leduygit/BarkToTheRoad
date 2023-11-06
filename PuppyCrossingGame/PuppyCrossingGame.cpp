@@ -64,6 +64,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
+  PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC);
 
   Global::drawer.set_render_state(render_state);
   c = new Character{ {1170, 90}, staying, moving, 3 };
