@@ -7,9 +7,12 @@ Lane::Lane(const COORD &pos) :
 	m_position{ pos }
 {
 	m_shape = *MyShape[ROAD];
-	m_light.setPos(m_position);
+	if (randomInt(0, 100) % 2)
+		m_light.setPos({ 200, m_position.Y });
+	else
+		m_light.setPos({ 711, m_position.Y });
 	m_light.setGreenDuration(randomInt(1000, 8000));
-	m_light.setRedDuration(randomInt(1000, 5000));
+	m_light.setRedDuration(randomInt(5000, 5000));
 }
 
 void Lane::render()
@@ -64,12 +67,38 @@ void Lane::moveObstacle()
 
 	bool isRed = m_light.isRed();
 
-	for (auto obs : m_obs)
+	for (int i = 0; i < m_obs.size(); ++i)
 	{
+		Obstacle* obs = m_obs[i];
 		COORD pos = obs->getPos();
 		SHORT x = 50;
+		COORD lightPos = m_light.getPos();
 		if (isRed == false) obs->move({ static_cast<short>(pos.X + x), pos.Y });
-		else obs->stopMoving();
+		else {
+			// if go pass the light
+			if (pos.X > lightPos.X + 10) {
+				obs->move({ static_cast<short>(pos.X + x), pos.Y });
+			}
+			
+			// if behind the light
+		
+			if (pos.X <= lightPos.X - 90) {
+				if (pos.X + x <= lightPos.X - 90)
+					obs->move({ static_cast<short>(pos.X + x), pos.Y });
+				else
+					obs->stopMoving();
+				if (i > 0)
+				{
+					auto preObs = m_obs[i - 1];
+					COORD curPos = preObs->getPos();
+					COORD newPos = { curPos.X - 20, curPos.Y };
+					preObs->setPos(newPos);
+					if (preObs->isCollison(*obs)) obs->stopMoving();
+					preObs->setPos(curPos);
+				}
+				
+			}
+		}
 	}
 }
 

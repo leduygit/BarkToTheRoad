@@ -30,7 +30,7 @@ class TrafficLight
 	void update();
 	COORD getPos();
 	bool isRed();
-
-
+	void setRedLight();
+	void setGreenLight();
 };
 
