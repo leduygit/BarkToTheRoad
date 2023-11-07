@@ -34,7 +34,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     case WM_SIZE: {
       RECT clientRect;
       GetClientRect(hWnd, &clientRect);
-      render_state = RenderState(clientRect.bottom - clientRect.top,
+      Global::default_render_state = RenderState(clientRect.bottom - clientRect.top,
                                  clientRect.right - clientRect.left + 30);
     } break;
     default:
@@ -65,7 +65,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
   m.addLane();
   PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC);
 
-  Global::drawer.set_render_state(render_state);
+  Global::drawer.set_render_state(Global::default_render_state);
   c = new Character{ {1170, 90}, staying, moving, 3 };
 
   while (!window_should_close) {
@@ -98,10 +98,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         c->setPos({ static_cast<short>(90 * rand), 0 });
     }
 
-    StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
-                  0, 0, render_state.getWidth(), render_state.getHeight(),
-                  render_state.getMemoryPointer(),
-                  render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-    Sleep(2);
+    StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  Global::default_render_state.getMemoryPointer(),
+                  Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    Sleep(2.5);
   }
 }

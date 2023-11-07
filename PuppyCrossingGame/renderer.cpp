@@ -16,4 +16,5 @@ void Renderer::draw_rect(RECT r, unsigned int color) {
 			*pixels++ = color;
 		}
 	}
+
 }
