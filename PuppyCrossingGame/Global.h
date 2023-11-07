@@ -10,4 +10,5 @@ namespace Global {
 	extern int LOW_SPEED;
 	extern int MEDIUM_SPEED;
 	extern int HIGH_SPEED;
+	extern int VERY_HIGH_SPEED;
 }

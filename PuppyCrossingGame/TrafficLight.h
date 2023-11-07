@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 #include "LoadShape.h"
-enum Color {RED_LIGHT, GREEN_LIGHT};
+enum Color {RED, GREEN};
 
 class TrafficLight
 {
@@ -15,7 +15,7 @@ class TrafficLight
 	public:
 	TrafficLight();
 
-	TrafficLight(int greenDuration, int redDuration): m_color{ RED_LIGHT }, m_lastTime{0}, m_greenDuration{greenDuration}, m_redDuration{redDuration} {}
+	TrafficLight(int greenDuration, int redDuration): m_color{ RED }, m_lastTime{0}, m_greenDuration{greenDuration}, m_redDuration{redDuration} {}
 
 	void setGreenDuration(int greenDuration) {
 		m_greenDuration = greenDuration;
