@@ -8,6 +8,8 @@ Lane::Lane(const COORD &pos) :
 {
 	m_shape = *MyShape[ROAD];
 	m_light.setPos(m_position);
+	m_light.setGreenDuration(randomInt(1000, 8000));
+	m_light.setRedDuration(randomInt(1000, 5000));
 }
 
 void Lane::render()
