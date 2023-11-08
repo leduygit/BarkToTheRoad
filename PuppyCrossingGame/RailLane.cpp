@@ -2,9 +2,9 @@
 
 void RailLane::addObstacle()
 {
+	if (m_obs.size() >= 1) return;
 	int x = randomInt(0, 1000);
 	if (x < 850) return;
-	if (m_obs.size() >= 1) return;
 	Obstacle* newObstacle = m_fact->createObstacle(m_position);
 	if (newObstacle == nullptr) return;
 	m_obs.push_back(newObstacle);
