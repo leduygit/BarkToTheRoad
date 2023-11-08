@@ -11,7 +11,7 @@
 #include "Shape.h"
 #include "renderer.h"
 #include "Button.h"
-#include "Screen.h"
+#include "ScreenRegistry.h"
 
 
 
@@ -22,6 +22,7 @@ InputHandler ih;
 Command* command = nullptr;
 Character* c = new Character;
 Screen *s;
+ScreenRegistry sr{};
 
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
   LRESULT result = 0;
@@ -32,7 +33,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
       window_should_close = true;
       break;
     case WM_LBUTTONUP:
-        s->clickButton();
+        sr.getCurrentScreen()->clickButton();
         break;
     case WM_KEYDOWN:
       command = ih.handleInput(wParam, *c);
@@ -71,12 +72,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
+  sr.initialize();
 
   Global::drawer.set_render_state(render_state);
   c = new Character{ {1170, 90}, staying, moving, 3 };
-  Button b{ {90, 90}, buttonState };
-  s = new Screen{ MyShape[TRAIN_RIGHT] };
-  s->addButton(&b);
 
   while (!window_should_close) {
     MSG message;
@@ -93,7 +92,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     }
     DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
-    s->render();
+    sr.getCurrentScreen()->render();
 
     StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
                   0, 0, render_state.getWidth(), render_state.getHeight(),

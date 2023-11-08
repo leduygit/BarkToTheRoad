@@ -15,6 +15,11 @@ void Button::render()
 	m_shape[m_state].render(m_pos.X, m_pos.Y);
 }
 
+void Button::setPos(COORD pos)
+{
+	m_pos = pos;
+}
+
 bool Button::isInside(POINT p) const
 {
 	int height = 0, width = 0;
@@ -34,6 +39,8 @@ bool Button::isHovering() const
 
 void ChangeScreenButton::onClick()
 {
+	OutputDebugStringA("Clicked");
+	Global::current_screen = m_next_screen;
 }
 
 void PauseButton::onClick()

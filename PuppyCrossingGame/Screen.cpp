@@ -5,6 +5,11 @@ void Screen::addButton(Button* b)
 	m_buttons.push_back(b);
 }
 
+void Screen::setBackground(Shape* background)
+{
+	m_background = background;
+}
+
 std::vector<Button*> Screen::getButtons() const
 {
 	return std::vector<Button*>(m_buttons);
@@ -26,4 +31,7 @@ void Screen::clickButton()
 			return;
 		}
 	}
+}
+
+Screen::~Screen() {
 }

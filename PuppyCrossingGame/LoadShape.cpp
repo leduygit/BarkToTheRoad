@@ -1,4 +1,3 @@
-#include "Shape.h"
 #include "LoadShape.h"
 
 std::vector<Shape*> MyShape(100);
@@ -22,4 +21,5 @@ void initShape() {
 	MyShape[16] = new Shape("image/railway_lane.txt");
 	MyShape[17] = new Shape("image/logObstacle.txt");
 	MyShape[18] = new Shape("image/river_lane.txt");
+	MyShape[19] = new Shape("image/background.txt");
 }

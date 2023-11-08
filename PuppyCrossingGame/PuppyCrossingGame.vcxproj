@@ -138,6 +138,7 @@
     <ClInclude Include="LaneFactory.h" />
     <ClInclude Include="LoadShape.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MouseClickCommand.h" />
     <ClInclude Include="MoveDownCommand.h" />
     <ClInclude Include="MoveLeftCommand.h" />
@@ -153,6 +154,8 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RiverLane.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="ScreenId.h" />
+    <ClInclude Include="ScreenRegistry.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SpringMap.h" />
     <ClInclude Include="SummerLane.h" />
@@ -169,6 +172,7 @@
     <ClCompile Include="LaneFactory.cpp" />
     <ClCompile Include="LoadShape.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MouseClickCommand.cpp" />
     <ClCompile Include="MoveDownCommand.cpp" />
     <ClCompile Include="MoveLeftCommand.cpp" />
@@ -183,6 +187,7 @@
     <ClCompile Include="PuppyCrossingGame.cpp" />
     <ClCompile Include="RiverLane.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="ScreenRegistry.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SpringMap.cpp" />
     <ClCompile Include="SummerLane.cpp" />
