@@ -41,7 +41,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     case WM_SIZE: {
       RECT clientRect;
       GetClientRect(hWnd, &clientRect);
-      render_state = RenderState(clientRect.bottom - clientRect.top,
+      Global::default_render_state = RenderState(clientRect.bottom - clientRect.top,
                                  clientRect.right - clientRect.left + 30);
     } break;
     default:
@@ -61,20 +61,18 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   Global::window = CreateWindowA("My Window Class", "My First Game",
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
-                                CW_USEDEFAULT, 1280 - 5, 720 + 40, 0, 0, hInstance, 0);
-  HDC hdc = GetDC(Global::window);
+                                CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
+  HDC hdc = GetDC(window);
   //Lane lane[10];
   initShape();
   Shape* moving = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
   Shape* staying = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
-  Shape* buttonState = new Shape[3]{ *MyShape[ROAD], *MyShape[RIVER], *MyShape[TRAIN_RIGHT]};
-  DWORD lastAddObstacleTime = 0;
   SummerLaneFactory fact;
   Map m(&fact);
   m.addLane();
-  sr.initialize();
+  PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC);
 
-  Global::drawer.set_render_state(render_state);
+  Global::drawer.set_render_state(Global::default_render_state);
   c = new Character{ {1170, 90}, staying, moving, 3 };
 
   while (!window_should_close) {
@@ -84,19 +82,32 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
       DispatchMessage(&message);
     }
 
-    unsigned int* pixels = render_state.getMemoryPointer();
-    for (int i = 0; i < render_state.getWidth(); i++) {
-      for (int j = 0; j < render_state.getHeight(); j++) {
-        *pixels++ = 0xFFFFFF55;
-      }
+
+    //DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
+
+    m.addObstacle();
+    m.moveObstacle(*c);
+    m.removeObstacle();
+
+    m.render();
+    c->render();
+
+    if (command != nullptr) {
+        if (command->isValidMove(*c, m)) {
+            command->execute(*c, m);
+        }
+        command = nullptr;
     }
-    DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
-    sr.getCurrentScreen()->render();
+    if (m.checkCollision(*c)) {
+        int rand = randomInt(1, 13);
+        c->setPos({ static_cast<short>(90 * rand), 0 });
+    }
 
-    StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
-                  0, 0, render_state.getWidth(), render_state.getHeight(),
-                  render_state.getMemoryPointer(),
-                  render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  Global::default_render_state.getMemoryPointer(),
+                  Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    Sleep(2.5);
   }
 }

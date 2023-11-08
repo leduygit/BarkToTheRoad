@@ -102,6 +102,9 @@
     <ClInclude Include="MouseClickCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TrafficLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PuppyCrossingGame.cpp">
@@ -186,6 +189,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MouseClickCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

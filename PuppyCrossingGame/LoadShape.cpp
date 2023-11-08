@@ -21,5 +21,7 @@ void initShape() {
 	MyShape[16] = new Shape("image/railway_lane.txt");
 	MyShape[17] = new Shape("image/logObstacle.txt");
 	MyShape[18] = new Shape("image/river_lane.txt");
-	MyShape[19] = new Shape("image/background.txt");
+	MyShape[19] = new Shape("image/red_light.txt");
+	MyShape[20] = new Shape("image/green_light.txt");
+  MyShape[21] = new Shape("image/background.txt");
 }

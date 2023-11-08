@@ -108,6 +108,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,6 +160,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SpringMap.h" />
     <ClInclude Include="SummerLane.h" />
+    <ClInclude Include="TrafficLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AsphaltLane.cpp" />
@@ -191,6 +193,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SpringMap.cpp" />
     <ClCompile Include="SummerLane.cpp" />
+    <ClCompile Include="TrafficLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc" />

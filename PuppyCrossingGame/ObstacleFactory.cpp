@@ -13,7 +13,7 @@ Obstacle* AsphaltObstacleFactory::createObstacle(const COORD &pos)
     x %= 2;
     // index of the Obstacle
 
-    COORD coord({ -100, pos.Y });
+    COORD coord({ -120, pos.Y });
 
 
 
@@ -29,7 +29,7 @@ Obstacle* GrassObstacleFactory::createObstacle(const COORD &pos) {
 }
 
 Obstacle* RailObstacleFactory::createObstacle(const COORD &pos) {
-    return new TrainObstacle({ static_cast<short>(pos.X - 300), pos.Y });
+    return new TrainObstacle({ static_cast<short>(pos.X - 2000), pos.Y });
 }
 
 Obstacle* RiverObstacleFactory::createObstacle(const COORD &pos)
