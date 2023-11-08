@@ -93,6 +93,15 @@
     <ClInclude Include="SummerLane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseClickCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="TrafficLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -171,6 +180,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SummerLane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseClickCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TrafficLight.cpp">

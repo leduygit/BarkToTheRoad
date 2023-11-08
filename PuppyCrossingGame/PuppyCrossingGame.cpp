@@ -10,6 +10,8 @@
 #include "RenderState.h"
 #include "Shape.h"
 #include "renderer.h"
+#include "Button.h"
+#include "ScreenRegistry.h"
 
 
 
@@ -19,6 +21,8 @@ RenderState render_state;
 InputHandler ih;
 Command* command = nullptr;
 Character* c = new Character;
+Screen *s;
+ScreenRegistry sr{};
 
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
   LRESULT result = 0;
@@ -28,6 +32,9 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     case WM_DESTROY:
       window_should_close = true;
       break;
+    case WM_LBUTTONUP:
+        sr.getCurrentScreen()->clickButton();
+        break;
     case WM_KEYDOWN:
       command = ih.handleInput(wParam, *c);
       break;
@@ -52,10 +59,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   RegisterClass(&window_class);
 
-  HWND window = CreateWindowA("My Window Class", "My First Game",
+  Global::window = CreateWindowA("My Window Class", "My First Game",
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
                                 CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
-  HDC hdc = GetDC(window);
+  HDC hdc = GetDC(Global::window);
   //Lane lane[10];
   initShape();
   Shape* moving = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
@@ -70,7 +77,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   while (!window_should_close) {
     MSG message;
-    while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
+    while (PeekMessage(&message, Global::window, 0, 0, PM_REMOVE)) {
       TranslateMessage(&message);
       DispatchMessage(&message);
     }
@@ -78,7 +85,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     //DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
-    
     m.addObstacle();
     m.moveObstacle(*c);
     m.removeObstacle();
