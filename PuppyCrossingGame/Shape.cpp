@@ -15,7 +15,7 @@ bool isInside(const COORD &pos)
 
 Shape::Shape(std::string fileName)
 {
-    std::ifstream ifs(fileName);
+    /*std::ifstream ifs(fileName);
     if (!ifs.is_open())
         return ;
     ifs >> m_width >> m_height;
@@ -30,6 +30,19 @@ Shape::Shape(std::string fileName)
             }
         }
     }
+    ifs.close();*/
+    std::ifstream ifs(fileName, std::ios::binary);
+
+    ifs.read(reinterpret_cast<char*>(&m_width), sizeof(m_width));
+    ifs.read(reinterpret_cast<char*>(&m_height), sizeof(m_height));
+    m_shape = new unsigned int* [m_height];
+    for (int i = 0; i < m_height; ++i) {
+        m_shape[i] = new unsigned int[m_width];
+        for (int j = 0; j < m_width; j++) {
+            ifs.read(reinterpret_cast<char*>(&m_shape[i][j]), sizeof(m_shape[i][j]));
+        }
+    }
+
     ifs.close();
 }
 

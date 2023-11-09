@@ -4,7 +4,7 @@
 std::vector<Shape*> MyShape(100);
 
 void initShape() {
-	MyShape[1] = new Shape{ "image/car_right.txt" };
+	/*MyShape[1] = new Shape{ "image/car_right.txt" };
 	MyShape[2] = new Shape("image/grass_0.txt");
 	MyShape[3] = new Shape("image/grass_1.txt");
 	MyShape[4] = new Shape("image/grass_2.txt");
@@ -23,5 +23,6 @@ void initShape() {
 	MyShape[17] = new Shape("image/logObstacle.txt");
 	MyShape[18] = new Shape("image/river_lane.txt");
 	MyShape[19] = new Shape("image/red_light.txt");
-	MyShape[20] = new Shape("image/green_light.txt");
+	MyShape[20] = new Shape("image/green_light.txt");*/
+	MyShape[21] = new Shape("image/output.bin");
 }
