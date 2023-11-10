@@ -11,6 +11,10 @@ public:
 	void initialize() {
 		m_screens.push_back(new MenuScreen{});
 	}
+
+	void addScreen(Screen* s) {
+		m_screens.push_back(s);
+	}
 private:
 	std::vector<Screen*> m_screens;
 };

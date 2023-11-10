@@ -13,6 +13,7 @@
 #include "Button.h"
 #include "ScreenRegistry.h"
 #include "Gameplay.h"
+#include "GameScreen.h"
 
 bool window_should_close = false;
 Gameplay* gameplay = nullptr;
@@ -65,6 +66,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     initShape();
 
     gameplay = new Gameplay();
+    sr.initialize();
+    sr.addScreen(new GameScreen{gameplay});
 
     while (!window_should_close) {
         MSG message;
@@ -72,12 +75,12 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
             TranslateMessage(&message);
             DispatchMessage(&message);
         }
-        gameplay->gameLogic();
+        sr.getCurrentScreen()->render();
 
-        StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
-            0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
-            Global::default_render_state.getMemoryPointer(),
-            Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-        Sleep(2);
-    }
+    StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  Global::default_render_state.getMemoryPointer(),
+                  Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    Sleep(2.5);
+  }
 }

@@ -133,6 +133,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="GrassLane.h" />
     <ClInclude Include="InputHandler.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Gameplay.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="GrassLane.cpp" />
     <ClCompile Include="InputHandler.cpp" />
