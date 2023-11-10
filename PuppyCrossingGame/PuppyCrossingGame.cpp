@@ -64,8 +64,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     // Global init
     Global::drawer.set_render_state(Global::default_render_state);
     initShape();
+    int* offset = new int{0}, speed = 1;
 
     gameplay = new Gameplay();
+    gameplay->setOffset(offset);
     sr.initialize();
     sr.addScreen(new GameScreen{gameplay});
 
@@ -82,6 +84,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   Global::default_render_state.getMemoryPointer(),
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
     Sleep(2.5);
-    offset += speed;
+    *offset += speed;
   }
 }
