@@ -8,6 +8,7 @@ public:
 	RiverLane(const COORD &pos);
 	void moveObstacle(Character& c) override;
 	bool checkCollision(Character& e) override;
+	bool spawnRate() override;
 	bool isRiverLane() override;
 private:
 	Shape m_lanes[14];

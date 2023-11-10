@@ -14,6 +14,11 @@
 #include "ScreenRegistry.h"
 #include "Gameplay.h"
 #include "GameScreen.h"
+#include <windows.h>
+#include <mfapi.h>
+#include <mfidl.h>
+#include <Mfreadwrite.h>
+#include <audioclient.h>
 
 bool window_should_close = false;
 Gameplay* gameplay = nullptr;
@@ -59,7 +64,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
         CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
     HDC hdc = GetDC(Global::window);
-    PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC);
+    PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
     // Global init
     Global::drawer.set_render_state(Global::default_render_state);
@@ -85,7 +90,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
                   Global::default_render_state.getMemoryPointer(),
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-    //Sleep(2.5);
+    Sleep(2.5);
     *offset += speed;
   }
 }
