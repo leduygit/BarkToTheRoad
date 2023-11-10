@@ -12,7 +12,9 @@ Lane::Lane(const COORD &pos) :
 	else
 		m_light.setPos({ 811, m_position.Y });
 	m_light.setGreenDuration(randomInt(1000, 8000));
-	m_light.setRedDuration(randomInt(5000, 5000));
+	m_light.setRedDuration(5000);
+	if (randomInt(0, 100) % 2)
+		direction *= -1;
 }
 
 void Lane::render(int offset)
@@ -35,7 +37,14 @@ void Lane::addObstacle()
 	int x = randomInt(0, 1000);
 	if (x < 600) return;
 	if (m_obs.size() >= 5) return;
-	Obstacle* newObstacle = m_fact->createObstacle(m_position);
+	Obstacle* newObstacle = nullptr;
+	if (direction > 0)
+	{
+		newObstacle = m_fact->createObstacle(m_position);
+	}
+	else {
+		newObstacle = m_fact->createObstacle({ static_cast<short>(m_position.X + 1280), m_position.Y });
+	}
 	if (newObstacle == nullptr) return;
 	if (m_obs.size() == 0 || newObstacle->isCollison(*m_obs.back()) == false)
 		m_obs.push_back(newObstacle);
@@ -49,7 +58,7 @@ void Lane::removeObstacle()
 	for (int i = sz - 1; i >= 0; --i)
 	{
 		COORD pos = m_obs[i]->getPos();
-		if (isInside(pos) == false)
+		if ((direction > 0 && isOutSideRight(pos)) || (direction < 0 && isOutSideLeft(pos)))
 		{
 			std::swap(m_obs.back(), m_obs[i]);
 			if (m_obs.back()) {
@@ -71,32 +80,57 @@ void Lane::moveObstacle()
 	{
 		Obstacle* obs = m_obs[i];
 		COORD pos = obs->getPos();
-		SHORT x = 50;
+		SHORT x = 50 * direction;
 		COORD lightPos = m_light.getPos();
 		if (isRed == false) obs->move({ static_cast<short>(pos.X + x), pos.Y });
 		else {
-			// if go pass the light
-			if (pos.X > lightPos.X + 10) {
-				obs->move({ static_cast<short>(pos.X + x), pos.Y });
+			if (direction > 0) {
+				// if go pass the light
+				if (pos.X > lightPos.X + 10) {
+					obs->move({ static_cast<short>(pos.X + x), pos.Y });
+				}
+			}
+			else
+			{
+				if (pos.X < lightPos.X - 10) {
+					obs->move({ static_cast<short>(pos.X + x), pos.Y });
+				}
 			}
 			
-			// if behind the light
-		
-			if (pos.X <= lightPos.X - 90) {
-				if (pos.X + x <= lightPos.X - 90)
-					obs->move({ static_cast<short>(pos.X + x), pos.Y });
-				else
-					obs->stopMoving();
-				if (i > 0)
-				{
-					auto preObs = m_obs[i - 1];
-					COORD curPos = preObs->getPos();
-					COORD newPos = { curPos.X - 20, curPos.Y };
-					preObs->setPos(newPos);
-					if (preObs->isCollison(*obs)) obs->stopMoving();
-					preObs->setPos(curPos);
+			if (direction > 0) { // left -> right
+				// if behind the light
+				if (pos.X <= lightPos.X - 90) {
+					if (pos.X + x <= lightPos.X - 90)
+						obs->move({ static_cast<short>(pos.X + x), pos.Y });
+					else
+						obs->stopMoving();
+					if (i > 0)
+					{
+						auto preObs = m_obs[i - 1];
+						COORD curPos = preObs->getPos();
+						COORD newPos = { curPos.X - 20, curPos.Y };
+						preObs->setPos(newPos);
+						if (preObs->isCollison(*obs)) obs->stopMoving();
+						preObs->setPos(curPos);
+					}
 				}
-				
+			}
+			else {
+				if (pos.X >= lightPos.X + 90) {
+					if (pos.X + x >= lightPos.X + 90)
+						obs->move({ static_cast<short>(pos.X + x), pos.Y });
+					else
+						obs->stopMoving();
+					if (i > 0)
+					{
+						auto preObs = m_obs[i - 1];
+						COORD curPos = preObs->getPos();
+						COORD newPos = { curPos.X + 20, curPos.Y };
+						preObs->setPos(newPos);
+						if (preObs->isCollison(*obs)) obs->stopMoving();
+						preObs->setPos(curPos);
+					}
+				}
 			}
 		}
 	}
@@ -134,5 +168,10 @@ COORD Lane::getCollision(Character& c)
 			return obstacle->getPos();
 	}
 	return { -1, -1 };
+}
+
+void Lane::reverseDirection()
+{
+	direction *= -1;
 }
 
