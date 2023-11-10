@@ -23,5 +23,12 @@ void initShape() {
 	MyShape[RIVER] = new Shape("image/river_lane.bin");
 	MyShape[RED_LIGHT] = new Shape("image/red_light.bin");
 	MyShape[GREEN_LIGHT] = new Shape("image/green_light.bin");
-	MyShape[BACKGROUND] = new Shape("image/output.bin");
+	MyShape[BACKGROUND] = new Shape("image/background.bin");
+	MyShape[LOAD_GAME_BUTTON] = new Shape("image/loadgame.bin");
+	MyShape[LOAD_GAME_BUTTON_HOVER] = new Shape("image/loadgame-2.bin");
+	MyShape[NEW_GAME_BUTTON] = new Shape("image/newgame.bin");
+	MyShape[NEW_GAME_BUTTON_HOVER] = new Shape("image/newgame-2.bin");
+	MyShape[RANK_BUTTON] = new Shape("image/rank.bin");
+	MyShape[RANK_BUTTON_HOVER] = new Shape("image/rank-2.bin");
+	MyShape[SETTING_BUTTON] = new Shape("image/setting.bin");
 }

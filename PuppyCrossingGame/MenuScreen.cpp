@@ -2,12 +2,18 @@
 MenuScreen::MenuScreen() {
 	setBackground(MyShape[BACKGROUND]);
 	// add multiple button states!!!
-	Shape* buttonState = new Shape[3]{ *MyShape[CAR_RIGHT], *MyShape[RIVER], *MyShape[TRAIN_RIGHT] };
-	Button* newGameButton = new ChangeScreenButton(buttonState, MENU);
+	Shape* newGameButtonState = new Shape[3]{ *MyShape[NEW_GAME_BUTTON], *MyShape[NEW_GAME_BUTTON_HOVER] };
+	Button* newGameButton = new ChangeScreenButton(newGameButtonState, GAME_SCREEN);
+	Shape* loadGameButtonState = new Shape[3]{ *MyShape[LOAD_GAME_BUTTON], *MyShape[LOAD_GAME_BUTTON_HOVER] };
+	Button* loadGameButton = new ChangeScreenButton(loadGameButtonState, LOAD_SCREEN);
+	Shape* rankButtonState = new Shape[3]{ *MyShape[RANK_BUTTON], *MyShape[RANK_BUTTON_HOVER] };
+	Button* rankButton = new ChangeScreenButton(rankButtonState, RANK_SCREEN);
 	addButton(newGameButton);
+	addButton(loadGameButton);
+	addButton(rankButton);
 
 	std::vector<Button*> buttons = getButtons();
-	for (int i = 0; i < (int)buttons.size(); i++) {
-		buttons[i]->setPos({ static_cast<short>(120 * i), 400 });
+	for (int i = (int) buttons.size() - 1; i >= 0; i--) {
+		buttons[i]->setPos({ 400, static_cast<short>(200 * (buttons.size() - i)) });
 	}
 }
