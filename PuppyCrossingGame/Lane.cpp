@@ -32,10 +32,17 @@ void Lane::render(int offset)
 	if (isRiverLane() == false) m_light.render(offset);
 }
 
+bool Lane::spawnRate()
+{
+	int x = randomInt(0, 1000);
+	if (x < 600) return false;
+	return true;
+}
+
 void Lane::addObstacle()
 {
 	int x = randomInt(0, 1000);
-	if (x < 600) return;
+	if (spawnRate() == false) return;
 	if (m_obs.size() >= 5) return;
 	Obstacle* newObstacle = nullptr;
 	if (direction > 0)
