@@ -69,6 +69,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     // Global init
     Global::drawer.set_render_state(Global::default_render_state);
     initShape();
+    //HICON icon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_PUPPYCROSSINGGAME));
     int* offset = new int{0}, speed = 1;
 
     gameplay = new Gameplay();
