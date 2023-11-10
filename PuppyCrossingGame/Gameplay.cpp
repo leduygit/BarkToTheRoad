@@ -26,11 +26,22 @@ void Gameplay::gameLogic()
         }
         command = nullptr;
     }
+    if (isEnd())
+        return;
+
 
     if (m.checkCollision(*character)) {
         int rand = randomInt(1, 13);
         character->setPos({ static_cast<short>(90 * rand), 0 });
     }
+
+}
+
+bool Gameplay::isEnd()
+{
+    if (character->getPos().Y <= -90 || m.checkCollision(*character))
+		return true;
+    return false;
 }
 
 Gameplay::~Gameplay()

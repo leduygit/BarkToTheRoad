@@ -64,7 +64,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     // Global init
     Global::drawer.set_render_state(Global::default_render_state);
     initShape();
-    int* offset = new int{0}, speed = 5;
+    HICON icon = LoadIcon(hInstance, MAKEINTRESOURCE(129));
+    SendMessage(Global::window, WM_SETICON, ICON_BIG, (LPARAM)icon);
+    int* offset = new int{0}, speed = 1;
 
     gameplay = new Gameplay();
     gameplay->setOffset(offset);
@@ -83,7 +85,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
                   Global::default_render_state.getMemoryPointer(),
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-    Sleep(2.5);
+    //Sleep(2.5);
     *offset += speed;
   }
 }

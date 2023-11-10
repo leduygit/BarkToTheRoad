@@ -203,6 +203,7 @@
     <ResourceCompile Include="PuppyCrossingGame.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="icon.ico" />
     <Image Include="PuppyCrossingGame.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
