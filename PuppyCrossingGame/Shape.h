@@ -8,7 +8,8 @@
 bool operator == (const COORD& p1, const COORD& p2);
 
 bool isInside(const COORD &pos);
-
+bool isOutSideRight(const COORD& pos);
+bool isOutSideLeft(const COORD& pos);
 class Shape
 {
 private:

@@ -13,6 +13,16 @@ bool isInside(const COORD &pos)
     return true;
 }
 
+bool isOutSideRight(const COORD& pos)
+{
+    return pos.X > WINDOW_WIDTH;
+}
+
+bool isOutSideLeft(const COORD& pos)
+{
+    return pos.X < -300;
+}
+
 Shape::Shape(std::string fileName)
 {
     /*std::ifstream ifs(fileName);
