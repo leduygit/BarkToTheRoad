@@ -19,8 +19,8 @@ Lane* SummerLaneFactory::createLane(const COORD &pos) {
 	int random = randomInt(1, 1000);
 	if (random <= 400) return new AsphaltLane(pos);
 	else if (random <= 650) return new GrassLane(pos);
-	else if (random <= 850) return new RiverLane(pos);
 	return new RailLane(pos);
+	//else if (random <= 850) return new RiverLane(pos);
 }
 
 Lane* WinterLaneFactory::createLane(const COORD &pos)

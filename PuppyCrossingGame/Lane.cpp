@@ -8,26 +8,26 @@ Lane::Lane(const COORD &pos) :
 {
 	m_shape = *MyShape[ROAD];
 	if (randomInt(0, 100) % 2)
-		m_light.setPos({ 200, m_position.Y });
+		m_light.setPos({ 300, m_position.Y });
 	else
-		m_light.setPos({ 711, m_position.Y });
+		m_light.setPos({ 811, m_position.Y });
 	m_light.setGreenDuration(randomInt(1000, 8000));
 	m_light.setRedDuration(randomInt(5000, 5000));
 }
 
-void Lane::render()
+void Lane::render(int offset)
 {
 	int x = 0;
 	for (int i = 0; i < NUM_SQUARE; i++) {
-		m_shape.render(x, m_position.Y);
+		m_shape.render(x, m_position.Y - offset);
 		x += 90;
 	}
 
 	for (auto obs: m_obs) {
-		obs->render();
+		obs->render(offset);
 	}
 
-	if (isRiverLane() == false) m_light.render();
+	if (isRiverLane() == false) m_light.render(offset);
 }
 
 void Lane::addObstacle()
@@ -111,6 +111,19 @@ bool Lane::checkCollision(Character& e)
 			return true;
 	}
 	return false;
+}
+
+void Lane::setPos(const COORD& pos)
+{
+	m_position = pos;
+	for (auto obs : m_obs)
+	{
+		COORD obsPos = obs->getPos();
+		obs->setPos({obsPos.X, pos.Y});
+	}
+	
+	COORD lightPos = m_light.getPos();
+	m_light.setPos({ lightPos.X, pos.Y });
 }
 
 COORD Lane::getCollision(Character& c)

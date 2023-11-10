@@ -21,10 +21,11 @@ public:
 	void Bark();
 	bool isFinish(); // isDead checking
 	bool isStanding() const;
-	void render();
+	void render(int offset);
 	void move(const COORD &pos);
 	void moveInRaft(const COORD &pos);
 	void setPos(const COORD &pos);
+	void update(int& offset);
 	COORD getPos();
 };
 

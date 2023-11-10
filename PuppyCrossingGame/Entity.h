@@ -18,7 +18,7 @@ protected:
 public:
 	Entity() = default;
 	Entity(const COORD &pos, Shape* s);
-	virtual void render();
+	virtual void render(int offset = 0);
 	void move(const COORD &pos);
 	void setRate(int rate) {
 		m_rate = rate;
