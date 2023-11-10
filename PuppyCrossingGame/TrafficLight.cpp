@@ -42,3 +42,13 @@ bool TrafficLight::isRed()
 {
 	return (m_color == RED);
 }
+
+void TrafficLight::setRedLight()
+{
+	m_color = RED;
+}
+
+void TrafficLight::setGreenLight()
+{
+	m_color = GREEN;
+}

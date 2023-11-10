@@ -23,7 +23,8 @@ public:
 	void setRate(int rate) {
 		m_rate = rate;
 	}
-
+	void setPos(COORD pos);
+	COORD getPos() const;
 	void stopMoving();
 	// virtual bool isImpact(const Entity& obj) const;
 	virtual bool isCollison(const Entity& e);

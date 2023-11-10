@@ -29,6 +29,16 @@ void Entity::move(const COORD &pos) {
 	m_velo_y = (pos.Y - m_position.Y) / m_rate;
 }
 
+void Entity::setPos(COORD pos)
+{
+	m_position = pos;
+}
+
+COORD Entity::getPos() const
+{
+	return m_position;
+}
+
 void Entity::stopMoving()
 {
 	m_velo_x = 0;

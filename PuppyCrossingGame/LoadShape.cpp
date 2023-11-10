@@ -1,4 +1,3 @@
-#include "Shape.h"
 #include "LoadShape.h"
 
 std::vector<Shape*> MyShape(100);

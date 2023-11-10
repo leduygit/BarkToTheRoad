@@ -10,6 +10,8 @@
 #include "RenderState.h"
 #include "Shape.h"
 #include "renderer.h"
+#include "Button.h"
+#include "ScreenRegistry.h"
 
 
 
@@ -19,6 +21,8 @@ RenderState render_state;
 InputHandler ih;
 Command* command = nullptr;
 Character* c = new Character;
+Screen *s;
+ScreenRegistry sr{};
 
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
   LRESULT result = 0;
@@ -28,13 +32,16 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     case WM_DESTROY:
       window_should_close = true;
       break;
+    case WM_LBUTTONUP:
+        sr.getCurrentScreen()->clickButton();
+        break;
     case WM_KEYDOWN:
       command = ih.handleInput(wParam, *c);
       break;
     case WM_SIZE: {
       RECT clientRect;
       GetClientRect(hWnd, &clientRect);
-      render_state = RenderState(clientRect.bottom - clientRect.top,
+      Global::default_render_state = RenderState(clientRect.bottom - clientRect.top,
                                  clientRect.right - clientRect.left + 30);
     } break;
     default:
@@ -52,10 +59,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
   RegisterClass(&window_class);
 
-  HWND window = CreateWindowA("My Window Class", "My First Game",
+  Global::window = CreateWindowA("My Window Class", "My First Game",
                                 WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
                                 CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
-  HDC hdc = GetDC(window);
+  HDC hdc = GetDC(Global::window);
   //Lane lane[10];
   initShape();
   Shape* moving = new Shape[3]{ *MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
@@ -65,12 +72,12 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
   m.addLane();
   PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC);
 
-  Global::drawer.set_render_state(render_state);
+  Global::drawer.set_render_state(Global::default_render_state);
   c = new Character{ {1170, 90}, staying, moving, 3 };
 
   while (!window_should_close) {
     MSG message;
-    while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
+    while (PeekMessage(&message, Global::window, 0, 0, PM_REMOVE)) {
       TranslateMessage(&message);
       DispatchMessage(&message);
     }
@@ -78,7 +85,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     //DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
 
-    
     m.addObstacle();
     m.moveObstacle(*c);
     m.removeObstacle();
@@ -98,10 +104,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         c->setPos({ static_cast<short>(90 * rand), 0 });
     }
 
-    StretchDIBits(hdc, 0, 0, render_state.getWidth(), render_state.getHeight(),
-                  0, 0, render_state.getWidth(), render_state.getHeight(),
-                  render_state.getMemoryPointer(),
-                  render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-    Sleep(2);
+    StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  Global::default_render_state.getMemoryPointer(),
+                  Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    Sleep(2.5);
   }
 }

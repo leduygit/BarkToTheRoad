@@ -4,6 +4,7 @@
 #include "MoveDownCommand.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
+#include "MouseClickCommand.h"
 #include "Map.h"
 
 class InputHandler
@@ -17,5 +18,6 @@ private:
 	MoveDownCommand* move_down;
 	MoveLeftCommand* move_left;
 	MoveRightCommand* move_right;
+	MouseClickCommand* left_click;
 };
 

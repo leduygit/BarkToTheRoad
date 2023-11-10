@@ -8,6 +8,8 @@ public:
 		m_fact = new RailObstacleFactory();
 		m_shape = *MyShape[RAIL];
 	}
+	void addObstacle() override;
+	void moveObstacle() override;
 };
 
 
