@@ -8,7 +8,7 @@ public:
 	void addObstacle() override;
 	void moveObstacle() override;
 	void spawnObstacle();
-	void render() override;
+	void render(int offset = 0) override;
 	bool isStaticLane() override {
 		return false;
 	}

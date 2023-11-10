@@ -82,5 +82,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   Global::default_render_state.getMemoryPointer(),
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
     Sleep(2.5);
+    offset += speed;
   }
 }

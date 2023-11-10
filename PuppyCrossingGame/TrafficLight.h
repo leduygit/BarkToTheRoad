@@ -26,7 +26,7 @@ class TrafficLight
 	}
 
 	void setPos(const COORD &pos);
-	void render();
+	void render(int offset = 0);
 	void update();
 	COORD getPos();
 	bool isRed();

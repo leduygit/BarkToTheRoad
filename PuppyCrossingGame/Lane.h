@@ -19,11 +19,12 @@ public:
 
 	Lane() = default;
 	Lane(const COORD &pos);
-	virtual void render();
+	virtual void render(int offset = 0);
 	virtual void addObstacle();	
 	virtual void removeObstacle();
 	virtual void moveObstacle();
 	virtual bool checkCollision(Character& e);
+	virtual void setPos(const COORD &pos);
 	COORD getCollision(Character& c);
 	virtual void moveObstacle(Character& c) {}
 	virtual bool isRiverLane() {
