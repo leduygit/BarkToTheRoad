@@ -20,7 +20,6 @@ public:
 	InputHandler ih;
 	Command* command;
 	Character* character;
-//	Screen* s;
 	SummerLaneFactory fact;
 	Map m;
 	
