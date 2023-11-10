@@ -10,7 +10,6 @@ private:
 	int m_velo_x;
 	int m_velo_y;
 	int m_rate{ 30 };
-
 protected:
 	COORD m_position;
 	COORD m_new_position;

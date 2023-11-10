@@ -12,12 +12,12 @@ void RiverLane::moveObstacle(Character& c)
 	for (auto obs : m_obs)
 	{
 		COORD pos = obs->getPos();
-		SHORT distance = 90;
+		SHORT distance = 90 * direction;
 		obs->move({ static_cast<short>(pos.X + distance), pos.Y });
 		if (c.isCollison(*obs) && c.isStanding())
 		{
 			COORD pos = c.getPos();
-			SHORT distance = 90;
+			SHORT distance = 90 * direction;
 			c.moveInRaft({ static_cast<short>(pos.X + distance), pos.Y });
 		}
 	}

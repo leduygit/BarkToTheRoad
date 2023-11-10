@@ -13,14 +13,18 @@ Obstacle* AsphaltObstacleFactory::createObstacle(const COORD &pos)
     x %= 2;
     // index of the Obstacle
 
-    COORD coord({ -120, pos.Y });
-
-
-
-    if (x == 0)
-        return new BusObstacle(coord);
-    else
-        return new CarObstacle(coord);
+    if (x == 0) {
+        if (pos.X < 200)
+            return new BusObstacle({ static_cast<short>( pos.X - 120), pos.Y });
+        else 
+            return new BusObstacle({ static_cast<short>(pos.X + 1400), pos.Y });
+    }
+    else {
+        if (pos.X < 200)
+            return new CarObstacle({static_cast<short>( pos.X - 120), pos.Y });
+        else
+            return new CarObstacle({static_cast<short>( pos.X + 1400), pos.Y });
+    }
     return nullptr;
 }
 
@@ -29,10 +33,16 @@ Obstacle* GrassObstacleFactory::createObstacle(const COORD &pos) {
 }
 
 Obstacle* RailObstacleFactory::createObstacle(const COORD &pos) {
-    return new TrainObstacle({ static_cast<short>(pos.X - 2000), pos.Y });
+    if (pos.X < 200)
+        return new TrainObstacle({ static_cast<short>(pos.X - 2000), pos.Y });
+    else 
+        return new TrainObstacle({ static_cast<short>(pos.X + 2000), pos.Y });
 }
 
 Obstacle* RiverObstacleFactory::createObstacle(const COORD &pos)
 {
-    return new RaftObstacle({ static_cast<short>(pos.X - 100), pos.Y });
+    if (pos.X < 200)
+        return new RaftObstacle({ static_cast<short>(pos.X - 100), pos.Y });
+    else
+        return new RaftObstacle({ static_cast<short>(pos.X + 100), pos.Y });
 }
