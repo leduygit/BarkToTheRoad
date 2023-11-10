@@ -12,7 +12,7 @@ MenuScreen::MenuScreen() {
 
 	Shape* rankButtonState = new Shape[2]{ *MyShape[RANK_BUTTON], *MyShape[RANK_BUTTON_HOVER] };
 	Button* rankButton = new ChangeScreenButton(rankButtonState, RANK_SCREEN);
-	rankButton->setPos({ 830, 130 });
+	rankButton->setPos({ 830, 138 });
 
 	Shape* quitButtonState = new Shape[2]{ *MyShape[QUIT_BUTTON], *MyShape[QUIT_BUTTON_HOVER] };
 	Button* quitButton = new QuitButton(quitButtonState);
