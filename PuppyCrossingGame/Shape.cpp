@@ -20,7 +20,7 @@ bool isOutSideRight(const COORD& pos)
 
 bool isOutSideLeft(const COORD& pos)
 {
-    return pos.X < -300;
+    return pos.X < -900;
 }
 
 Shape::Shape(std::string fileName)
