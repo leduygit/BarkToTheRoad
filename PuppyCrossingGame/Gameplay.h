@@ -26,5 +26,11 @@ public:
 	Gameplay();
 	~Gameplay();
 	void gameLogic();
+	void setOffset(int *offset) {
+		m_offset = offset;
+	}
+
+private:
+	int *m_offset{ nullptr };
 };
 

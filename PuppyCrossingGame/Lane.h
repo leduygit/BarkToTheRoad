@@ -12,6 +12,7 @@ protected:
 	int m_obsSize = 0;
 	std::vector<Obstacle*> m_obs;
 	TrafficLight m_light;
+	short direction{1};
 public:
 	ObstacleFactory* m_fact;
 	Shape m_shape;
@@ -33,5 +34,6 @@ public:
 	virtual bool isStaticLane() {
 		return true;
 	}
+	void reverseDirection();
 };
 
