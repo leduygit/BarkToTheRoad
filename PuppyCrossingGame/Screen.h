@@ -11,7 +11,7 @@ public:
 	void addButton(Button* b);
 	void setBackground(Shape* background);
 	std::vector<Button*> getButtons() const;
-	void render();
+	virtual void render();
 	void clickButton();
 private:
 	Shape* m_background;
