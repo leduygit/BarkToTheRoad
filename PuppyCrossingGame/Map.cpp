@@ -13,7 +13,7 @@ bool Map::checkCollision(Character& e)
 {
     COORD pos = e.getPos();
     int i = pos.Y / 90;
-    if (i >= m_lane_number) return false;
+    if (i >= m_lane_number || i < 0) return false;
     if (m_lane[i]->checkCollision(e)) return true;
     return false;
 }
@@ -23,7 +23,7 @@ bool Map::checkCollisionWithStaticObstacle(Character& e)
     if (e.getPos().X < 0 || e.getPos().X >= 1260 || e.getPos().Y < 0) return true;
     COORD pos = e.getPos();
     int i = pos.Y / 90;
-    if (i >= m_lane_number) return false;
+    if (i >= m_lane_number || i < 0) return false;
     if (m_lane[i]->checkCollision(e) && !m_lane[i]->isStaticLane()) return true;
     return false;
 }
@@ -73,7 +73,7 @@ COORD Map::jumpOnRaft(Character &c)
         c.setPos({ pos.X + k, pos.Y });
         COORD pos = c.getPos();
         int i = pos.Y / 90;
-        if (i >= m_lane_number) continue;
+        if (i >= m_lane_number || i < 0) continue;
         if (m_lane[i]->isRiverLane())
         {
             COORD pos = m_lane[i]->getCollision(c);
@@ -88,7 +88,7 @@ COORD Map::jumpOnRaft(Character &c)
 bool Map::isRiverLane(COORD pos)
 {
     int i = pos.Y / 90;
-    if (i >= m_lane_number) return false;
+    if (i >= m_lane_number || i < 0) return false;
     return m_lane[i]->isRiverLane();
 }
 

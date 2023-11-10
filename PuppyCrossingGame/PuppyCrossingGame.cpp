@@ -64,7 +64,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     // Global init
     Global::drawer.set_render_state(Global::default_render_state);
     initShape();
-    int* offset = new int{0}, speed = 1;
+    int* offset = new int{0}, speed = 5;
 
     gameplay = new Gameplay();
     gameplay->setOffset(offset);
