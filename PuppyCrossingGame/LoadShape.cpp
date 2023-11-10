@@ -28,7 +28,9 @@ void initShape() {
 	MyShape[LOAD_GAME_BUTTON_HOVER] = new Shape("image/loadgame-2.bin");
 	MyShape[NEW_GAME_BUTTON] = new Shape("image/newgame.bin");
 	MyShape[NEW_GAME_BUTTON_HOVER] = new Shape("image/newgame-2.bin");
-	MyShape[RANK_BUTTON] = new Shape("image/rank.bin");
-	MyShape[RANK_BUTTON_HOVER] = new Shape("image/rank-2.bin");
+	MyShape[RANK_BUTTON] = new Shape("image/trophy.bin");
+	MyShape[RANK_BUTTON_HOVER] = new Shape("image/trophy.bin");
 	MyShape[SETTING_BUTTON] = new Shape("image/setting.bin");
+	MyShape[QUIT_BUTTON] = new Shape("image/quit.bin");
+	MyShape[QUIT_BUTTON_HOVER] = new Shape("image/quit-2.bin");
 }
