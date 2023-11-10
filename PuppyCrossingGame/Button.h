@@ -42,3 +42,11 @@ class PauseButton : public Button {
 public:
 	void onClick();
 };
+
+class QuitButton : public Button {
+public:
+	QuitButton(Shape* shape) : Button(shape) {}
+	void onClick() {
+		Global::window_should_close = true;
+	}
+};

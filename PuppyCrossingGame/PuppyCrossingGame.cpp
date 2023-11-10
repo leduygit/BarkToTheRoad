@@ -20,7 +20,6 @@
 #include <Mfreadwrite.h>
 #include <audioclient.h>
 
-bool window_should_close = false;
 Gameplay* gameplay = nullptr;
 Screen* s;
 ScreenRegistry sr{};
@@ -31,7 +30,7 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
     case WM_CLOSE:
     case WM_DESTROY:
-        window_should_close = true;
+        Global::window_should_close = true;
         break;
     case WM_LBUTTONUP:
         sr.getCurrentScreen()->clickButton();
@@ -76,7 +75,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     sr.initialize();
     sr.addScreen(new GameScreen{gameplay});
 
-    while (!window_should_close) {
+    while (!Global::window_should_close) {
         MSG message;
         while (PeekMessage(&message, Global::window, 0, 0, PM_REMOVE)) {
             TranslateMessage(&message);
