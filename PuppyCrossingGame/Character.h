@@ -17,6 +17,7 @@ public:
 	Character(const COORD &pos, Shape* standing, Shape* moving, int total = 1) : 
 		Entity(pos, standing), m_total_state{ total },  m_standing_shape{ standing },
 		m_initial_shape{ moving }, m_moving_shape{ moving } {}
+	~Character();
 	void Bark();
 	bool isFinish(); // isDead checking
 	bool isStanding() const;

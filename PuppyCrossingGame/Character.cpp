@@ -1,6 +1,13 @@
 #include "Character.h"
 #include <cassert>
 
+Character::~Character()
+{
+	if (m_standing_shape) delete m_standing_shape;
+	if (m_initial_shape) delete m_initial_shape;
+	if (m_moving_shape) delete m_moving_shape;
+}
+
 void Character::Bark()
 {
 }
