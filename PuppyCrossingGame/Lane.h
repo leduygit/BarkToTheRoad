@@ -21,6 +21,7 @@ public:
 	Lane() = default;
 	Lane(const COORD &pos);
 	virtual void render(int offset = 0);
+	virtual bool spawnRate();
 	virtual void addObstacle();	
 	virtual void removeObstacle();
 	virtual void moveObstacle();
