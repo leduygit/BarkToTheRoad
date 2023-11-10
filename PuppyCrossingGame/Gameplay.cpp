@@ -11,12 +11,14 @@ Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
 
 void Gameplay::gameLogic()
 {
+    m.update(*m_offset);
+    character->update(*m_offset);
     m.addObstacle();
     m.moveObstacle(*character);
     m.removeObstacle();
 
-    m.render();
-    character->render();
+    m.render(*m_offset);
+    character->render(*m_offset);
 
     if (command != nullptr) {
         if (command->isValidMove(*character, m)) {
