@@ -30,6 +30,8 @@ public:
 		m_offset = offset;
 	}
 
+	bool isEnd();
+
 private:
 	int *m_offset{ nullptr };
 };
