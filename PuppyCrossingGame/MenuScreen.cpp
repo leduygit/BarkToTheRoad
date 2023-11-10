@@ -14,6 +14,6 @@ MenuScreen::MenuScreen() {
 
 	std::vector<Button*> buttons = getButtons();
 	for (int i = (int) buttons.size() - 1; i >= 0; i--) {
-		buttons[i]->setPos({ 400, static_cast<short>(200 * (buttons.size() - i)) });
+		buttons[i]->setPos({ 500, static_cast<short>(100 * (buttons.size() - i)) });
 	}
 }
