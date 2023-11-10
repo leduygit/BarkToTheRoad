@@ -16,6 +16,15 @@ void Character::setPos(const COORD &pos)
 	m_new_position = pos;
 }
 
+void Character::update(int& offset)
+{
+	if (offset == 0)
+	{
+		setPos({ m_position.X, m_position.Y - 90 });
+		m_position.Y = m_position.Y / 90 * 90;
+	}
+}
+
 COORD Character::getPos()
 {
 	return m_position;
@@ -27,7 +36,7 @@ bool Character::isStanding() const {
 
 void Character::move(const COORD &pos) {
 	m_is_standing = false;
-	m_new_position = { static_cast<short>(pos.X ), pos.Y};// / 90 * 90  
+	m_new_position = { static_cast<short>(pos.X ), pos.Y  };// / 90 * 90
 	
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / m_total_state), static_cast<short>((m_new_position.Y - m_position.Y) / m_total_state) };
 }
@@ -39,7 +48,7 @@ void Character::moveInRaft(const COORD &pos)
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 30), static_cast<short>((m_new_position.Y - m_position.Y) / 30) };
 }
 
-void Character::render() {
+void Character::render(int offset) {
 	if (m_position.X == m_new_position.X && m_position.Y == m_new_position.Y) {
 		m_is_standing = true;
 		m_last_state = 0;
@@ -64,5 +73,5 @@ void Character::render() {
 		m_shape = m_initial_shape;
 	}
 
-	Entity::render();
+	Entity::render(offset);
 }

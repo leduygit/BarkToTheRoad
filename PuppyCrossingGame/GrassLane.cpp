@@ -23,14 +23,14 @@ void GrassLane::addObstacle()
 	return;
 }
 
-void GrassLane::render()
+void GrassLane::render(int offset)
 {
 	for (int i = 0; i < 14; i++) {
-		m_lanes[i].render(90 * i, m_position.Y);
+		m_lanes[i].render(90 * i, m_position.Y - offset);
 	}
 
 	for (auto obs : m_obs) {
-		obs->render();
+		obs->render(offset);
 	}
 }
 

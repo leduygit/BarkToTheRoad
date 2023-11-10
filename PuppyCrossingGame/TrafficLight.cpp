@@ -12,13 +12,13 @@ TrafficLight::TrafficLight()
 
 void TrafficLight::setPos(const COORD& pos)
 {
-	m_position = { pos.X + 100, pos.Y };
+	m_position = { pos.X, pos.Y };
 }
 
-void TrafficLight::render()
+void TrafficLight::render(int offset)
 {
 	// render light
-	m_shape[m_color]->render(m_position.X, m_position.Y);
+	m_shape[m_color]->render(m_position.X, m_position.Y - offset);
 }
 
 void TrafficLight::update()

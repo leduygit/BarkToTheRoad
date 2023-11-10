@@ -50,6 +50,22 @@ void Map::removeObstacle()
         m_lane[i]->removeObstacle();
 }
 
+void Map::update(int &offset)
+{
+    if (offset >= 90)
+    {
+        offset -= 90;
+        for (int i = 0; i < MAX_LANE - 1; ++i)
+        {
+            m_lane[i] = m_lane[i + 1];
+            m_lane[i]->setPos({ 0, static_cast<short>(90 * i) });
+        }
+
+        m_lane[MAX_LANE - 1] = m_fact->createLane({0 , static_cast<short>(90 * (MAX_LANE - 1)) });
+
+    }
+}
+
 COORD Map::jumpOnRaft(Character &c)
 {
     COORD pos = c.getPos();
@@ -76,16 +92,16 @@ bool Map::isRiverLane(COORD pos)
     return m_lane[i]->isRiverLane();
 }
 
-void Map::render()
+void Map::render(int offset)
 {
     for (int i = 0; i < m_lane_number; ++i)
-        m_lane[i]->render();
+        m_lane[i]->render(offset);
 }
 
 void Map::addLane()
 {
     m_lane[0] = new GrassLane({ 0, static_cast<short>(0) });
-    for (short i = 1; i < m_lane_number; ++i)
+    for (short i = 1; i < MAX_LANE; ++i)
     {
         m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
     }

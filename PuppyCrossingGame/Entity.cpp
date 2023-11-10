@@ -6,7 +6,7 @@ Entity::Entity(const COORD &pos, Shape* s)
 	m_shape = s;
 }
 
-void Entity::render() {
+void Entity::render(int offset) {
 	if (m_position.X != m_new_position.X) {
 		m_position.X += m_velo_x;
 	}
@@ -20,7 +20,7 @@ void Entity::render() {
 		m_velo_y = 0;
 	}
 
-	m_shape->render(m_position.X, m_position.Y);
+	m_shape->render(m_position.X, m_position.Y - offset);
 }
 
 void Entity::move(const COORD &pos) {

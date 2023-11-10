@@ -64,6 +64,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                                 CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
   HDC hdc = GetDC(Global::window);
   //Lane lane[10];
+  int speed = 1;
+  int offset = 0;
   initShape();
   Shape* moving = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
   Shape* staying = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
@@ -84,13 +86,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 
     //DWORD currentTime = GetTickCount();  // Get the current time in milliseconds
-
+    m.update(offset);
+    c->update(offset);
     m.addObstacle();
     m.moveObstacle(*c);
     m.removeObstacle();
 
-    m.render();
-    c->render();
+    m.render(offset);
+    c->render(offset);
 
     if (command != nullptr) {
         if (command->isValidMove(*c, m)) {
@@ -99,9 +102,11 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         command = nullptr;
     }
 
-    if (m.checkCollision(*c)) {
+    COORD characterPos = c->getPos();
+    if (m.checkCollision(*c) || characterPos.Y - offset <= -80 ) {
+        //return 0;
         int rand = randomInt(1, 13);
-        c->setPos({ static_cast<short>(90 * rand), 0 });
+        c->setPos({ static_cast<short>(90 * rand), 90});
     }
 
     StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
@@ -109,5 +114,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   Global::default_render_state.getMemoryPointer(),
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
     Sleep(2.5);
+    offset += speed;
   }
 }

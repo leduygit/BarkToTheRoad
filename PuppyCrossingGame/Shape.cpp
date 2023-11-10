@@ -49,7 +49,7 @@ void Shape::render(int offset_x, int offset_y) {
         for (int x = 0; x < m_height; x++)
         {
             for (int y = 0; y < m_width; y++) {
-                if (offset_x + y < 0 || offset_x + y >= Global::default_render_state.getWidth() || offset_y + m_height - x - 1 < 0 || offset_y + m_height - x - 1 >= Global::default_render_state.getHeight())
+                if (offset_x + y <= 0 || offset_x + y >= Global::default_render_state.getWidth() || offset_y + m_height - x - 1 <= 0 || offset_y + m_height - x - 1 >= Global::default_render_state.getHeight())
 					continue;
 			    if (m_shape[x][y] != 0x00000000)
 				    pixels[(offset_x + y) + (offset_y + m_height - x - 1) * Global::default_render_state.getWidth()] = m_shape[x][y];
