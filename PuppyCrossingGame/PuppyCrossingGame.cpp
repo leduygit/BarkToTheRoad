@@ -58,6 +58,11 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
   HDC hdc = GetDC(window);
   //Lane lane[10];
   initShape();
+  Shape* moving = new Shape[3]{ *MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2] };
+  Shape* staying = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
+  SummerLaneFactory fact;
+  Map m(&fact);
+  m.addLane();
   PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC);
 
   Global::drawer.set_render_state(render_state);
