@@ -31,8 +31,10 @@ public:
 	}
 
 	bool isEnd();
+	int getScore() const;
 
 private:
 	int *m_offset{ nullptr };
+	int m_score{ 0 };
 };
 

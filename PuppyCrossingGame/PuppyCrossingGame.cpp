@@ -45,6 +45,8 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         Global::default_render_state = RenderState(clientRect.bottom - clientRect.top,
             clientRect.right - clientRect.left + 30);
     } break;
+    case WM_ERASEBKGND:
+        return TRUE;
     default:
         result = DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
@@ -64,7 +66,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
         CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
     HDC hdc = GetDC(Global::window);
-    PlaySound(L"sound/music.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+    PlaySound(L"resources/sound/music.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+
+    AddFontResourceExW(L"resources/font/window_command_prompt.ttf", FR_PRIVATE, 0);
+    HFONT hFont1 = CreateFont(50, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
+        CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Windows Command Prompt"));
+    SetTextColor(hdc, RGB(0, 0, 0));
+    SelectObject(hdc, hFont1);
+    SetBkMode(hdc, TRANSPARENT);
 
     // Global init
     Global::drawer.set_render_state(Global::default_render_state);
@@ -76,7 +85,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     gameplay = new Gameplay();
     gameplay->setOffset(offset);
     sr.initialize();
-    sr.addScreen(new GameScreen{gameplay});
+    sr.addScreen(new GameScreen{gameplay, hdc, MyShape[SCORE]});
 
     while (!window_should_close) {
         MSG message;
@@ -90,7 +99,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
                   Global::default_render_state.getMemoryPointer(),
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-    Sleep(2.5);
+    //Sleep(2.5);
     *offset += speed;
-  }
+    }
+    DeleteObject(hFont1);
 }

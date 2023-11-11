@@ -32,9 +32,19 @@ void Character::update(int& offset)
 	}
 }
 
+void Character::setMaxY(int max_y)
+{
+	m_max_y = max_y;
+}
+
 COORD Character::getPos()
 {
 	return m_position;
+}
+
+int Character::getMaxY() const
+{
+	return m_max_y;
 }
 
 bool Character::isStanding() const {
