@@ -6,12 +6,13 @@ void GameScreen::render() {
 	char score[3];
 	_itoa_s(m_gameplay->getScore(), score, 10);
 
-	// https://stackoverflow.com/questions/19715144/how-to-convert-char-to-lpcwstr
-	wchar_t wtext[5];
-	MultiByteToWideChar(CP_ACP, 0, score, -1, wtext, 5);
-	LPWSTR ptr = wtext;
-	//OutputDebugString(ptr);
-
-	//m_score_board->render(100, 300);
-	DrawTextW(*m_hdc, ptr, -1, &m_score_pos, DT_NOCLIP);
+	RECT tmp;
+	int height, width;
+	m_score_board->getSize(width, height);
+	tmp.left = 500;
+	tmp.top = 20;
+	tmp.right = tmp.left + width;
+	tmp.bottom = tmp.top + height;
+	m_score_board->render(500, 635);
+	addText(new Text{ score, tmp });
 }

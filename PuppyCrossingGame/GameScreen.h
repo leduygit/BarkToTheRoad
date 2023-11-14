@@ -5,7 +5,7 @@ class GameScreen: public Screen
 {
 public:
 	GameScreen() = default;
-	GameScreen(Gameplay* gp, HDC& hdc, Shape* score_board) : m_gameplay{ gp }, m_hdc{ &hdc }, m_score_board{ score_board } {
+	GameScreen(Gameplay* gp, Shape* score_board) : m_gameplay{ gp }, m_score_board{ score_board } {
 		m_score_pos.left = 100;
 		m_score_pos.top = 350;
 		m_score_pos.right = 300;

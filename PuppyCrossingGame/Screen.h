@@ -2,6 +2,7 @@
 #include <vector>
 #include "Button.h"
 #include "LoadShape.h"
+#include "Text.h"
 class Screen
 {
 public:
@@ -10,12 +11,23 @@ public:
 	~Screen();
 	void addButton(Button* b);
 	void setBackground(Shape* background);
+	void addText(Text* s) {
+		m_texts.push_back(s);
+	}
+	void clearTexts() {
+		for (auto text : m_texts) {
+			delete text;
+		}
+		m_texts.clear();
+	}
+
 	std::vector<Button*> getButtons() const;
+	std::vector<Text*> getTexts() const;
 	virtual void render();
 	void clickButton();
 private:
 	Shape* m_background;
 	std::vector<Button*> m_buttons;
-	int m_selected_button = -1;
+	std::vector<Text*> m_texts{};
 };
 

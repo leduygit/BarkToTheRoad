@@ -15,6 +15,11 @@ std::vector<Button*> Screen::getButtons() const
 	return std::vector<Button*>(m_buttons);
 }
 
+std::vector<Text*> Screen::getTexts() const
+{
+	return m_texts;
+}
+
 void Screen::render()
 {
 	m_background->render(0, 0);

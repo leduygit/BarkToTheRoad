@@ -162,6 +162,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SpringMap.h" />
     <ClInclude Include="SummerLane.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="TrafficLight.h" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +198,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SpringMap.cpp" />
     <ClCompile Include="SummerLane.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="TrafficLight.cpp" />
   </ItemGroup>
   <ItemGroup>
