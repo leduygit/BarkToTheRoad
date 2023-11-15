@@ -24,6 +24,9 @@ public:
 	std::vector<Button*> getButtons() const;
 	std::vector<Text*> getTexts() const;
 	virtual void render();
+	virtual void clean();
+	void clearText();
+	void renderText() const;
 	void clickButton();
 private:
 	Shape* m_background;

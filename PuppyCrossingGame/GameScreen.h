@@ -12,6 +12,7 @@ public:
 		m_score_pos.bottom = 200;
 	}
 	void render() override;
+	void clean() override;
 private:
 	Gameplay* m_gameplay{ nullptr };
 	HDC *m_hdc{nullptr};

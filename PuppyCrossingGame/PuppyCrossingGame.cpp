@@ -101,13 +101,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
             Global::default_render_state.getMemoryPointer(),
             Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
     
-        auto texts = sr.getCurrentScreen()->getTexts();
-        for (Text* text : texts) {
-            RECT r{ text->getRect() };
-            DrawTextA(Global::hdc, text->getContent().c_str(), -1, &r, DT_NOCLIP | DT_CENTER);
-        }
 
-        sr.getCurrentScreen()->clearTexts();
+        sr.getCurrentScreen()->renderText();
+        sr.getCurrentScreen()->clean();
     //Sleep(2.5);
     *offset += speed;
     }

@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include "Global.h"
 class Text
 {
 public:
@@ -14,6 +15,8 @@ public:
 	RECT getRect() const {
 		return m_rect;
 	}
+
+	void render();
 
 private:
 	std::string m_content{ "" };

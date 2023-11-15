@@ -28,6 +28,24 @@ void Screen::render()
 	}
 }
 
+void Screen::clean()
+{
+	return;
+}
+
+void Screen::clearText()
+{
+	for (auto text : m_texts) delete text;
+	m_texts.clear();
+}
+
+void Screen::renderText() const
+{
+	for (auto text : m_texts) {
+		text->render();
+	}
+}
+
 void Screen::clickButton()
 {
 	for (Button* b : m_buttons) {

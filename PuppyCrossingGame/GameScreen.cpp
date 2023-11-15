@@ -16,3 +16,8 @@ void GameScreen::render() {
 	m_score_board->render(500, 635);
 	addText(new Text{ score, tmp });
 }
+
+void GameScreen::clean()
+{
+	Screen::clearTexts();
+}
