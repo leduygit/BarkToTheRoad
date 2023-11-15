@@ -22,14 +22,12 @@ public:
 	Character* character;
 	SummerLaneFactory fact;
 	Map m;
+
 	bool haveStarted = false;
 
 	Gameplay();
 	~Gameplay();
 	void gameLogic();
-	void setOffset(int *offset) {
-		m_offset = offset;
-	}
 	bool isStart();
 	bool isEnd();
 
