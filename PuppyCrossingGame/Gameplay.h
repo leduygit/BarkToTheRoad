@@ -22,6 +22,7 @@ public:
 	Character* character;
 	SummerLaneFactory fact;
 	Map m;
+
 	bool haveStarted = false;
 
 	Gameplay();
