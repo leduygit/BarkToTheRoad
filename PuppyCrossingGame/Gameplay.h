@@ -34,6 +34,6 @@ public:
 	bool isEnd();
 
 private:
-	int *m_offset{ nullptr };
+	int m_speed = 1;
 };
 
