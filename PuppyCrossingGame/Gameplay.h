@@ -27,9 +27,6 @@ public:
 	Gameplay();
 	~Gameplay();
 	void gameLogic();
-	void setOffset(int *offset) {
-		m_offset = offset;
-	}
 	bool isStart();
 	bool isEnd();
 
