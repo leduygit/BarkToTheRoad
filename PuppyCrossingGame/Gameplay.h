@@ -30,8 +30,10 @@ public:
 	void gameLogic();
 	bool isStart();
 	bool isEnd();
+	int getScore() const;
 
 private:
-	int m_speed = 1;
+	int m_score{ 0 };
+	int m_speed = 0;
 };
 

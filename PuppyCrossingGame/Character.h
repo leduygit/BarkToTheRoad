@@ -8,6 +8,7 @@ private:
 	bool m_is_standing{ true };
 	int m_total_state{};
 	int m_last_state{};
+	int m_max_y{ 0 };
 	Shape* m_standing_shape;
 	Shape* m_initial_shape;
 	Shape* m_moving_shape;
@@ -26,8 +27,11 @@ public:
 	void move(const COORD &pos);
 	void moveInRaft(const COORD &pos);
 	void setPos(const COORD &pos);
+	void setMaxY(int max_y);
 	bool update();
 	void updateOffset(int speed);
+
 	COORD getPos();
+	int getMaxY() const;
 };
 

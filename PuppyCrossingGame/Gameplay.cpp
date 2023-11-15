@@ -29,9 +29,14 @@ void Gameplay::gameLogic()
     if (command != nullptr) {
         if (command->isValidMove(*character, m)) {
             command->execute(*character, m);
-            haveStarted = true;
+            m_speed = 1;
         }
         command = nullptr;
+    }
+
+    if (character->getPos().Y > character->getMaxY() && character->isStanding()) {
+        m_score++;
+        character->setMaxY(character->getPos().Y);
     }
 
     if (m.checkCollision(*character)) {
@@ -50,6 +55,11 @@ bool Gameplay::isEnd()
     if (character->getPos().Y <= -90 || m.checkCollision(*character))
 		return true;
     return false;
+}
+
+int Gameplay::getScore() const
+{
+    return m_score;
 }
 
 Gameplay::~Gameplay()
