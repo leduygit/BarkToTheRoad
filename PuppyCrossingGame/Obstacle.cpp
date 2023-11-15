@@ -7,9 +7,23 @@ BusObstacle::BusObstacle(const COORD &pos)
 	setRate(Global::MEDIUM_SPEED);
 }
 
+BusObstacle::BusObstacle(const COORD& pos, bool flag)
+{
+	m_shape = MyShape[CAR_LEFT];
+	m_position = pos;
+	setRate(Global::MEDIUM_SPEED);
+}
+
 CarObstacle::CarObstacle(const COORD &pos)
 {
 	m_shape = MyShape[CAR_RIGHT];
+	m_position = pos;
+	setRate(Global::HIGH_SPEED);
+}
+
+CarObstacle::CarObstacle(const COORD& pos, bool flag)
+{
+	m_shape = MyShape[CAR_LEFT];
 	m_position = pos;
 	setRate(Global::HIGH_SPEED);
 }
@@ -33,6 +47,13 @@ GrassObstacle::GrassObstacle(const COORD &pos)
 TrainObstacle::TrainObstacle(const COORD &pos)
 {
 	m_shape = MyShape[TRAIN_RIGHT];
+	m_position = pos;
+	setRate(Global::VERY_HIGH_SPEED);
+}
+
+TrainObstacle::TrainObstacle(const COORD& pos, bool flag)
+{
+	m_shape = MyShape[TRAIN_LEFT];
 	m_position = pos;
 	setRate(Global::VERY_HIGH_SPEED);
 }

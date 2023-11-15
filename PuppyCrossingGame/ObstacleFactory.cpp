@@ -17,13 +17,13 @@ Obstacle* AsphaltObstacleFactory::createObstacle(const COORD &pos)
         if (pos.X < 200)
             return new BusObstacle({ static_cast<short>( pos.X - 120), pos.Y });
         else 
-            return new BusObstacle({ static_cast<short>(pos.X + 1400), pos.Y });
+            return new BusObstacle({ static_cast<short>(pos.X + 1400), pos.Y }, 1);
     }
     else {
         if (pos.X < 200)
             return new CarObstacle({static_cast<short>( pos.X - 120), pos.Y });
         else
-            return new CarObstacle({static_cast<short>( pos.X + 1400), pos.Y });
+            return new CarObstacle({static_cast<short>( pos.X + 1400), pos.Y }, 1);
     }
     return nullptr;
 }
@@ -36,7 +36,7 @@ Obstacle* RailObstacleFactory::createObstacle(const COORD &pos) {
     if (pos.X < 200)
         return new TrainObstacle({ static_cast<short>(pos.X - 2000), pos.Y });
     else 
-        return new TrainObstacle({ static_cast<short>(pos.X + 2000), pos.Y });
+        return new TrainObstacle({ static_cast<short>(pos.X + 2000), pos.Y }, 1);
 }
 
 Obstacle* RiverObstacleFactory::createObstacle(const COORD &pos)
