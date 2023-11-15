@@ -22,19 +22,18 @@ public:
 	Character* character;
 	SummerLaneFactory fact;
 	Map m;
-	
+
+	bool haveStarted = false;
+
 	Gameplay();
 	~Gameplay();
 	void gameLogic();
-	void setOffset(int *offset) {
-		m_offset = offset;
-	}
-
+	bool isStart();
 	bool isEnd();
 	int getScore() const;
 
 private:
-	int *m_offset{ nullptr };
 	int m_score{ 0 };
+	int m_speed = 0;
 };
 

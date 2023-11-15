@@ -10,6 +10,7 @@ private:
 	int m_lane_number{ 10 };
 	std::vector<Lane*> m_lane{ MAX_LANE };
 	static LaneFactory* m_fact;
+	int m_offset = 0;
 public:
 	Map() = default;
 	Map(LaneFactory* fact);
@@ -19,12 +20,13 @@ public:
 	void moveObstacle(Character &c);
 	void addObstacle();
 	void removeObstacle();
-	void update(int& offset);
+	void update();
+	void updateOffset(int speed);
 	COORD jumpOnRaft(Character &c);
 
 	bool isRiverLane(COORD pos);
 
-	void render(int offset = 0);
+	void render();
 	void addLane();
 
 	// load game from file

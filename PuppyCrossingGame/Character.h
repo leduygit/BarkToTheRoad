@@ -13,6 +13,7 @@ private:
 	Shape* m_initial_shape;
 	Shape* m_moving_shape;
 	COORD m_delta;
+	int m_offset;
 public:
 	Character() = default;
 	Character(const COORD &pos, Shape* standing, Shape* moving, int total = 1) : 
@@ -22,12 +23,14 @@ public:
 	void Bark();
 	bool isFinish(); // isDead checking
 	bool isStanding() const;
-	void render(int offset);
+	void render();
 	void move(const COORD &pos);
 	void moveInRaft(const COORD &pos);
 	void setPos(const COORD &pos);
-	void update(int& offset);
 	void setMaxY(int max_y);
+	bool update();
+	void updateOffset(int speed);
+
 	COORD getPos();
 	int getMaxY() const;
 };
