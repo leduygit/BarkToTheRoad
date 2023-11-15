@@ -70,7 +70,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	initShape();
 	HICON icon = LoadIcon(hInstance, MAKEINTRESOURCE(129));
 	SendMessage(Global::window, WM_SETICON, ICON_BIG, (LPARAM)icon);
-	int* offset = new int{ 0 }, speed = 1;
 
 	gameplay = new Gameplay();
 	sr.initialize();
@@ -90,6 +89,5 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
     //Sleep(2.5);
     //if (gameplay->isStart())
-        *offset += speed;
   }
 }
