@@ -29,7 +29,7 @@ void Gameplay::gameLogic()
     if (command != nullptr) {
         if (command->isValidMove(*character, m)) {
             command->execute(*character, m);
-            haveStarted = true;
+            m_speed = 1;
         }
         command = nullptr;
     }

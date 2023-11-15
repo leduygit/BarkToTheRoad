@@ -32,6 +32,6 @@ public:
 	bool isEnd();
 
 private:
-	int m_speed = 1;
+	int m_speed = 0;
 };
 
