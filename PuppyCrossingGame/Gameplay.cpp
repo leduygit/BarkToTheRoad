@@ -11,14 +11,20 @@ Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
 
 void Gameplay::gameLogic()
 {
-    m.update(*m_offset);
-    character->update(*m_offset);
+    m.updateOffset(m_speed);
+    character->updateOffset(m_speed);
+
+    
+    if (character->update())
+        m.update();
+    
+
     m.addObstacle();
     m.moveObstacle(*character);
     m.removeObstacle();
 
-    m.render(*m_offset);
-    character->render(*m_offset);
+    m.render();
+    character->render();
 
     if (command != nullptr) {
         if (command->isValidMove(*character, m)) {
@@ -26,14 +32,17 @@ void Gameplay::gameLogic()
         }
         command = nullptr;
     }
-    if (isEnd())
-        return;
+
+    //if (isEnd())
+        //return;
 
 
     if (m.checkCollision(*character)) {
         int rand = randomInt(1, 13);
         character->setPos({ static_cast<short>(90 * rand), 0 });
     }
+
+    
 
 }
 
