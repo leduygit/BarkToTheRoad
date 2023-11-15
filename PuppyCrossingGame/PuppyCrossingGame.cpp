@@ -84,10 +84,12 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		}
 		sr.getCurrentScreen()->render();
 
-		StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
-			0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
-			Global::default_render_state.getMemoryPointer(),
-			Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
-		//Sleep(2.5);
-	}
+    StretchDIBits(hdc, 0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  0, 0, Global::default_render_state.getWidth(), Global::default_render_state.getHeight(),
+                  Global::default_render_state.getMemoryPointer(),
+                  Global::default_render_state.getBitmapPointer(), DIB_RGB_COLORS, SRCCOPY);
+    //Sleep(2.5);
+    //if (gameplay->isStart())
+        *offset += speed;
+  }
 }

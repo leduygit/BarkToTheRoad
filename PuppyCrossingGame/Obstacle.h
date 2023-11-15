@@ -22,13 +22,14 @@ class BusObstacle : public Obstacle
 {
 public:
 	BusObstacle(const COORD &pos);
-
+	BusObstacle(const COORD& pos, bool flag);
 };
 
 class CarObstacle :public Obstacle
 {
 public:
 	CarObstacle(const COORD &pos = { 0, 0 });
+	CarObstacle(const COORD& pos, bool flag);
 };
 
 class GrassObstacle : public Obstacle
@@ -44,7 +45,8 @@ class TrainObstacle : public Obstacle
 {
 public:
 	TrainObstacle() = default;
-	TrainObstacle(const COORD &pos);
+	TrainObstacle(const COORD& pos);
+	TrainObstacle(const COORD &pos, bool flag);
 private:
 };
 

@@ -12,8 +12,9 @@ void MoveUpCommand::execute(Character& c, Map& m)
 		c.move(newPosition);
 	}
 	else { /*Nam mo a di da phat cau mong moi su thu tha cho doan code ban nay*/
-		short roundedNumber = (currentPostition.X / 90.0 - std::floor(currentPostition.X / 90.0)) < 0.5 ? std::floor(currentPostition.X / 90.0) : std::ceil(currentPostition.X / 90.0);
-		c.move({ static_cast<short>(roundedNumber * 90), static_cast<short> (currentPostition.Y + 90) });
+		short roundedNumberX = (currentPostition.X / 90.0 - std::floor(currentPostition.X / 90.0)) < 0.5 ? std::floor(currentPostition.X / 90.0) : std::ceil(currentPostition.X / 90.0);
+		short roundedNumberY = (currentPostition.Y / 90.0 - std::floor(currentPostition.Y / 90.0)) < 0.5 ? std::floor(currentPostition.Y / 90.0) : std::ceil(currentPostition.Y / 90.0);
+		c.move({ static_cast<short>(roundedNumberX * 90), static_cast<short> (roundedNumberY * 90 + 90) });
 	}
 }
 
