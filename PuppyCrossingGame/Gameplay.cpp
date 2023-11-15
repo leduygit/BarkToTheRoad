@@ -34,6 +34,11 @@ void Gameplay::gameLogic()
         command = nullptr;
     }
 
+    if (character->getPos().Y > character->getMaxY() && character->isStanding()) {
+        m_score++;
+        character->setMaxY(character->getPos().Y);
+    }
+
     if (m.checkCollision(*character)) {
         int rand = randomInt(1, 13);
         character->setPos({ static_cast<short>(90 * rand), 0 });
@@ -50,6 +55,11 @@ bool Gameplay::isEnd()
     if (character->getPos().Y <= -90 || m.checkCollision(*character))
 		return true;
     return false;
+}
+
+int Gameplay::getScore() const
+{
+    return m_score;
 }
 
 Gameplay::~Gameplay()

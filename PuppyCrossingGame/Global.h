@@ -10,6 +10,7 @@ namespace Global {
 	extern RenderState default_render_state;
 	extern Renderer drawer;
 	extern ScreenId current_screen;
+	extern HDC hdc;
 	extern bool window_should_close;
 	extern int LOW_SPEED;
 	extern int MEDIUM_SPEED;

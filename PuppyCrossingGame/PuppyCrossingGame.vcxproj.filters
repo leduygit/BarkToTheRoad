@@ -117,6 +117,12 @@
     <ClInclude Include="Gameplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PuppyCrossingGame.cpp">
@@ -215,6 +221,12 @@
     <ClCompile Include="Gameplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PuppyCrossingGame.rc">
@@ -226,6 +238,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="PuppyCrossingGame.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

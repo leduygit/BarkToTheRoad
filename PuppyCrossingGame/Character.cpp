@@ -28,6 +28,7 @@ bool Character::update()
 	if (m_offset >= 90 && m_is_standing)
 	{
 		setPos({ m_position.X, m_position.Y - static_cast<SHORT>(90) });
+		m_max_y -= 90;
 		m_offset -= 90;
 		return true;
 	}
@@ -40,9 +41,19 @@ void Character::updateOffset(int speed)
 	m_offset += speed;
 }
 
+void Character::setMaxY(int max_y)
+{
+	m_max_y = max_y;
+}
+
 COORD Character::getPos()
 {
 	return m_position;
+}
+
+int Character::getMaxY() const
+{
+	return m_max_y;
 }
 
 bool Character::isStanding() const {
