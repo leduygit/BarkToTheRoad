@@ -13,6 +13,7 @@ private:
 	Shape* m_initial_shape;
 	Shape* m_moving_shape;
 	COORD m_delta;
+	int m_skinIndex{ 0 };
 	int m_offset;
 public:
 	Character() = default;
@@ -30,8 +31,9 @@ public:
 	void setMaxY(int max_y);
 	bool update();
 	void updateOffset(int speed);
-
 	COORD getPos();
 	int getMaxY() const;
+	friend std::istream& operator>>(std::istream& in, Character &c);
+	friend std::ostream& operator<<(std::ostream& out, const Character &c);
 };
 

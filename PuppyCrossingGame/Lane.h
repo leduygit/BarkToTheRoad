@@ -5,14 +5,19 @@
 #include "Character.h"
 #include "TrafficLight.h"
 
+enum FactoryIndex {
+	AsphaltFactory, GrassFactory, RiverFactory, RailFactory	
+};
+
 class Lane
 {
 protected:
 	COORD m_position{};
-	int m_obsSize = 0;
 	std::vector<Obstacle*> m_obs;
 	TrafficLight m_light;
 	short direction{1};
+	int m_shapeIndex;
+	int m_factoryIndex;
 public:
 	ObstacleFactory* m_fact;
 	Shape m_shape;
@@ -20,6 +25,7 @@ public:
 
 	Lane() = default;
 	Lane(const COORD &pos);
+	Lane(const Lane& lane);
 	virtual void render(int offset = 0);
 	virtual bool spawnRate();
 	virtual void addObstacle();	
@@ -36,5 +42,8 @@ public:
 		return true;
 	}
 	void reverseDirection();
+
+	friend std::istream& operator>>(std::istream& in, Lane &lane);
+	friend std::ostream& operator<<(std::ostream& out, const Lane &lane);
 };
 

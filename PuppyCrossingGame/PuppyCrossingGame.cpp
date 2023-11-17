@@ -81,6 +81,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	sr.initialize();
 	sr.addScreen(new GameScreen{ gameplay, MyShape[SCORE] });
 
+	gameplay->loadGame();
 	while (!Global::window_should_close) {
 		MSG message;
 		while (PeekMessage(&message, Global::window, 0, 0, PM_REMOVE)) {
@@ -96,7 +97,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 	sr.getCurrentScreen()->renderText();
 	sr.getCurrentScreen()->clean();
-    //Sleep(1.5);
+    Sleep(5);
   }
 
 	DeleteObject(font);

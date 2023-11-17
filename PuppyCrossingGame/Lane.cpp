@@ -3,7 +3,7 @@
 constexpr int NUM_SQUARE = 14;
 
 
-Lane::Lane(const COORD &pos) :
+Lane::Lane(const COORD& pos) :
 	m_position{ pos }
 {
 	m_shape = *MyShape[ROAD];
@@ -17,6 +17,21 @@ Lane::Lane(const COORD &pos) :
 		direction *= -1;
 }
 
+Lane::Lane(const Lane& lane)
+{
+	m_position = lane.m_position;
+	for (auto obs : lane.m_obs)
+	{
+		m_obs.push_back(new Obstacle(*obs));
+	}
+	m_light = lane.m_light;
+	direction = lane.direction;
+	m_shapeIndex = lane.m_shapeIndex;
+	m_factoryIndex = lane.m_factoryIndex;
+	m_fact = lane.m_fact;
+	m_shape = lane.m_shape;
+}
+
 void Lane::render(int offset)
 {
 	int x = 0;
@@ -25,7 +40,7 @@ void Lane::render(int offset)
 		x += 90;
 	}
 
-	for (auto obs: m_obs) {
+	for (auto obs : m_obs) {
 		obs->render(offset);
 	}
 
@@ -103,7 +118,7 @@ void Lane::moveObstacle()
 					obs->move({ static_cast<short>(pos.X + x), pos.Y });
 				}
 			}
-			
+
 			if (direction > 0) { // left -> right
 				// if behind the light
 				if (pos.X <= lightPos.X - 90) {
@@ -160,9 +175,9 @@ void Lane::setPos(const COORD& pos)
 	for (auto obs : m_obs)
 	{
 		COORD obsPos = obs->getPos();
-		obs->setPos({obsPos.X, pos.Y});
+		obs->setPos({ obsPos.X, pos.Y });
 	}
-	
+
 	COORD lightPos = m_light.getPos();
 	m_light.setPos({ lightPos.X, pos.Y });
 }
@@ -182,3 +197,65 @@ void Lane::reverseDirection()
 	direction *= -1;
 }
 
+std::istream& operator>>(std::istream& in, Lane& lane)
+{
+	// TODO: insert return statement here
+	in >> lane.m_position.X >> lane.m_position.Y;
+	int m_size;
+	in >> m_size;
+	for (int i = 0; i < m_size; ++i)
+	{
+		Obstacle temp;
+		in >> temp;
+		lane.m_obs.push_back(new Obstacle(temp));
+	}
+
+	in >> lane.m_light;
+
+	in >> lane.direction;
+
+	in >> lane.m_shapeIndex;
+
+	int factoryIndex;
+	in >> factoryIndex;
+	lane.m_factoryIndex = factoryIndex;
+
+	switch (factoryIndex)
+	{
+	case AsphaltFactory:
+		lane.m_fact = new AsphaltObstacleFactory();
+		break;
+	case GrassFactory:
+		lane.m_fact = new GrassObstacleFactory();
+		break;
+	case RiverFactory:
+		lane.m_fact = new RiverObstacleFactory();
+		break;
+	case RailFactory:
+		lane.m_fact = new RailObstacleFactory();
+		break;
+	default:
+		break;
+	}
+
+	lane.m_shape = *MyShape[lane.m_shapeIndex];
+
+
+	return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const Lane& lane)
+{
+	// TODO: insert return statement here
+	out << lane.m_position.X << " " << lane.m_position.Y << "\n";
+	out << lane.m_obs.size() << "\n";
+	for (auto obs : lane.m_obs)
+	{
+		out << *obs << '\n';
+	}
+	out << lane.m_light << "\n";
+	out << lane.direction << " ";
+	out << lane.m_shapeIndex << " ";
+	out << lane.m_factoryIndex;
+	return out;
+}
