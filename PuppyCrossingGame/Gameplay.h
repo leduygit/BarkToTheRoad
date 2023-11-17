@@ -11,8 +11,6 @@
 #include "RenderState.h"
 #include "Shape.h"
 #include "renderer.h"
-#include "Button.h"
-#include "ScreenRegistry.h"
 
 class Gameplay
 {
@@ -27,13 +25,19 @@ public:
 
 	Gameplay();
 	~Gameplay();
+	void render();
 	void gameLogic();
+	void setPause(bool pause) {
+		m_is_paused = pause;
+	}
 	bool isStart();
 	bool isEnd();
 	int getScore() const;
+	void saveGame() const;
 
 private:
 	int m_score{ 0 };
 	int m_speed = 0;
+	bool m_is_paused{ true };
 };
 

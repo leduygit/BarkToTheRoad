@@ -11,6 +11,10 @@ Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
 
 void Gameplay::gameLogic()
 {
+
+    render();
+    if (m_is_paused) return;
+
     m.updateOffset(m_speed);
     character->updateOffset(m_speed);
 
@@ -22,9 +26,6 @@ void Gameplay::gameLogic()
     m.addObstacle();
     m.moveObstacle(*character);
     m.removeObstacle();
-
-    m.render();
-    character->render();
 
     if (command != nullptr) {
         if (command->isValidMove(*character, m)) {
@@ -62,8 +63,18 @@ int Gameplay::getScore() const
     return m_score;
 }
 
+void Gameplay::saveGame() const
+{
+}
+
 Gameplay::~Gameplay()
 {
     //delete character;
+}
+
+void Gameplay::render()
+{
+    m.render();
+    character->render();
 }
 

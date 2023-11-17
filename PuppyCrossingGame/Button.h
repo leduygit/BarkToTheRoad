@@ -2,6 +2,7 @@
 #include <windows.h>
 #include "Global.h"
 #include "ScreenId.h"
+#include "Gameplay.h"
 enum ButtonState {
 	NORMAL, FOCUSED, CLICKED
 };
@@ -24,6 +25,7 @@ public:
 		OutputDebugStringA("Clicked");
 		m_state = CLICKED;
 	}
+	COORD getPos() const;
 private:
 	COORD m_pos{};
 	ButtonState m_state{NORMAL};
@@ -49,4 +51,38 @@ public:
 	void onClick() {
 		Global::window_should_close = true;
 	}
+};
+
+class SaveGameButton : public Button {
+public:
+	SaveGameButton(Shape* shape, Gameplay* gp) : Button(shape), m_gp{ gp } {}
+	void onClick() {
+		m_gp->saveGame();
+		Global::current_screen = MENU_SCREEN;
+	}
+	
+private:
+	Gameplay* m_gp{ nullptr };
+};
+
+class OpenDialogButton : public Button {
+public:
+	OpenDialogButton(Shape* shape, bool& show) : Button(shape), m_show{ &show } {}
+	void onClick() {
+		*m_show = true;
+	}
+private:
+	bool *m_show;
+};
+
+class CloseDialogButton : public Button {
+public:
+	CloseDialogButton(Shape* shape, bool& show) : Button(shape), m_show{ &show } {}
+	void onClick() {
+		*m_show = false;
+		std::string a = "Clicked\n";
+		OutputDebugStringA(a.c_str());
+	}
+private:
+	bool* m_show;
 };

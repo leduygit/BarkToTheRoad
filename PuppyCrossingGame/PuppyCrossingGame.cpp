@@ -35,6 +35,9 @@ LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	case WM_LBUTTONUP:
 		sr.getCurrentScreen()->clickButton();
 		break;
+	case WM_CHAR:
+		sr.getCurrentScreen()->handleKeyPressed(wParam);
+		break;
 	case WM_KEYDOWN:
 		gameplay->command = gameplay->ih.handleInput(wParam, *gameplay->character);
 		break;

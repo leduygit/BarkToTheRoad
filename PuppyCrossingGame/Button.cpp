@@ -5,8 +5,6 @@ void Button::render()
 {
 	if (isHovering()) setState(FOCUSED);
 	else setState(NORMAL);
-	std::string a = "State is: " + std::to_string(m_state) + '\n';
-	OutputDebugStringA(a.c_str());
 
 	m_shape[m_state].render(m_pos.X, m_pos.Y);
 }
@@ -31,6 +29,11 @@ bool Button::isHovering() const
 	if (GetCursorPos(&mouse_pos) == 0) return false;
 	ScreenToClient(Global::window, &mouse_pos);
 	return isInside(mouse_pos);
+}
+
+COORD Button::getPos() const
+{
+	return m_pos;
 }
 
 void ChangeScreenButton::onClick()
