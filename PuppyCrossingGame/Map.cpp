@@ -126,11 +126,33 @@ void Map::saveGame(std::ofstream& fout)
 
 std::istream& operator>>(std::istream& in, Map& m)
 {
+	m.m_lane.clear();
 	for (int i = 0; i < MAX_LANE; ++i)
 	{
-		Lane lane;
-		in >> lane;
-		m.m_lane.push_back(new Lane(lane));
+		int factoryIndex;
+		in >> factoryIndex;
+		Lane* lane;
+		switch (factoryIndex)
+		{
+		case AsphaltFactory:
+			lane = new AsphaltLane();
+			break;
+		case GrassFactory:
+			lane = new GrassLane();
+			break;
+		case RiverFactory:
+			lane = new RiverLane();
+			break;
+		case RailFactory:
+			lane = new RailLane();
+			break;
+		default:
+			lane = new GrassLane();
+			break;	
+		}
+		lane->setFactoryIndex(factoryIndex);
+		in >> *lane;
+		m.m_lane.push_back(lane);
 	}
 	in >> m.m_offset;
 	in >> m.m_factoryType;
@@ -159,6 +181,7 @@ std::ostream& operator<<(std::ostream& out, const Map& m)
 {
 	for (int i = 0; i < MAX_LANE; ++i)
 	{
+		out << m.m_lane[i]->getFactoryIndex() << std::endl;
 		out << *m.m_lane[i] << std::endl;
 	}
 	out << m.m_offset << std::endl;

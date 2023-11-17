@@ -197,6 +197,16 @@ void Lane::reverseDirection()
 	direction *= -1;
 }
 
+void Lane::setFactoryIndex(int index)
+{
+	m_factoryIndex = index;
+}
+
+int Lane::getFactoryIndex() const
+{
+	return m_factoryIndex;
+}
+
 std::istream& operator>>(std::istream& in, Lane& lane)
 {
 	// TODO: insert return statement here
@@ -215,12 +225,13 @@ std::istream& operator>>(std::istream& in, Lane& lane)
 	in >> lane.direction;
 
 	in >> lane.m_shapeIndex;
-
+	/*
 	int factoryIndex;
 	in >> factoryIndex;
 	lane.m_factoryIndex = factoryIndex;
+	*/
 
-	switch (factoryIndex)
+	switch (lane.m_factoryIndex)
 	{
 	case AsphaltFactory:
 		lane.m_fact = new AsphaltObstacleFactory();
@@ -256,6 +267,6 @@ std::ostream& operator<<(std::ostream& out, const Lane& lane)
 	out << lane.m_light << "\n";
 	out << lane.direction << " ";
 	out << lane.m_shapeIndex << " ";
-	out << lane.m_factoryIndex;
+	//out << lane.m_factoryIndex;
 	return out;
 }

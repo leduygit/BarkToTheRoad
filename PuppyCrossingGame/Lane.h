@@ -42,6 +42,8 @@ public:
 		return true;
 	}
 	void reverseDirection();
+	void setFactoryIndex(int index);
+	int getFactoryIndex() const;
 
 	friend std::istream& operator>>(std::istream& in, Lane &lane);
 	friend std::ostream& operator<<(std::ostream& out, const Lane &lane);

@@ -1,6 +1,24 @@
 #include "GrassLane.h"
 
 
+GrassLane::GrassLane()
+{
+	m_factoryIndex = GrassFactory;
+	m_shape = *MyShape[GRASS_0];
+	for (int i = 0; i < 14; i++) {
+		int rand = randomInt(1, 100);
+		if (rand % 2) {
+			m_lanes[i] = *MyShape[GRASS_0];
+			m_shapeIndex = GRASS_0;
+		}
+		else {
+			rand = randomInt(1, 4);
+			m_lanes[i] = *MyShape[rand + GRASS_0];
+			m_shapeIndex = rand + GRASS_0;
+		}
+	}
+}
+
 GrassLane::GrassLane(const COORD &pos)
 {
 	m_position = pos;
