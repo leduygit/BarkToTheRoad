@@ -13,6 +13,7 @@ enum ShapeIndex
 	RANK_BUTTON, RANK_BUTTON_HOVER, SETTING_BUTTON,
 	SCORE, QUIT_BUTTON, QUIT_BUTTON_HOVER,
 };
-
-extern std::vector<Shape* > MyShape;
+extern std::vector<Shape*> DogMovingShapes;
+extern std::vector<Shape*> DogStayingShapes;
+extern std::vector<Shape*> MyShape;
 void initShape();

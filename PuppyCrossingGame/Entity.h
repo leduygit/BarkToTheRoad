@@ -9,8 +9,8 @@ private:
 	//int m_height;
 	int m_velo_x;
 	int m_velo_y;
-	int m_rate{ 30 };
 protected:
+	int m_rate{ 30 };
 	COORD m_position;
 	COORD m_new_position;
 	Shape* m_shape;

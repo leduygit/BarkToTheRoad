@@ -1,6 +1,8 @@
 #include "LoadShape.h"
 
 std::vector<Shape*> MyShape(100);
+std::vector<Shape*> DogMovingShapes(10);
+std::vector<Shape*> DogStayingShapes(10);
 
 void initShape() {
 	MyShape[CAR_RIGHT] = new Shape{ "resources/image/car_right.bin" };
@@ -36,4 +38,6 @@ void initShape() {
 	MyShape[SCORE] = new Shape("resources/image/score.bin");
 	MyShape[QUIT_BUTTON] = new Shape("resources/image/quit.bin");
 	MyShape[QUIT_BUTTON_HOVER] = new Shape("resources/image/quit-2.bin");
+	DogMovingShapes[0] = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2]};
+	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 }
