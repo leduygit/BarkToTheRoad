@@ -42,7 +42,7 @@ void Gameplay::gameLogic()
     if (m.checkCollision(*character)) {
         int rand = randomInt(1, 13);
         character->setPos({ static_cast<short>(90 * rand), 0 });
-        saveGame();
+        //saveGame();
     }
 }
 
