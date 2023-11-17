@@ -6,7 +6,7 @@ Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
     Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
 	character = new Character{ {90, 0}, staying, moving, 3 };
-    m.addLane();
+    //m.addLane();
 }
 
 void Gameplay::gameLogic()
@@ -40,9 +40,9 @@ void Gameplay::gameLogic()
     }
 
     if (m.checkCollision(*character)) {
-        saveGame();
         int rand = randomInt(1, 13);
         character->setPos({ static_cast<short>(90 * rand), 0 });
+        saveGame();
     }
 }
 
@@ -77,12 +77,14 @@ void Gameplay::loadGame()
 {
     std::ifstream in("game_save/save.txt");
 	in >> m;
-    Character temp;
-    in >> temp;
-    character = new Character(temp);
+    //Character temp;
+    //in >> temp;
+    //character = new Character(temp);
+    in >> *character;
 	in >> m_score;
 	in >> m_speed;
 	in.close();
+    m_speed = 0;
 }
 
 Gameplay::~Gameplay()

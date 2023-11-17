@@ -12,14 +12,18 @@ private:
 	Shape* m_standing_shape;
 	Shape* m_initial_shape;
 	Shape* m_moving_shape;
-	COORD m_delta;
+	COORD m_delta = { 0, 0 };
 	int m_skinIndex{ 0 };
 	int m_offset;
 public:
 	Character() = default;
-	Character(const COORD &pos, Shape* standing, Shape* moving, int total = 1) : 
-		Entity(pos, standing), m_total_state{ total },  m_standing_shape{ standing },
-		m_initial_shape{ moving }, m_moving_shape{ moving } {}
+	Character(const COORD& pos, Shape* standing, Shape* moving, int total = 1) :
+		Entity(pos, standing), m_total_state{ total }, m_standing_shape{ standing },
+		m_initial_shape{ moving }, m_moving_shape{ moving }
+	{
+		m_new_position = m_position;
+		m_delta = { 0, 0 };
+	}
 	~Character();
 	void Bark();
 	bool isFinish(); // isDead checking

@@ -106,14 +106,14 @@ std::istream& operator>>(std::istream& in, Character& c)
 {
 	int x, y, total_state, maxY, offset, skinIndex;
 	in >> x >> y >> total_state;
-	COORD position = { static_cast<short>(x), static_cast<short>(y) };
+	COORD position = { x, y };
 	in >> maxY;
 	in >> skinIndex;
 	in >> offset;
 
 	Shape* moving = DogMovingShapes[skinIndex];
 	Shape* staying = DogStayingShapes[skinIndex];
-	c = Character{ position, staying, moving, total_state };
+	c = Character(position, staying, moving, total_state);
 	c.m_max_y = maxY;
 	c.m_offset = offset;
 	c.m_skinIndex = skinIndex;
