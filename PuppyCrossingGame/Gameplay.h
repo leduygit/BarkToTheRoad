@@ -34,7 +34,7 @@ public:
 	bool isEnd();
 	int getScore() const;
 	void saveGame() const;
-	void loadGame();
+	void loadGame(std::string fileName);
 private:
 	int m_score{ 0 };
 	int m_speed = 0;

@@ -74,9 +74,9 @@ void Gameplay::saveGame() const
 	out.close();
 }
 
-void Gameplay::loadGame()
+void Gameplay::loadGame(std::string fileName)
 {
-    std::ifstream in("game_save/save.txt");
+    std::ifstream in(fileName);
 	in >> m;
     //Character temp;
     //in >> temp;
@@ -85,6 +85,7 @@ void Gameplay::loadGame()
 	in >> m_score;
 	in >> m_speed;
 	in.close();
+    m_is_paused = true;
     m_speed = 0;
 }
 

@@ -3,6 +3,7 @@
 #include "Global.h"
 #include "ScreenId.h"
 #include "Gameplay.h"
+#include <string>
 enum ButtonState {
 	NORMAL, FOCUSED, CLICKED
 };
@@ -55,12 +56,43 @@ public:
 
 class SaveGameButton : public Button {
 public:
-	SaveGameButton(Shape* shape, Gameplay* gp) : Button(shape), m_gp{ gp } {}
+	SaveGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
 	void onClick() {
 		m_gp->saveGame();
+		OutputDebugString(L"Clicked");
 		Global::current_screen = MENU_SCREEN;
 	}
 	
+private:
+	Gameplay* m_gp{ nullptr };
+};
+
+class LoadGameButton : public Button {
+public:
+	LoadGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
+	void onClick() {
+		WCHAR Filestring[1000]{ 0 };
+		OPENFILENAME opf = { 0 };
+		opf.lStructSize = sizeof(OPENFILENAME);
+		opf.lpstrFile = Filestring;
+		opf.nMaxFile = MAX_PATH;
+		opf.lpstrInitialDir = NULL;
+		if (GetOpenFileName(&opf) != 0) {
+			std::string delimiter = "\\";
+			std::wstring ws(Filestring);
+			std::string s(ws.begin(), ws.end());
+
+			size_t pos = 0;
+			std::string token;
+			while ((pos = s.find(delimiter)) != std::string::npos) {
+				token = s.substr(0, pos);
+				s.erase(0, pos + delimiter.length());
+			}
+
+			m_gp->loadGame(s);
+			Global::current_screen = GAME_SCREEN;
+		}
+	}
 private:
 	Gameplay* m_gp{ nullptr };
 };
@@ -77,12 +109,12 @@ private:
 
 class CloseDialogButton : public Button {
 public:
-	CloseDialogButton(Shape* shape, bool& show) : Button(shape), m_show{ &show } {}
+	CloseDialogButton(Shape* shape, bool& show, Gameplay*& gp) : Button(shape), m_show{ &show }, m_gp{ gp } {}
 	void onClick() {
 		*m_show = false;
-		std::string a = "Clicked\n";
-		OutputDebugStringA(a.c_str());
+		m_gp->setPause(false);
 	}
 private:
+	Gameplay* m_gp;
 	bool* m_show;
 };
