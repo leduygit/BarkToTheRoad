@@ -52,3 +52,20 @@ void TrafficLight::setGreenLight()
 {
 	m_color = GREEN;
 }
+
+std::istream& operator>>(std::istream& in, TrafficLight& light)
+{
+	// TODO: insert return statement here
+	int x, y;
+	in >> x >> y;
+	light.m_position = { static_cast<short>(x), static_cast<short>(y) };
+	in >> light.m_greenDuration >> light.m_redDuration;	
+	return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const TrafficLight& light)
+{
+	out << light.m_position.X << " " << light.m_position.Y << ' ';
+	out << light.m_greenDuration << " " << light.m_redDuration;
+	return out;
+}

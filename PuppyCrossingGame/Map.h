@@ -4,6 +4,13 @@
 
 constexpr int MAX_LANE = 13;
 
+enum FactoryType {
+	SUMMER,
+	SPRING,
+	WINTER,
+	AUTUMN
+};
+
 class Map
 {
 private:
@@ -11,6 +18,7 @@ private:
 	std::vector<Lane*> m_lane{ MAX_LANE };
 	static LaneFactory* m_fact;
 	int m_offset = 0;
+	int m_factoryType{SUMMER};
 public:
 	Map() = default;
 	Map(LaneFactory* fact);
@@ -34,5 +42,8 @@ public:
 
 	// save game to file
 	void saveGame(std::ofstream& fout);
+
+	friend std::istream& operator>>(std::istream& in, Map &m);
+	friend std::ostream& operator<<(std::ostream& out, const Map &m);
 };
 

@@ -16,7 +16,8 @@ class TrafficLight
 	TrafficLight();
 
 	TrafficLight(int greenDuration, int redDuration): m_color{ RED }, m_lastTime{0}, m_greenDuration{greenDuration}, m_redDuration{redDuration} {}
-
+	TrafficLight(COORD pos, int greenDuration, int redDuration): 
+		m_position{pos}, m_color{ RED }, m_lastTime{0}, m_greenDuration{greenDuration}, m_redDuration{redDuration} {}
 	void setGreenDuration(int greenDuration) {
 		m_greenDuration = greenDuration;
 	}
@@ -32,5 +33,8 @@ class TrafficLight
 	bool isRed();
 	void setRedLight();
 	void setGreenLight();
+
+	friend std::istream& operator>>(std::istream& in, TrafficLight &light);
+	friend std::ostream& operator<<(std::ostream& out, const TrafficLight &light);
 };
 

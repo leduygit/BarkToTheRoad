@@ -5,6 +5,8 @@ RiverLane::RiverLane(const COORD &pos) :
 {
 	m_fact = new RiverObstacleFactory();
 	m_shape = *MyShape[RIVER];
+	m_shapeIndex = RIVER;
+	m_factoryIndex = RiverFactory;
 }
 
 void RiverLane::moveObstacle(Character& c)

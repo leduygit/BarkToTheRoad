@@ -3,9 +3,9 @@
 
 Character::~Character()
 {
-	if (m_standing_shape) delete m_standing_shape;
-	if (m_initial_shape) delete m_initial_shape;
-	if (m_moving_shape) delete m_moving_shape;
+	//if (m_standing_shape) delete m_standing_shape;
+	//if (m_initial_shape) delete m_initial_shape;
+	//if (m_moving_shape) delete m_moving_shape;
 }
 
 void Character::Bark()
@@ -100,4 +100,31 @@ void Character::render() {
 	}
 
 	Entity::render(m_offset);
+}
+
+std::istream& operator>>(std::istream& in, Character& c)
+{
+	int x, y, total_state, maxY, offset, skinIndex;
+	in >> x >> y >> total_state;
+	COORD position = { x, y };
+	in >> maxY;
+	in >> skinIndex;
+	in >> offset;
+
+	Shape* moving = DogMovingShapes[skinIndex];
+	Shape* staying = DogStayingShapes[skinIndex];
+	c = Character(position, staying, moving, total_state);
+	c.m_max_y = maxY;
+	c.m_offset = offset;
+	c.m_skinIndex = skinIndex;
+	return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const Character& c)
+{
+	out << c.m_position.X << " " << c.m_position.Y << " " << c.m_total_state << " " ;
+	out << c.m_max_y << " ";
+	out << c.m_skinIndex << " ";
+	out << c.m_offset << " ";
+	return out;
 }

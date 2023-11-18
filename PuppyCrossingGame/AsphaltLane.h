@@ -11,6 +11,8 @@ public:
     {
         m_fact = new AsphaltObstacleFactory();
         m_shape = *MyShape[ROAD];
+        m_shapeIndex = ROAD;
+        m_factoryIndex = AsphaltFactory;
     }
 
     using Lane::render;

@@ -1,21 +1,28 @@
 #pragma once
 #include "Entity.h"
+
+
 class Obstacle : public Entity
 {
 private:
-	int a = 5;
 protected:
+	int m_shapeIndex;
+public:
 	enum ObstacleType {
 		MOVING, STANDING
 	};
-	ObstacleType m_type{MOVING};
-public:
+	ObstacleType m_type{ MOVING };
+	Obstacle() = default;
+	Obstacle(const COORD &pos, int type, int isStanding, int speed);
 
 	COORD getPos()
 	{
 		return m_position;
 	}
 	using Entity::setRate;
+
+	friend std::istream& operator>>(std::istream& in, Obstacle &obs);
+	friend std::ostream& operator<<(std::ostream& out, const Obstacle &obs);
 };
 
 class BusObstacle : public Obstacle

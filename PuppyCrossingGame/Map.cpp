@@ -123,3 +123,69 @@ void Map::saveGame(std::ofstream& fout)
 		//m_lane[i]->saveGame(fout);
 	}
 }
+
+std::istream& operator>>(std::istream& in, Map& m)
+{
+	m.m_lane.clear();
+	for (int i = 0; i < MAX_LANE; ++i)
+	{
+		int factoryIndex;
+		in >> factoryIndex;
+		Lane* lane;
+		switch (factoryIndex)
+		{
+		case AsphaltFactory:
+			lane = new AsphaltLane();
+			break;
+		case GrassFactory:
+			lane = new GrassLane();
+			break;
+		case RiverFactory:
+			lane = new RiverLane();
+			break;
+		case RailFactory:
+			lane = new RailLane();
+			break;
+		default:
+			lane = new GrassLane();
+			break;	
+		}
+		lane->setFactoryIndex(factoryIndex);
+		in >> *lane;
+		m.m_lane.push_back(lane);
+	}
+	in >> m.m_offset;
+	in >> m.m_factoryType;
+
+	switch (m.m_factoryType)
+	{
+	case SUMMER:
+		m.m_fact = new SummerLaneFactory();
+		break;
+	case SPRING:
+		m.m_fact = new SpringLaneFactory();
+		break;
+	case WINTER:
+		//m.m_fact = new WinterLaneFactory();
+		break;
+	case AUTUMN:
+		//m.m_fact = new AutumnLaneFactory();
+		break;
+	default:
+		break;
+	}
+	return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const Map& m)
+{
+	for (int i = 0; i < MAX_LANE; ++i)
+	{
+		out << m.m_lane[i]->getFactoryIndex() << std::endl;
+		out << *m.m_lane[i] << std::endl;
+	}
+	out << m.m_offset << std::endl;
+	out << m.m_factoryType << std::endl;
+	return out;
+}
+
