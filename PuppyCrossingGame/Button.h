@@ -41,6 +41,17 @@ private:
 	ScreenId m_next_screen{};
 };
 
+class NewGameButton : public Button {
+public:
+	NewGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
+	void onClick() {
+		*m_gp = Gameplay();
+		Global::current_screen = GAME_SCREEN;
+	}
+private:
+	Gameplay* m_gp{ nullptr };
+};
+
 class PauseButton : public Button {
 public:
 	void onClick();
@@ -56,15 +67,17 @@ public:
 
 class SaveGameButton : public Button {
 public:
-	SaveGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
+	SaveGameButton(Shape* shape, Gameplay*& gp, bool& render_dialog) : Button(shape), m_gp{ gp }, m_show{ &render_dialog } {}
 	void onClick() {
 		m_gp->saveGame();
-		OutputDebugString(L"Clicked");
+		OutputDebugString(L"Clicked\n");
+		*m_show = false;
 		Global::current_screen = MENU_SCREEN;
 	}
 	
 private:
 	Gameplay* m_gp{ nullptr };
+	bool* m_show{ nullptr };
 };
 
 class LoadGameButton : public Button {

@@ -17,7 +17,6 @@ private:
 	HDC *m_hdc{nullptr};
 	Shape* m_score_board{ nullptr };
 	RECT m_score_pos{};
-	std::string m_user_name{ "" };
 	bool m_input_name{ true };
 	bool m_render_dialog{ false };
 };

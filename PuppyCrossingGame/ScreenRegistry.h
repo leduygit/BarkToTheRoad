@@ -9,7 +9,7 @@ public:
 		return m_screens[Global::current_screen];
 	}
 
-	void initialize(Gameplay* gp) {
+	void initialize(Gameplay*& gp) {
 		m_screens.push_back(new MenuScreen{ gp });
 		m_screens.push_back(new GameScreen{ gp });
 	}

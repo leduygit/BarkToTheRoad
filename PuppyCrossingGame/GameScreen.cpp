@@ -10,7 +10,7 @@ GameScreen::GameScreen(Gameplay*& gp) : m_gameplay{ gp }
 	addButton(open_dialog);
 
 	m_menu = new Dialog{ MyShape[DOG_STAY_1], {100, 100} };
-	Button* save = new SaveGameButton{ MyShape[DOG_STAY_2], m_gameplay};
+	Button* save = new SaveGameButton{ MyShape[LOG], m_gameplay, m_render_dialog};
 	save->setPos({ 150, 100 });
 	m_menu->addButton(save);
 
@@ -37,8 +37,11 @@ void GameScreen::render() {
 	addText(new Text{ score, tmp });
 
 	auto buttons = getButtons();
-	for (auto b : buttons) {
-		b->render();
+	for (int i = 0; i < buttons.size(); i++) {
+		if (i == 0) {
+			if (!m_gameplay->getIsNewGame()) continue;
+		}
+		buttons[i]->render();
 	}
 
 	if (m_render_dialog) {
@@ -46,12 +49,12 @@ void GameScreen::render() {
 		m_gameplay->setPause(true);
 	}
 
-	if (m_input_name) {
+	if (m_gameplay->getIsNewGame()) {
 		COORD pos = getButtons()[0]->getPos();
 		tmp.left = pos.X, tmp.top = 720 - pos.Y - 60;
 		tmp.right = tmp.left + width;
 		tmp.bottom = tmp.top + height;
-		addText(new Text{ m_user_name, tmp });
+		addText(new Text{ m_gameplay->getUserName(), tmp});
 	}
 }
 
@@ -74,6 +77,7 @@ void GameScreen::clickButton()
 
 void GameScreen::handleKeyPressed(WPARAM key)
 {
+	std::string &user_name = m_gameplay->getUserName();
 	switch (key) {
 	case 0x08:
 	case 0x0A:
@@ -81,13 +85,12 @@ void GameScreen::handleKeyPressed(WPARAM key)
 	case 0x09:
 		break;
 	case 0x0D:
-		if (m_user_name.size() == 0) break;
-		m_input_name = false;
+		if (user_name.size() == 0) break;
 		m_gameplay->setPause(false);
-		removeButton(0);
+		m_gameplay->setIsNewGame(false);
 		break;
 	default:
-		if (m_user_name.size() >= 7) break;
-		m_user_name += (TCHAR) key;
+		if (user_name.size() >= 7) break;
+		user_name += (TCHAR) key;
 	}
 }

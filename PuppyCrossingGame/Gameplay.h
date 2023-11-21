@@ -33,11 +33,18 @@ public:
 	bool isStart();
 	bool isEnd();
 	int getScore() const;
+	std::string& getUserName() {
+		return m_user_name;
+	}
+	bool getIsNewGame() const;
 	void saveGame() const;
 	void loadGame(std::string fileName);
+	void setIsNewGame(bool is_new_game);
 private:
 	int m_score{ 0 };
 	int m_speed = 0;
 	bool m_is_paused{ true };
+	std::string m_user_name{ "" };
+	bool m_is_new_game{ true };
 };
 

@@ -3,7 +3,7 @@ MenuScreen::MenuScreen(Gameplay*& gp) {
 	setBackground(MyShape[BACKGROUND]);
 	// add multiple button states!!!
 	Shape* newGameButtonState = new Shape[2]{ *MyShape[NEW_GAME_BUTTON], *MyShape[NEW_GAME_BUTTON_HOVER] };
-	Button* newGameButton = new ChangeScreenButton(newGameButtonState, GAME_SCREEN);
+	Button* newGameButton = new NewGameButton(newGameButtonState, gp);
 	newGameButton->setPos({ 500, 300 });
 
 	Shape* loadGameButtonState = new Shape[2]{ *MyShape[LOAD_GAME_BUTTON], *MyShape[LOAD_GAME_BUTTON_HOVER] };

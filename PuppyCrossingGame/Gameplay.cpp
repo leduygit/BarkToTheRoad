@@ -64,19 +64,30 @@ int Gameplay::getScore() const
     return m_score;
 }
 
+bool Gameplay::getIsNewGame() const
+{
+    return m_is_new_game;
+}
+
 void Gameplay::saveGame() const
 {
-    std::ofstream out("game_save/save.txt");
+    std::ofstream out("save.txt");
+    if (!out) {
+        auto state = out.rdstate();
+        return;
+    }
 	out << m << std::endl;
     out << *character << std::endl;
     out << m_score << std::endl;
     out << m_speed << std::endl;
+    out << m_user_name << std::endl;
+    out.flush();
 	out.close();
 }
 
 void Gameplay::loadGame(std::string fileName)
 {
-    std::ifstream in(fileName);
+    std::ifstream in(fileName, std::ios::in);
 	in >> m;
     //Character temp;
     //in >> temp;
@@ -84,9 +95,16 @@ void Gameplay::loadGame(std::string fileName)
     in >> *character;
 	in >> m_score;
 	in >> m_speed;
+    in >> m_user_name;
 	in.close();
-    m_is_paused = true;
+    m_is_new_game = false;
+    m_is_paused = false;
     m_speed = 0;
+}
+
+void Gameplay::setIsNewGame(bool is_new_game)
+{
+    m_is_new_game = is_new_game;
 }
 
 Gameplay::~Gameplay()
