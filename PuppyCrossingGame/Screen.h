@@ -32,7 +32,11 @@ public:
 	virtual void handleKeyPressed(WPARAM key) {
 
 	}
-private:
+	virtual void updateContent() {}
+	virtual int getSize() const {
+		return m_buttons.size();
+	}
+protected:
 	Shape* m_background;
 	std::vector<Button*> m_buttons;
 	std::vector<Text*> m_texts{};

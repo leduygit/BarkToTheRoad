@@ -27,6 +27,7 @@ public:
 		m_state = CLICKED;
 	}
 	COORD getPos() const;
+	virtual void setFileName(std::string filename) {}
 private:
 	COORD m_pos{};
 	ButtonState m_state{NORMAL};
@@ -69,10 +70,35 @@ class SaveGameButton : public Button {
 public:
 	SaveGameButton(Shape* shape, Gameplay*& gp, bool& render_dialog, std::string filename) : Button(shape), m_gp{ gp }, m_show{ &render_dialog }, m_file_name(filename) {}
 	void onClick() {
+		std::string saveName = m_gp->getUserName();
+
+		std::vector<std::string> saveFiles;
+		std::ifstream saveFile("game_save/name.txt");
+		for (std::string line; getline(saveFile, line);)
+		{
+			std::string path = "game_save/" + line;
+			if (path == m_file_name)
+				saveFiles.push_back(saveName + ".txt");
+			else
+				saveFiles.push_back(line);
+		}
+
+		saveFile.close();
+
+		std::ofstream out("game_save/name.txt");
+		for (int i = 0; i < 3; ++i)
+		{
+			out << saveFiles[i] << std::endl;
+		}
+		out.close();
+
+		m_file_name = "game_save/" + saveName + ".txt";
+		
 		m_gp->saveGame(m_file_name);
 		OutputDebugString(L"Clicked\n");
 		*m_show = false;
 		Global::current_screen = MENU_SCREEN;
+
 	}
 	
 	std::string getFileName() const {
@@ -119,6 +145,10 @@ public:
 
 	std::string getFileName() const {
 		return m_file_name;
+	}
+
+	void setFileName(std::string filename) {
+		m_file_name = filename;
 	}
 private:
 	std::string m_file_name = "";
