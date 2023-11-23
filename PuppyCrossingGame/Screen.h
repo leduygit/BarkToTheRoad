@@ -10,6 +10,7 @@ public:
 	Screen(Shape* background) : m_background{ background } {}
 	~Screen();
 	void addButton(Button* b);
+	void removeButton(int i);
 	void setBackground(Shape* background);
 	void addText(Text* s) {
 		m_texts.push_back(s);
@@ -27,7 +28,10 @@ public:
 	virtual void clean();
 	void clearText();
 	void renderText() const;
-	void clickButton();
+	virtual void clickButton();
+	virtual void handleKeyPressed(WPARAM key) {
+
+	}
 private:
 	Shape* m_background;
 	std::vector<Button*> m_buttons;

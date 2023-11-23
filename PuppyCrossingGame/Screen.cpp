@@ -5,6 +5,11 @@ void Screen::addButton(Button* b)
 	m_buttons.push_back(b);
 }
 
+void Screen::removeButton(int i)
+{
+	m_buttons.erase(m_buttons.begin() + i);
+}
+
 void Screen::setBackground(Shape* background)
 {
 	m_background = background;

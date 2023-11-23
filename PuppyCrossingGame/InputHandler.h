@@ -18,6 +18,5 @@ private:
 	MoveDownCommand* move_down;
 	MoveLeftCommand* move_left;
 	MoveRightCommand* move_right;
-	MouseClickCommand* left_click;
 };
 

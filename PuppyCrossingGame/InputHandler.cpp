@@ -20,8 +20,6 @@ Command* InputHandler::handleInput(WPARAM key, const Character& c)
         return move_left;
     case VK_RIGHT:
         return move_right;
-    case WM_LBUTTONUP:
-        return left_click;
     default:
         return nullptr;
     }

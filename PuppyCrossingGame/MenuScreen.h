@@ -3,6 +3,6 @@
 class MenuScreen : public Screen
 {
 public:
-	MenuScreen();
+	MenuScreen(Gameplay* gp);
 };
 

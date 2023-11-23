@@ -11,30 +11,42 @@
 #include "RenderState.h"
 #include "Shape.h"
 #include "renderer.h"
-#include "Button.h"
-#include "ScreenRegistry.h"
 
 class Gameplay
 {
 public:
-	InputHandler ih;
-	Command* command;
-	Character* character;
-	SummerLaneFactory fact;
-	Map m;
+	InputHandler ih{};
+	Command* command{ nullptr };
+	Character* character{nullptr};
+	LaneFactory* fact;
+	Map m{};
 
 	bool haveStarted = false;
 
 	Gameplay();
 	~Gameplay();
+	void render();
+	void newGame();
 	void gameLogic();
+	void setPause(bool pause) {
+		m_is_paused = pause;
+	}
 	bool isStart();
 	bool isEnd();
 	int getScore() const;
+	std::string& getUserName() {
+		return m_user_name;
+	}
+	bool getIsNewGame() const;
 	void saveGame() const;
-	void loadGame();
+	void loadGame(std::string fileName);
+	void setIsNewGame(bool is_new_game);
 private:
 	int m_score{ 0 };
 	int m_speed = 0;
+	bool m_is_paused{ true };
+	std::string m_user_name{ "" };
+	bool m_is_new_game{ true };
+	FactoryType m_fact_type{ SUMMER };
 };
 

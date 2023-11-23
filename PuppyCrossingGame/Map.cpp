@@ -2,8 +2,6 @@
 #define NUM_LANE 8
 
 
-LaneFactory* Map::m_fact;
-
 Map::Map(LaneFactory* fact)
 {
 	m_fact = fact;
@@ -57,8 +55,8 @@ void Map::update()
 		m_lane[i] = m_lane[i + 1];
 		m_lane[i]->setPos({ 0, static_cast<short>(90 * i) });
 	}
-
-	m_lane[MAX_LANE - 1] = m_fact->createLane({ 0 , static_cast<short>(90 * (MAX_LANE - 1)) });
+	m_lane.pop_back();
+	m_lane.push_back(m_fact->createLane({ 0 , static_cast<short>(90 * (MAX_LANE - 1)) }));
 	m_offset -= 90;
 }
 

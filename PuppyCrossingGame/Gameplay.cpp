@@ -1,7 +1,15 @@
 #include "Gameplay.h"
 
-Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
+Gameplay::Gameplay() : command(nullptr)
 {
+    switch (m_fact_type) {
+    case SUMMER:
+        fact = new SummerLaneFactory{};
+        break;
+    default:
+        break;
+    }
+    m = Map{ fact };
 	m.addLane();
     Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
@@ -11,6 +19,10 @@ Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
 
 void Gameplay::gameLogic()
 {
+
+    render();
+    if (m_is_paused) return;
+
     m.updateOffset(m_speed);
     character->updateOffset(m_speed);
 
@@ -22,9 +34,6 @@ void Gameplay::gameLogic()
     m.addObstacle();
     m.moveObstacle(*character);
     m.removeObstacle();
-
-    m.render();
-    character->render();
 
     if (command != nullptr) {
         if (command->isValidMove(*character, m)) {
@@ -63,19 +72,30 @@ int Gameplay::getScore() const
     return m_score;
 }
 
+bool Gameplay::getIsNewGame() const
+{
+    return m_is_new_game;
+}
+
 void Gameplay::saveGame() const
 {
-    std::ofstream out("game_save/save.txt");
+    std::ofstream out("save.txt");
+    if (!out) {
+        auto state = out.rdstate();
+        return;
+    }
 	out << m << std::endl;
     out << *character << std::endl;
     out << m_score << std::endl;
     out << m_speed << std::endl;
+    out << m_user_name << std::endl;
+    out.flush();
 	out.close();
 }
 
-void Gameplay::loadGame()
+void Gameplay::loadGame(std::string fileName)
 {
-    std::ifstream in("game_save/save.txt");
+    std::ifstream in(fileName, std::ios::in);
 	in >> m;
     //Character temp;
     //in >> temp;
@@ -83,12 +103,31 @@ void Gameplay::loadGame()
     in >> *character;
 	in >> m_score;
 	in >> m_speed;
+    in >> m_user_name;
 	in.close();
+    m_is_new_game = false;
+    m_is_paused = false;
     m_speed = 0;
+}
+
+void Gameplay::setIsNewGame(bool is_new_game)
+{
+    m_is_new_game = is_new_game;
 }
 
 Gameplay::~Gameplay()
 {
     //delete character;
+}
+
+void Gameplay::render()
+{
+    m.render();
+    character->render();
+}
+
+void Gameplay::newGame()
+{
+    loadGame("save.txt");
 }
 
