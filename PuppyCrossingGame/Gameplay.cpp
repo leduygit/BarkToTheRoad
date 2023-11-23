@@ -1,7 +1,15 @@
 #include "Gameplay.h"
 
-Gameplay::Gameplay() : command(nullptr), fact(), m(&fact)
+Gameplay::Gameplay() : command(nullptr)
 {
+    switch (m_fact_type) {
+    case SUMMER:
+        fact = new SummerLaneFactory{};
+        break;
+    default:
+        break;
+    }
+    m = Map{ fact };
 	m.addLane();
     Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
@@ -116,5 +124,10 @@ void Gameplay::render()
 {
     m.render();
     character->render();
+}
+
+void Gameplay::newGame()
+{
+    loadGame("save.txt");
 }
 

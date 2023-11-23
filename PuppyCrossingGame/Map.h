@@ -16,7 +16,7 @@ class Map
 private:
 	int m_lane_number{ 10 };
 	std::vector<Lane*> m_lane{ MAX_LANE };
-	static LaneFactory* m_fact;
+	LaneFactory* m_fact{ nullptr };
 	int m_offset = 0;
 	int m_factoryType{SUMMER};
 public:

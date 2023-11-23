@@ -43,9 +43,9 @@ private:
 
 class NewGameButton : public Button {
 public:
-	NewGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
+	NewGameButton(Shape* shape, Gameplay* gp) : Button(shape), m_gp{ gp } {}
 	void onClick() {
-		*m_gp = Gameplay();
+		*m_gp = Gameplay{};
 		Global::current_screen = GAME_SCREEN;
 	}
 private:

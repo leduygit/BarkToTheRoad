@@ -15,17 +15,18 @@
 class Gameplay
 {
 public:
-	InputHandler ih;
-	Command* command;
-	Character* character;
-	SummerLaneFactory fact;
-	Map m;
+	InputHandler ih{};
+	Command* command{ nullptr };
+	Character* character{nullptr};
+	LaneFactory* fact;
+	Map m{};
 
 	bool haveStarted = false;
 
 	Gameplay();
 	~Gameplay();
 	void render();
+	void newGame();
 	void gameLogic();
 	void setPause(bool pause) {
 		m_is_paused = pause;
@@ -46,5 +47,6 @@ private:
 	bool m_is_paused{ true };
 	std::string m_user_name{ "" };
 	bool m_is_new_game{ true };
+	FactoryType m_fact_type{ SUMMER };
 };
 

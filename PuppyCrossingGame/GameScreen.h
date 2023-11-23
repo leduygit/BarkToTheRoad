@@ -6,7 +6,7 @@ class GameScreen: public Screen
 {
 public:
 	GameScreen() = default;
-	GameScreen(Gameplay*& gp);
+	GameScreen(Gameplay* gp);
 	void render() override;
 	void clean() override;
 	void clickButton() override;

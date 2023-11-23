@@ -1,16 +1,18 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen(Gameplay*& gp) : m_gameplay{ gp }
+GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 {
 	m_score_board = MyShape[SCORE];
 	Button* input = new Button{ {500, 350}, MyShape[SCORE] };
 	addButton(input);
-	Button* open_dialog = new OpenDialogButton(MyShape[SCORE], m_render_dialog);
+	Shape* pauseButtonState = new Shape[2]{ *MyShape[PAUSE], *MyShape[PAUSE] };
+	Button* open_dialog = new OpenDialogButton(pauseButtonState, m_render_dialog);
 	open_dialog->setPos({ 500, 400 });
 	addButton(open_dialog);
 
 	m_menu = new Dialog{ MyShape[DOG_STAY_1], {100, 100} };
-	Button* save = new SaveGameButton{ MyShape[LOG], m_gameplay, m_render_dialog};
+	Shape* saveGameButtonState = new Shape[2]{ *MyShape[SAVE_GAME_BUTTON], *MyShape[SAVE_GAME_BUTTON_HOVER] };
+	Button* save = new SaveGameButton{ saveGameButtonState, m_gameplay, m_render_dialog};
 	save->setPos({ 150, 100 });
 	m_menu->addButton(save);
 

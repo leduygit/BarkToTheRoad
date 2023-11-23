@@ -1,5 +1,5 @@
 #include "MenuScreen.h"
-MenuScreen::MenuScreen(Gameplay*& gp) {
+MenuScreen::MenuScreen(Gameplay* gp) {
 	setBackground(MyShape[BACKGROUND]);
 	// add multiple button states!!!
 	Shape* newGameButtonState = new Shape[2]{ *MyShape[NEW_GAME_BUTTON], *MyShape[NEW_GAME_BUTTON_HOVER] };

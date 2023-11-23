@@ -38,6 +38,11 @@ void initShape() {
 	MyShape[SCORE] = new Shape("resources/image/score.bin");
 	MyShape[QUIT_BUTTON] = new Shape("resources/image/quit.bin");
 	MyShape[QUIT_BUTTON_HOVER] = new Shape("resources/image/quit-2.bin");
+	MyShape[PAUSE] = new Shape("resources/image/pause.bin");
+	MyShape[PAUSE_HOVER] = new Shape("resources/image/pause.bin");
+	MyShape[SAVE_GAME_BUTTON] = new Shape("resources/image/savegame.bin");
+	MyShape[SAVE_GAME_BUTTON_HOVER] = new Shape("resources/image/savegame-2.bin");
+	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting2.bin");
 	DogMovingShapes[0] = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2]};
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 }
