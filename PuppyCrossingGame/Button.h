@@ -82,9 +82,11 @@ private:
 
 class LoadGameButton : public Button {
 public:
-	LoadGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
+	LoadGameButton(Shape* shape, Gameplay*& gp, std::string filename): 
+		Button(shape), m_gp{ gp }, m_file_name(filename){}
+	
 	void onClick() {
-		WCHAR Filestring[1000]{ 0 };
+		/*WCHAR Filestring[1000]{0};
 		OPENFILENAME opf = { 0 };
 		opf.lStructSize = sizeof(OPENFILENAME);
 		opf.lpstrFile = Filestring;
@@ -101,12 +103,21 @@ public:
 				token = s.substr(0, pos);
 				s.erase(0, pos + delimiter.length());
 			}
-
+			
 			m_gp->loadGame(s);
 			Global::current_screen = GAME_SCREEN;
-		}
+		}*/
+
+		if (m_file_name != "")
+			m_gp->loadGame(m_file_name);
+		Global::current_screen = GAME_SCREEN;
+	}
+
+	std::string getFileName() const {
+		return m_file_name;
 	}
 private:
+	std::string m_file_name = "";
 	Gameplay* m_gp{ nullptr };
 };
 
