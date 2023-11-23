@@ -38,7 +38,7 @@ public:
 		return m_user_name;
 	}
 	bool getIsNewGame() const;
-	void saveGame() const;
+	void saveGame(std::string fileName) const;
 	void loadGame(std::string fileName);
 	void setIsNewGame(bool is_new_game);
 private:
