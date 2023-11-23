@@ -67,17 +67,21 @@ public:
 
 class SaveGameButton : public Button {
 public:
-	SaveGameButton(Shape* shape, Gameplay*& gp, bool& render_dialog) : Button(shape), m_gp{ gp }, m_show{ &render_dialog } {}
+	SaveGameButton(Shape* shape, Gameplay*& gp, bool& render_dialog, std::string filename) : Button(shape), m_gp{ gp }, m_show{ &render_dialog }, m_file_name(filename) {}
 	void onClick() {
-		m_gp->saveGame();
+		m_gp->saveGame(m_file_name);
 		OutputDebugString(L"Clicked\n");
 		*m_show = false;
 		Global::current_screen = MENU_SCREEN;
 	}
 	
+	std::string getFileName() const {
+		return m_file_name;
+	}
 private:
 	Gameplay* m_gp{ nullptr };
 	bool* m_show{ nullptr };
+	std::string m_file_name = "";
 };
 
 class LoadGameButton : public Button {

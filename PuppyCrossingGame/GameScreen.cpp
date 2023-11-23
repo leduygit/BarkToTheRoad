@@ -12,7 +12,7 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 
 	m_menu = new Dialog{ MyShape[DOG_STAY_1], {100, 100} };
 	Shape* saveGameButtonState = new Shape[2]{ *MyShape[SAVE_GAME_BUTTON], *MyShape[SAVE_GAME_BUTTON_HOVER] };
-	Button* save = new SaveGameButton{ saveGameButtonState, m_gameplay, m_render_dialog};
+	Button* save = new ChangeScreenButton{ saveGameButtonState, SAVE_SCREEN};
 	save->setPos({ 150, 100 });
 	m_menu->addButton(save);
 

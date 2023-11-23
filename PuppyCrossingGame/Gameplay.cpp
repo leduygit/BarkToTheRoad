@@ -77,9 +77,9 @@ bool Gameplay::getIsNewGame() const
     return m_is_new_game;
 }
 
-void Gameplay::saveGame() const
+void Gameplay::saveGame(std::string fileName) const
 {
-    std::ofstream out("game_save/save.txt");
+    std::ofstream out(fileName);
     if (!out) {
         auto state = out.rdstate();
         return;
