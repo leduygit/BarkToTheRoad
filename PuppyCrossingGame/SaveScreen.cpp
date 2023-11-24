@@ -2,7 +2,7 @@
 
 SaveScreen::SaveScreen(Gameplay* gp)
 {
-	setBackground(MyShape[BACKGROUND]);
+	setBackground(MyShape[BACKGROUND_EMPTY]);
 
 	Shape* saveGameButtonState = new Shape[2]{ *MyShape[SCORE], *MyShape[SCORE] };
 	Button* saveGameButton[3];

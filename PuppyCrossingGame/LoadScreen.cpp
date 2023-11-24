@@ -2,7 +2,7 @@
 
 LoadScreen::LoadScreen(Gameplay* gp)
 {
-	setBackground(MyShape[BACKGROUND]);
+	setBackground(MyShape[BACKGROUND_EMPTY]);
 
 	Shape* loadGameButtonState = new Shape[2]{ *MyShape[SCORE], *MyShape[SCORE] };
 	Button* loadGameButton[3];

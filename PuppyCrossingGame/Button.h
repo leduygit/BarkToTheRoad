@@ -26,6 +26,7 @@ public:
 		OutputDebugStringA("Clicked");
 		m_state = CLICKED;
 	}
+	virtual void setShowDialog(bool& show) {}
 	COORD getPos() const;
 	virtual void setFileName(std::string filename) {}
 private:
@@ -37,8 +38,12 @@ private:
 class ChangeScreenButton : public Button {
 public:
 	ChangeScreenButton(Shape* shape, ScreenId next_screen) : Button(shape), m_next_screen{ next_screen } {}
+	void setShowDialog(bool& show) {
+		m_show_dialog = &show;
+	}
 	void onClick();
 private:
+	bool* m_show_dialog{ nullptr };
 	ScreenId m_next_screen{};
 };
 
@@ -170,7 +175,7 @@ public:
 	CloseDialogButton(Shape* shape, bool& show, Gameplay*& gp) : Button(shape), m_show{ &show }, m_gp{ gp } {}
 	void onClick() {
 		*m_show = false;
-		m_gp->setPause(false);
+		if (!m_gp->getIsNewGame()) m_gp->setPause(false);
 	}
 private:
 	Gameplay* m_gp;
