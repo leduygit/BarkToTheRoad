@@ -17,11 +17,12 @@ void initShape() {
 	MyShape[BUSH_2] = new Shape("resources/image/bush2.bin");
 	MyShape[ROAD] = new Shape("resources/image/road.bin");
 	MyShape[TRAIN_RIGHT] = new Shape("resources/image/train_right.bin");
-	MyShape[TRAIN_LEFT] = new Shape("image/train_left.bin");
-	MyShape[DOG_STAY_1] = new Shape("resources/image/dog_stay_1.bin");
-	MyShape[DOG_STAY_2] = new Shape("resources/image/dog_stay_2.bin");
-	MyShape[DOG_JUMP_1] = new Shape("resources/image/dog_jump_1.bin");
-	MyShape[DOG_JUMP_2] = new Shape("resources/image/dog_jump_2.bin");
+	MyShape[TRAIN_LEFT] = new Shape("resources/image/train_left.bin");
+	MyShape[DOG_STAY_1] = new Shape("resources/image/sit-1.bin");
+	MyShape[DOG_STAY_2] = new Shape("resources/image/sit-2.bin");
+	MyShape[DOG_JUMP_1] = new Shape("resources/image/jump-1.bin");
+	MyShape[DOG_JUMP_2] = new Shape("resources/image/jump-2.bin");
+	MyShape[DOG_JUMP_3] = new Shape("resources/image/jump-3.bin");
 	MyShape[RAIL] = new Shape("resources/image/railway_lane.bin");
 	MyShape[LOG] = new Shape("resources/image/logObstacle.bin");
 	MyShape[RIVER] = new Shape("resources/image/river_lane.bin");
@@ -43,6 +44,12 @@ void initShape() {
 	MyShape[SAVE_GAME_BUTTON] = new Shape("resources/image/savegame.bin");
 	MyShape[SAVE_GAME_BUTTON_HOVER] = new Shape("resources/image/savegame-2.bin");
 	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting2.bin");
-	DogMovingShapes[0] = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2]};
+	MyShape[HOME] = new Shape("resources/image/home.bin");
+	MyShape[PAUSE_WINDOW] = new Shape("resources/image/pause-window.bin");
+	MyShape[RESUME_BUTTON] = new Shape("resources/image/resume.bin");
+	MyShape[RESUME_BUTTON_HOVER] = new Shape("resources/image/resume-2.bin");
+	MyShape[CLOSE_DIALOG] = new Shape("resources/image/close.bin");
+	MyShape[GHOST] = new Shape("resources/image/ghost.bin");
+	DogMovingShapes[0] = new Shape[3]{ *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2], *MyShape[DOG_JUMP_3] };
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 }
