@@ -48,10 +48,9 @@ void Gameplay::gameLogic()
         character->setMaxY(character->getPos().Y);
     }
 
-    if (m.checkCollision(*character)) {
-        int rand = randomInt(1, 13);
-        character->setPos({ static_cast<short>(90 * rand), 0 });
-        //saveGame();
+    if (isEnd()) {
+        m_ended = true;
+        handleEndGame();
     }
 }
 
@@ -62,6 +61,7 @@ bool Gameplay::isStart()
 
 bool Gameplay::isEnd()
 {
+    if (m_is_paused) return false;
     if (character->getPos().Y <= -90 || m.checkCollision(*character))
 		return true;
     return false;
@@ -70,6 +70,26 @@ bool Gameplay::isEnd()
 int Gameplay::getScore() const
 {
     return m_score;
+}
+
+void Gameplay::handleEndGame()
+{
+    exportScore();
+    m_is_paused = true;
+    Sleep(500);
+    Shape* s = new Shape[2]{ *MyShape[GHOST], *MyShape[GHOST] };
+    character->setShape(s);
+    m_vehicle = new Entity{ {character->getPos().X + 600, character->getPos().Y}, MyShape[CAR_LEFT] };
+    m_vehicle->move(character->getPos());
+}
+
+void Gameplay::exportScore()
+{
+    // TODO: add encryption
+    std::ofstream out("score.txt", std::ios::app);
+    out << m_user_name << '\n';
+    out << m_score << '\n';
+    out.close();
 }
 
 bool Gameplay::getIsNewGame() const
@@ -124,6 +144,9 @@ void Gameplay::render()
 {
     m.render();
     character->render();
+    if (m_ended) {
+        m_vehicle->render();
+    }
 }
 
 void Gameplay::newGame()

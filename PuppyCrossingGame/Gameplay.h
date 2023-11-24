@@ -33,6 +33,8 @@ public:
 	}
 	bool isStart();
 	bool isEnd();
+	void exportScore();
+	void handleEndGame();
 	int getScore() const;
 	std::string& getUserName() {
 		return m_user_name;
@@ -48,5 +50,7 @@ private:
 	std::string m_user_name{ "" };
 	bool m_is_new_game{ true };
 	FactoryType m_fact_type{ SUMMER };
+	Entity* m_vehicle{ nullptr };
+	bool m_ended{ false };
 };
 
