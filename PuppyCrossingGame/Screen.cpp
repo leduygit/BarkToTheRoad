@@ -27,6 +27,7 @@ std::vector<Text*> Screen::getTexts() const
 
 void Screen::render()
 {
+	updateContent();
 	m_background->render(0, 0);
 	for (int i = 0; i < (int)m_buttons.size(); i++) {
 		m_buttons[i]->render();

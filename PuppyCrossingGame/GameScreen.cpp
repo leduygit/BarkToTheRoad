@@ -7,18 +7,30 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 	addButton(input);
 	Shape* pauseButtonState = new Shape[2]{ *MyShape[PAUSE], *MyShape[PAUSE] };
 	Button* open_dialog = new OpenDialogButton(pauseButtonState, m_render_dialog);
-	open_dialog->setPos({ 500, 400 });
+	open_dialog->setPos({ 1200, 650 });
 	addButton(open_dialog);
 
-	m_menu = new Dialog{ MyShape[DOG_STAY_1], {100, 100} };
+	m_menu = new Dialog{ MyShape[PAUSE_WINDOW], {400, 200} };
+
+	Shape* resumeButtonState = new Shape[2]{ *MyShape[RESUME_BUTTON], *MyShape[RESUME_BUTTON_HOVER] };
+	Button* resumeButton = new CloseDialogButton{ resumeButtonState, m_render_dialog, m_gameplay };
+	resumeButton->setPos({ 550, 400 });
+	m_menu->addButton(resumeButton);
+
 	Shape* saveGameButtonState = new Shape[2]{ *MyShape[SAVE_GAME_BUTTON], *MyShape[SAVE_GAME_BUTTON_HOVER] };
-	Button* save = new SaveGameButton{ saveGameButtonState, m_gameplay, m_render_dialog};
-	save->setPos({ 150, 100 });
+	Button* save = new ChangeScreenButton{ saveGameButtonState, SAVE_SCREEN};
+	save->setPos({ 550, 325 });
 	m_menu->addButton(save);
 
-	Shape* state = new Shape[2] {*MyShape[RANK_BUTTON], *MyShape[RANK_BUTTON]};
+	Shape* returnHomeButtonState = new Shape[2]{ *MyShape[HOME], *MyShape[HOME] };
+	Button* returnHome = new ChangeScreenButton{ returnHomeButtonState, MENU_SCREEN };
+	returnHome->setShowDialog(m_render_dialog);
+	returnHome->setPos({ 625, 250 });
+	m_menu->addButton(returnHome);
+
+	Shape* state = new Shape[2] {*MyShape[CLOSE_DIALOG], *MyShape[CLOSE_DIALOG]};
 	Button* close_dialog = new CloseDialogButton{ state, m_render_dialog, m_gameplay };
-	close_dialog->setPos({ 150, 300 });
+	close_dialog->setPos({ 830, 490 });
 	m_menu->addButton(close_dialog);
 }
 

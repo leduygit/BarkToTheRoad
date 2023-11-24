@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <StructMemberAlignment>Default</StructMemberAlignment>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,6 +142,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LaneFactory.h" />
+    <ClInclude Include="LoadScreen.h" />
     <ClInclude Include="LoadShape.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MenuScreen.h" />
@@ -158,6 +160,7 @@
     <ClInclude Include="PuppyCrossingGame.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RiverLane.h" />
+    <ClInclude Include="SaveScreen.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenId.h" />
     <ClInclude Include="ScreenRegistry.h" />
@@ -180,6 +183,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LaneFactory.cpp" />
+    <ClCompile Include="LoadScreen.cpp" />
     <ClCompile Include="LoadShape.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
@@ -196,6 +200,7 @@
     <ClCompile Include="ObstacleFactory.cpp" />
     <ClCompile Include="PuppyCrossingGame.cpp" />
     <ClCompile Include="RiverLane.cpp" />
+    <ClCompile Include="SaveScreen.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenRegistry.cpp" />
     <ClCompile Include="Shape.cpp" />

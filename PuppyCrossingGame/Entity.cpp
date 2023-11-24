@@ -7,14 +7,23 @@ Entity::Entity(const COORD &pos, Shape* s)
 }
 
 void Entity::render(int offset) {
+
 	if (m_position.X != m_new_position.X) {
-		m_position.X += m_velo_x;
+		short distance = m_new_position.X - m_position.X;
+		if (abs(distance) < abs(m_velo_x))
+			m_position.X += distance;
+		else
+			m_position.X += m_velo_x;
 	}
 	else {
 		m_velo_x = 0;
 	}
 	if (m_position.Y != m_new_position.Y) {
-		m_position.Y += m_velo_y;
+		short distance = m_new_position.Y - m_position.Y;
+		if (abs(distance) < abs(m_velo_y))
+			m_position.Y += distance;
+		else
+			m_position.Y += m_velo_x;
 	}
 	else {
 		m_velo_y = 0;

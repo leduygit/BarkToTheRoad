@@ -7,7 +7,7 @@ MenuScreen::MenuScreen(Gameplay* gp) {
 	newGameButton->setPos({ 500, 300 });
 
 	Shape* loadGameButtonState = new Shape[2]{ *MyShape[LOAD_GAME_BUTTON], *MyShape[LOAD_GAME_BUTTON_HOVER] };
-	Button* loadGameButton = new LoadGameButton(loadGameButtonState, gp);
+	Button* loadGameButton = new ChangeScreenButton(loadGameButtonState, LOAD_SCREEN);
 	loadGameButton->setPos({ 500, 200 });
 
 	Shape* rankButtonState = new Shape[2]{ *MyShape[RANK_BUTTON], *MyShape[RANK_BUTTON_HOVER] };

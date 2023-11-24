@@ -2,6 +2,8 @@
 #include "Screen.h"
 #include "MenuScreen.h"
 #include "GameScreen.h"
+#include "LoadScreen.h"
+#include "SaveScreen.h"
 class ScreenRegistry
 {
 public:
@@ -12,6 +14,8 @@ public:
 	void initialize(Gameplay* gp) {
 		m_screens.push_back(new MenuScreen{ gp });
 		m_screens.push_back(new GameScreen{ gp });
+		m_screens.push_back(new LoadScreen{ gp });
+		m_screens.push_back(new SaveScreen{ gp });
 	}
 
 	void addScreen(Screen* s) {

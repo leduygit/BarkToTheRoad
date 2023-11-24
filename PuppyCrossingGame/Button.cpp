@@ -39,6 +39,7 @@ COORD Button::getPos() const
 void ChangeScreenButton::onClick()
 {
 	OutputDebugStringA("Clicked");
+	if (m_show_dialog) *m_show_dialog = false;
 	Global::current_screen = m_next_screen;
 }
 

@@ -26,7 +26,9 @@ public:
 		OutputDebugStringA("Clicked");
 		m_state = CLICKED;
 	}
+	virtual void setShowDialog(bool& show) {}
 	COORD getPos() const;
+	virtual void setFileName(std::string filename) {}
 private:
 	COORD m_pos{};
 	ButtonState m_state{NORMAL};
@@ -36,8 +38,12 @@ private:
 class ChangeScreenButton : public Button {
 public:
 	ChangeScreenButton(Shape* shape, ScreenId next_screen) : Button(shape), m_next_screen{ next_screen } {}
+	void setShowDialog(bool& show) {
+		m_show_dialog = &show;
+	}
 	void onClick();
 private:
+	bool* m_show_dialog{ nullptr };
 	ScreenId m_next_screen{};
 };
 
@@ -67,24 +73,55 @@ public:
 
 class SaveGameButton : public Button {
 public:
-	SaveGameButton(Shape* shape, Gameplay*& gp, bool& render_dialog) : Button(shape), m_gp{ gp }, m_show{ &render_dialog } {}
+	SaveGameButton(Shape* shape, Gameplay*& gp, bool& render_dialog, std::string filename) : Button(shape), m_gp{ gp }, m_show{ &render_dialog }, m_file_name(filename) {}
 	void onClick() {
-		m_gp->saveGame();
+		std::string saveName = m_gp->getUserName();
+
+		std::vector<std::string> saveFiles;
+		std::ifstream saveFile("game_save/name.txt");
+		for (std::string line; getline(saveFile, line);)
+		{
+			std::string path = "game_save/" + line;
+			if (path == m_file_name)
+				saveFiles.push_back(saveName + ".txt");
+			else
+				saveFiles.push_back(line);
+		}
+
+		saveFile.close();
+
+		std::ofstream out("game_save/name.txt");
+		for (int i = 0; i < 3; ++i)
+		{
+			out << saveFiles[i] << std::endl;
+		}
+		out.close();
+
+		m_file_name = "game_save/" + saveName + ".txt";
+		
+		m_gp->saveGame(m_file_name);
 		OutputDebugString(L"Clicked\n");
 		*m_show = false;
 		Global::current_screen = MENU_SCREEN;
+
 	}
 	
+	std::string getFileName() const {
+		return m_file_name;
+	}
 private:
 	Gameplay* m_gp{ nullptr };
 	bool* m_show{ nullptr };
+	std::string m_file_name = "";
 };
 
 class LoadGameButton : public Button {
 public:
-	LoadGameButton(Shape* shape, Gameplay*& gp) : Button(shape), m_gp{ gp } {}
+	LoadGameButton(Shape* shape, Gameplay*& gp, std::string filename): 
+		Button(shape), m_gp{ gp }, m_file_name(filename){}
+	
 	void onClick() {
-		WCHAR Filestring[1000]{ 0 };
+		/*WCHAR Filestring[1000]{0};
 		OPENFILENAME opf = { 0 };
 		opf.lStructSize = sizeof(OPENFILENAME);
 		opf.lpstrFile = Filestring;
@@ -101,12 +138,25 @@ public:
 				token = s.substr(0, pos);
 				s.erase(0, pos + delimiter.length());
 			}
-
+			
 			m_gp->loadGame(s);
 			Global::current_screen = GAME_SCREEN;
-		}
+		}*/
+
+		if (m_file_name != "")
+			m_gp->loadGame(m_file_name);
+		Global::current_screen = GAME_SCREEN;
+	}
+
+	std::string getFileName() const {
+		return m_file_name;
+	}
+
+	void setFileName(std::string filename) {
+		m_file_name = filename;
 	}
 private:
+	std::string m_file_name = "";
 	Gameplay* m_gp{ nullptr };
 };
 
@@ -125,7 +175,7 @@ public:
 	CloseDialogButton(Shape* shape, bool& show, Gameplay*& gp) : Button(shape), m_show{ &show }, m_gp{ gp } {}
 	void onClick() {
 		*m_show = false;
-		m_gp->setPause(false);
+		if (!m_gp->getIsNewGame()) m_gp->setPause(false);
 	}
 private:
 	Gameplay* m_gp;
