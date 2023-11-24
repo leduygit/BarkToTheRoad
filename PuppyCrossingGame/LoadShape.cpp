@@ -28,6 +28,7 @@ void initShape() {
 	MyShape[RED_LIGHT] = new Shape("resources/image/red_light.bin");
 	MyShape[GREEN_LIGHT] = new Shape("resources/image/green_light.bin");
 	MyShape[BACKGROUND] = new Shape("resources/image/background.bin");
+	MyShape[BACKGROUND_EMPTY] = new Shape("resources/image/background-empty.bin");
 	MyShape[LOAD_GAME_BUTTON] = new Shape("resources/image/loadgame.bin");
 	MyShape[LOAD_GAME_BUTTON_HOVER] = new Shape("resources/image/loadgame-2.bin");
 	MyShape[NEW_GAME_BUTTON] = new Shape("resources/image/newgame.bin");
@@ -40,9 +41,14 @@ void initShape() {
 	MyShape[QUIT_BUTTON_HOVER] = new Shape("resources/image/quit-2.bin");
 	MyShape[PAUSE] = new Shape("resources/image/pause.bin");
 	MyShape[PAUSE_HOVER] = new Shape("resources/image/pause.bin");
-	MyShape[SAVE_GAME_BUTTON] = new Shape("resources/image/savegame.bin");
-	MyShape[SAVE_GAME_BUTTON_HOVER] = new Shape("resources/image/savegame-2.bin");
+	MyShape[SAVE_GAME_BUTTON] = new Shape("resources/image/savegame-2.bin");
+	MyShape[SAVE_GAME_BUTTON_HOVER] = new Shape("resources/image/savegame.bin");
 	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting2.bin");
+	MyShape[HOME] = new Shape("resources/image/home.bin");
+	MyShape[PAUSE_WINDOW] = new Shape("resources/image/pause-window.bin");
+	MyShape[RESUME_BUTTON] = new Shape("resources/image/resume.bin");
+	MyShape[RESUME_BUTTON_HOVER] = new Shape("resources/image/resume-2.bin");
+	MyShape[CLOSE_DIALOG] = new Shape("resources/image/close.bin");
 	DogMovingShapes[0] = new Shape[3]{*MyShape[DOG_STAY_1], *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2]};
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 }
