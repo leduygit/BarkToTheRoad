@@ -8,6 +8,7 @@ public:
 	Dialog(Shape* bg, COORD pos) : m_background{ bg }, m_pos{ pos } {}
 	void render();
 	void addButton(Button* b);
+	void clearButtons();
 	std::vector<Button*> getButtons() const {
 		return m_buttons;
 	}

@@ -29,6 +29,9 @@ public:
 	virtual void setShowDialog(bool& show) {}
 	COORD getPos() const;
 	virtual void setFileName(std::string filename) {}
+	void getSize(int& w, int& h) {
+		m_shape->getSize(w, h);
+	}
 private:
 	COORD m_pos{};
 	ButtonState m_state{NORMAL};

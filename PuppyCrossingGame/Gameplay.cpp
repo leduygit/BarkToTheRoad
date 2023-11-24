@@ -14,6 +14,9 @@ Gameplay::Gameplay() : command(nullptr)
     Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
 	character = new Character{ {90, 0}, staying, moving, 3 };
+    ifstream in("key.txt");
+    in >> m_key;
+    in.close();
     //m.addLane();
 }
 
@@ -49,7 +52,6 @@ void Gameplay::gameLogic()
     }
 
     if (isEnd()) {
-        m_ended = true;
         handleEndGame();
     }
 }
@@ -76,19 +78,19 @@ void Gameplay::handleEndGame()
 {
     exportScore();
     m_is_paused = true;
-    Sleep(500);
     Shape* s = new Shape[2]{ *MyShape[GHOST], *MyShape[GHOST] };
     character->setShape(s);
-    m_vehicle = new Entity{ {character->getPos().X + 600, character->getPos().Y}, MyShape[CAR_LEFT] };
+    m_vehicle = new Entity{ COORD{static_cast<short>(character->getPos().X + 600), character->getPos().Y}, MyShape[CAR_LEFT] };
     m_vehicle->move(character->getPos());
+    m_ended = true;
 }
 
 void Gameplay::exportScore()
 {
-    // TODO: add encryption
     std::ofstream out("score.txt", std::ios::app);
-    out << m_user_name << '\n';
-    out << m_score << '\n';
+    out << encrypt(m_user_name, m_key) << '\n';
+    std::string tmp = std::to_string(m_score);
+    out << encrypt(tmp, m_key) << '\n';
     out.close();
 }
 
@@ -133,6 +135,16 @@ void Gameplay::loadGame(std::string fileName)
 void Gameplay::setIsNewGame(bool is_new_game)
 {
     m_is_new_game = is_new_game;
+}
+
+bool Gameplay::getEnded() const
+{
+    return m_ended;
+}
+
+bool Gameplay::vehicleArrived()
+{
+    return abs(m_vehicle->getPos().X - character->getPos().X) <= 30;
 }
 
 Gameplay::~Gameplay()

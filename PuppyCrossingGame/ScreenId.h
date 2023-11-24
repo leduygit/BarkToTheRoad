@@ -5,6 +5,5 @@ enum ScreenId {
 	GAME_SCREEN,
 	LOAD_SCREEN,
 	SAVE_SCREEN,
-	END_SCREEN,
 	RANK_SCREEN,
 };

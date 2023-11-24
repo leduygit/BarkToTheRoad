@@ -12,3 +12,11 @@ void Dialog::addButton(Button* b)
 {
 	m_buttons.push_back(b);
 }
+
+void Dialog::clearButtons()
+{
+	for (auto b : m_buttons) {
+		delete b;
+	}
+	m_buttons.clear();
+}

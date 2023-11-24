@@ -4,7 +4,7 @@
 #include "GameScreen.h"
 #include "LoadScreen.h"
 #include "SaveScreen.h"
-#include "EndScreen.h"
+#include "RankScreen.h"
 class ScreenRegistry
 {
 public:
@@ -17,7 +17,7 @@ public:
 		m_screens.push_back(new GameScreen{ gp });
 		m_screens.push_back(new LoadScreen{ gp });
 		m_screens.push_back(new SaveScreen{ gp });
-		m_screens.push_back(new EndScreen{});
+		m_screens.push_back(new RankScreen{});
 	}
 
 	void addScreen(Screen* s) {
