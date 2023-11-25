@@ -146,8 +146,10 @@ public:
 			Global::current_screen = GAME_SCREEN;
 		}*/
 
-		if (m_file_name != "")
+		if (m_file_name != "") {
+			*m_gp = Gameplay{};
 			m_gp->loadGame(m_file_name);
+		}
 		Global::current_screen = GAME_SCREEN;
 	}
 

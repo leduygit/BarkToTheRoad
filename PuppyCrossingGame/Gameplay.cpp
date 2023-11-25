@@ -130,6 +130,7 @@ void Gameplay::loadGame(std::string fileName)
 	in.close();
     m_is_new_game = false;
     m_is_paused = false;
+    m_ended = false;
     m_speed = 0;
 }
 
