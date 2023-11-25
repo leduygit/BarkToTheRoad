@@ -181,6 +181,7 @@ std::ostream& operator<<(std::ostream& out, const Map& m)
 	{
 		out << m.m_lane[i]->getFactoryIndex() << std::endl;
 		out << *m.m_lane[i] << std::endl;
+		out << std::endl;
 	}
 	out << m.m_offset << std::endl;
 	out << m.m_factoryType << std::endl;
