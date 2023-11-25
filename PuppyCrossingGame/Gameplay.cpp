@@ -13,7 +13,11 @@ Gameplay::Gameplay() : command(nullptr)
 	m.addLane();
     Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
-	character = new Character{ {90, 0}, staying, moving, 3 };
+	character = new Character{ {630, 0}, staying, moving, 3 };
+    while (m.checkCollision(*character))
+    {
+        character->setPos({ static_cast<short>(randomInt(0,13) * 90), 0 });
+    }
     ifstream in("key.txt");
     in >> m_key;
     in.close();
@@ -119,9 +123,6 @@ void Gameplay::loadGame(std::string fileName)
 {
     std::ifstream in(fileName, std::ios::in);
 	in >> m;
-    //Character temp;
-    //in >> temp;
-    //character = new Character(temp);
     in >> *character;
 	in >> m_score;
 	in >> m_speed;
