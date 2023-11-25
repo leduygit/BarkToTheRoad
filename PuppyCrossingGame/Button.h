@@ -87,7 +87,7 @@ public:
 		{
 			saveFiles.push_back(line);
 		}
-
+		while (saveFiles.size() < 3) saveFiles.push_back("empty");
 		saveFile.close();
 
 		saveFiles[m_line] = saveName;
@@ -155,8 +155,8 @@ public:
 		if (m_file_name != "empty") {
 			*m_gp = Gameplay();
 			m_gp->loadGame("game_save/" + m_file_name + ".txt");
+			Global::current_screen = GAME_SCREEN;
 		}
-		Global::current_screen = GAME_SCREEN;
 	}
 
 	std::string getFileName() const {

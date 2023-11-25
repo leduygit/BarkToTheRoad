@@ -14,6 +14,8 @@ SaveScreen::SaveScreen(Gameplay* gp)
 		saveFiles.push_back(line);
 	}
 
+	while (saveFiles.size() < 3) saveFiles.push_back("empty");
+
 	saveFile.close();
 
 	//std::string saveName = gp->getSaveName();
@@ -51,6 +53,8 @@ void SaveScreen::updateContent()
 	{
 		saveFiles.push_back(line);
 	}
+
+	while (saveFiles.size() < 3) saveFiles.push_back("empty");
 
 	saveFile.close();
 

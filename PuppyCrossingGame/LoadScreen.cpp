@@ -14,11 +14,12 @@ LoadScreen::LoadScreen(Gameplay* gp)
 		saveFiles.push_back(line);
 	}
 
+	while (saveFiles.size() < 3) saveFiles.push_back("empty");
 	saveFile.close();
 
 	for (int i = 0; i < 3; ++i)
 	{
-		loadGameButton[i] = new LoadGameButton(loadGameButtonState, gp, "game_save/" + saveFiles[3 - i - 1]);
+		loadGameButton[i] = new LoadGameButton(loadGameButtonState, gp, saveFiles[3 - i - 1]);
 		loadGameButton[i]->setPos({ 500, 200 + static_cast<short>(i) * 100 });
 		if (m_loadPos == -1) m_loadPos = getSize();
 		addButton(loadGameButton[i]);
@@ -53,6 +54,7 @@ void LoadScreen::updateContent()
 		saveFiles.push_back(line);
 	}
 
+	while (saveFiles.size() < 3) saveFiles.push_back("empty");
 	saveFile.close();
 
 	for (int i = 0; i < 3; ++i)
