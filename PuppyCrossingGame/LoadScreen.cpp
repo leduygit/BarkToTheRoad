@@ -57,7 +57,7 @@ void LoadScreen::updateContent()
 
 	for (int i = 0; i < 3; ++i)
 	{
-		m_buttons[m_loadPos + i]->setFileName("game_save/" + saveFiles[3 - i - 1]);
+		m_buttons[m_loadPos + i]->setFileName(saveFiles[3 - i - 1]);
 
 		RECT tmp;
 		int height, width;
