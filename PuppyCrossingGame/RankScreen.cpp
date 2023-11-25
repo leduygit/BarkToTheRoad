@@ -10,7 +10,7 @@ RankScreen::RankScreen() : m_board{ MyShape[LEADERBOARD] }
 	
 	Shape* homeButtonState = new Shape[2]{ *MyShape[HOME], *MyShape[HOME_HOVER] };
 	Button* homeButton = new ChangeScreenButton{ homeButtonState, MENU_SCREEN };
-	homeButton->setPos({ 625, 250 });
+	homeButton->setPos({ 620, 230 });
 	addButton(homeButton);
 }
 
@@ -22,7 +22,7 @@ void RankScreen::render()
 		ftime = to_time_t(std::filesystem::last_write_time("score.txt"));
 	}
 	m_background->render(0, 0);
-	m_board->render(405, 220);
+	m_board->render(350, 190);
 	renderText();
 
 	for (auto b : getButtons()) {
@@ -49,17 +49,17 @@ void RankScreen::readScore()
 void RankScreen::loadTexts()
 {
 	clearTexts();
-	RECT r{ 605, 200, 705, 300 };
+	RECT r{ 600, 210, 700, 310 };
 	addText(new Text{ m_users[0].name, r });
 	r.top += 50; r.bottom += 50;
 	addText(new Text{ m_users[0].score, r });
 
-	r = { 465, 230, 565, 330 };
+	r = { 420, 240, 520, 340 };
 	addText(new Text{ m_users[1].name, r });
 	r.top += 50; r.bottom += 50;
 	addText(new Text{ m_users[1].score, r });
 
-	r = { 745, 250, 845, 350 };
+	r = { 785, 260, 885, 360 };
 	addText(new Text{ m_users[2].name, r });
 	r.top += 50; r.bottom += 50;
 	addText(new Text{ m_users[2].score, r });
