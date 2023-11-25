@@ -4,7 +4,7 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 {
 	m_score_board = MyShape[SCORE];
 	Shape* inputButtonState = new Shape[2]{ *MyShape[TEXTBOX], *MyShape[TEXTBOX] };
-	Button* input = new Button{ {551, 353}, inputButtonState };
+	Button* input = new Button{ {465, 353}, inputButtonState };
 	addButton(input);
 	Shape* pauseButtonState = new Shape[2]{ *MyShape[PAUSE], *MyShape[PAUSE] };
 	Button* open_dialog = new OpenDialogButton(pauseButtonState, m_render_dialog);
@@ -19,7 +19,6 @@ void GameScreen::render() {
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
 		updateDialog();
 		m_render_dialog = true;
-		if (!m_start_time) m_start_time = GetTickCount();
 	}
 
 	char score[3];
@@ -46,19 +45,13 @@ void GameScreen::render() {
 	if (m_render_dialog) {
 		m_menu->render();
 		m_gameplay->setPause(true);
-
-		if (m_gameplay->getEnded()) {
-			auto tmp = GetTickCount();
-			//if (tmp - m_start_time >= 1000)
-				//Global::current_screen = RANK_SCREEN;
-		}
 	}
 
 	if (m_gameplay->getIsNewGame()) {
 		initDialog();
 		COORD pos = buttons[0]->getPos();
 		buttons[0]->getSize(width, height);
-		tmp.left = pos.X, tmp.top = 720 - pos.Y - 52;
+		tmp.left = pos.X, tmp.top = 720 - pos.Y - 60;
 		tmp.right = tmp.left + width;
 		tmp.bottom = tmp.top + height;
 		addText(new Text{ m_gameplay->getUserName(), tmp});
