@@ -21,5 +21,6 @@ private:
 	RECT m_score_pos{};
 	bool m_input_name{ true };
 	bool m_render_dialog{ false };
+	bool m_init_dialog{ true };
 };
 
