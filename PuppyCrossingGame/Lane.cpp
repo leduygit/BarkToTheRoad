@@ -209,15 +209,46 @@ int Lane::getFactoryIndex() const
 
 std::istream& operator>>(std::istream& in, Lane& lane)
 {
-	// TODO: insert return statement here
 	in >> lane.m_position.X >> lane.m_position.Y;
 	int m_size;
 	in >> m_size;
 	for (int i = 0; i < m_size; ++i)
 	{
-		Obstacle temp;
-		in >> temp;
-		lane.m_obs.push_back(new Obstacle(temp));
+		Obstacle* temp = nullptr;
+		int x, y, obstacleShapeIndex, isStanding, speed;
+		in >> x >> y >> obstacleShapeIndex >> isStanding >> speed;
+		switch (obstacleShapeIndex)
+		{
+			case CAR_RIGHT:
+				temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
+				break;
+			case CAR_LEFT:
+				temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y)}, 1);
+				break;
+			case GRASS_0:
+			case GRASS_1:
+			case GRASS_2:
+			case GRASS_3:
+			case GRASS_4:
+			case STONE:
+			case STONE_1:
+			case BUSH_2:
+				temp = new GrassObstacle({ static_cast<short>(x), static_cast<short>(y) }, obstacleShapeIndex);
+				break;
+			case TRAIN_RIGHT:
+				temp = new TrainObstacle({ static_cast<short>(x), static_cast<short>(y) });
+				break;
+			case TRAIN_LEFT:
+				temp = new TrainObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
+				break;
+			case LOG:
+				temp = new RaftObstacle({ static_cast<short>(x), static_cast<short>(y) });
+				break;
+			default:
+				temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
+				break;
+		}
+		lane.m_obs.push_back(temp);
 	}
 
 	in >> lane.m_light;
@@ -225,11 +256,6 @@ std::istream& operator>>(std::istream& in, Lane& lane)
 	in >> lane.direction;
 
 	in >> lane.m_shapeIndex;
-	/*
-	int factoryIndex;
-	in >> factoryIndex;
-	lane.m_factoryIndex = factoryIndex;
-	*/
 
 	switch (lane.m_factoryIndex)
 	{
@@ -257,7 +283,6 @@ std::istream& operator>>(std::istream& in, Lane& lane)
 
 std::ostream& operator<<(std::ostream& out, const Lane& lane)
 {
-	// TODO: insert return statement here
 	out << lane.m_position.X << " " << lane.m_position.Y << "\n";
 	out << lane.m_obs.size() << "\n";
 	for (auto obs : lane.m_obs)
@@ -267,6 +292,5 @@ std::ostream& operator<<(std::ostream& out, const Lane& lane)
 	out << lane.m_light << "\n";
 	out << lane.direction << " ";
 	out << lane.m_shapeIndex << " ";
-	//out << lane.m_factoryIndex;
 	return out;
 }

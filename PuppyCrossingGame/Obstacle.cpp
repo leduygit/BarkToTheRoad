@@ -1,5 +1,29 @@
 #include "Obstacle.h"
 
+Obstacle::Obstacle(const COORD& pos, int shapeType, int isStanding, int speed)
+{
+	m_position = pos;
+	m_shape = MyShape[shapeType];
+	m_shapeIndex = shapeType;
+	m_type = (ObstacleType)isStanding;
+	setRate(speed);
+}
+
+std::istream& operator>>(std::istream& in, Obstacle& obs)
+{
+	int x, y, shapeIndex, isStanding, speed;
+	in >> x >> y >> shapeIndex >> isStanding >> speed;
+	COORD pos = { (short)x, (short)y };
+	obs = Obstacle(pos, shapeIndex, isStanding, speed);
+	return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const Obstacle& obs)
+{
+	out << obs.m_position.X << " " << obs.m_position.Y << " " << obs.m_shapeIndex << " " << obs.m_type << " " << obs.m_rate;
+	return out;
+}
+
 BusObstacle::BusObstacle(const COORD &pos)
 {
 	m_shape = MyShape[CAR_RIGHT];
@@ -51,6 +75,14 @@ GrassObstacle::GrassObstacle(const COORD &pos)
 	m_type = STANDING;
 }
 
+GrassObstacle::GrassObstacle(const COORD& pos, int index)
+{
+	m_shape = MyShape[index];
+	m_shapeIndex = index;
+	m_position = pos;
+	m_type = STANDING;
+}
+
 TrainObstacle::TrainObstacle(const COORD &pos)
 {
 	m_shape = MyShape[TRAIN_RIGHT];
@@ -72,31 +104,4 @@ RaftObstacle::RaftObstacle(const COORD &pos)
 	m_shape = MyShape[LOG];
 	m_shapeIndex = LOG;
 	m_position = pos;
-}
-
-
-Obstacle::Obstacle(const COORD& pos, int shapeType, int isStanding, int speed)
-{
-	m_position = pos;
-	m_shape = MyShape[shapeType];
-	m_shapeIndex = shapeType;
-	m_type = (ObstacleType)isStanding;
-	setRate(speed);
-}
-
-std::istream& operator>>(std::istream& in, Obstacle& obs)
-{
-	// TODO: insert return statement here
-	int x, y, shapeIndex, isStanding, speed;
-	in >> x >> y >> shapeIndex >> isStanding >> speed;
-	COORD pos = { (short)x, (short)y };
-	obs = Obstacle(pos, shapeIndex, isStanding, speed);
-	return in;
-}
-
-std::ostream& operator<<(std::ostream& out, const Obstacle& obs)
-{
-	// TODO: insert return statement here
-	out << obs.m_position.X << " " << obs.m_position.Y << " " << obs.m_shapeIndex << " " << obs.m_type << " " << obs.m_rate;
-	return out;
 }

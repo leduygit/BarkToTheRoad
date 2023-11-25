@@ -20,7 +20,6 @@ public:
 		return m_position;
 	}
 	using Entity::setRate;
-
 	friend std::istream& operator>>(std::istream& in, Obstacle &obs);
 	friend std::ostream& operator<<(std::ostream& out, const Obstacle &obs);
 };
@@ -44,7 +43,7 @@ class GrassObstacle : public Obstacle
 public:
 	GrassObstacle() = default;
 	GrassObstacle(const COORD &pos);
-	//bool checkCollision(const Entity& otherEntity) const override;
+	GrassObstacle(const COORD& pos, int index);
 private:
 };
 
