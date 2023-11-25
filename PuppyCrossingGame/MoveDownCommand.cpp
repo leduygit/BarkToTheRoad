@@ -14,7 +14,11 @@ void MoveDownCommand::execute(Character& c, Map& m)
 	else {
 		short roundedNumberX = (currentPostition.X / 90.0 - std::floor(currentPostition.X / 90.0)) < 0.5 ? std::floor(currentPostition.X / 90.0) : std::ceil(currentPostition.X / 90.0);
 		short roundedNumberY = (currentPostition.Y / 90.0 - std::floor(currentPostition.Y / 90.0)) < 0.5 ? std::floor(currentPostition.Y / 90.0) : std::ceil(currentPostition.Y / 90.0);
-		c.move({ static_cast<short>(roundedNumberX * 90), static_cast<short> (roundedNumberY * 90 - 90) });
+		COORD newPos = { static_cast<short>(roundedNumberX * 90), static_cast<short> (roundedNumberY * 90 - 90) };
+		newPos.X = (newPos.X + 89) / 90 * 90;
+		newPos.Y = (newPos.Y + 89) / 90 * 90;
+		c.move(newPos);
+		//c.move({ static_cast<short>(roundedNumberX * 90), static_cast<short> (roundedNumberY * 90 - 90) });
 	}
 }
 
