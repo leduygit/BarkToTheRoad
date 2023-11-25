@@ -48,11 +48,16 @@ void initShape() {
 	MyShape[SAVE_GAME_BUTTON_HOVER] = new Shape("resources/image/savegame.bin");
 	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting2.bin");
 	MyShape[HOME] = new Shape("resources/image/home.bin");
+	MyShape[HOME_HOVER] = new Shape("resources/image/home-2.bin");
 	MyShape[PAUSE_WINDOW] = new Shape("resources/image/pause-window.bin");
 	MyShape[RESUME_BUTTON] = new Shape("resources/image/resume.bin");
 	MyShape[RESUME_BUTTON_HOVER] = new Shape("resources/image/resume-2.bin");
 	MyShape[CLOSE_DIALOG] = new Shape("resources/image/close.bin");
 	MyShape[GHOST] = new Shape("resources/image/ghost.bin");
+	MyShape[GAME_OVER] = new Shape("resources/image/gameover.bin");
+	MyShape[TROPHY_SMALL] = new Shape("resources/image/trophy-2.bin");
+	MyShape[TEXTBOX] = new Shape("resources/image/textbox.bin");
+	MyShape[LEADERBOARD] = new Shape("resources/image/rank-window.bin");
 	DogMovingShapes[0] = new Shape[3]{ *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2], *MyShape[DOG_JUMP_3] };
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 	DogDyingShapes[0] = new Shape[2]{*MyShape[DOG_DIE], *MyShape[DOG_DIE]};

@@ -102,6 +102,11 @@ void Character::render() {
 	Entity::render(m_offset);
 }
 
+void Character::setShape(Shape* shape)
+{
+	m_standing_shape = shape;
+}
+
 std::istream& operator>>(std::istream& in, Character& c)
 {
 	int x, y, total_state, maxY, offset, skinIndex;

@@ -10,6 +10,7 @@ public:
 	void render() override;
 	void clean() override;
 	void clickButton() override;
+	void updateDialog();
 	void handleKeyPressed(WPARAM key) override;
 private:
 	Gameplay* m_gameplay{ nullptr };
@@ -19,5 +20,6 @@ private:
 	RECT m_score_pos{};
 	bool m_input_name{ true };
 	bool m_render_dialog{ false };
+	DWORD m_start_time{ 0 };
 };
 

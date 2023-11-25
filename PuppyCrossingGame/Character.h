@@ -14,7 +14,7 @@ private:
 	Shape* m_moving_shape;
 	COORD m_delta = { 0, 0 };
 	int m_skinIndex{ 0 };
-	int m_offset;
+	int m_offset{ 0 };
 public:
 	Character() = default;
 	Character(const COORD& pos, Shape* standing, Shape* moving, int total = 1) :
@@ -29,6 +29,7 @@ public:
 	bool isFinish(); // isDead checking
 	bool isStanding() const;
 	void render();
+	void setShape(Shape* shape);
 	void move(const COORD &pos);
 	void moveInRaft(const COORD &pos);
 	void setPos(const COORD &pos);

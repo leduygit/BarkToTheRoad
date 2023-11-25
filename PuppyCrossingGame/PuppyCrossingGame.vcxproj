@@ -135,6 +135,10 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Dialog.h" />
+    <ClInclude Include="EndScreen.h" />
+    <ClInclude Include="external\Base64.h" />
+    <ClInclude Include="external\encrypt.h" />
+    <ClInclude Include="external\vigenere.h" />
     <ClInclude Include="Gameplay.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Global.h" />
@@ -152,6 +156,7 @@
     <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="MoveUpCommand.h" />
     <ClInclude Include="RailLane.h" />
+    <ClInclude Include="RankScreen.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="RenderState.h" />
     <ClInclude Include="Entity.h" />
@@ -176,6 +181,10 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Dialog.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
+    <ClCompile Include="external\Base64.cpp" />
+    <ClCompile Include="external\encrypt.cpp" />
+    <ClCompile Include="external\vigenere.cpp" />
     <ClCompile Include="Gameplay.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Global.cpp" />
@@ -193,6 +202,7 @@
     <ClCompile Include="MoveRightCommand.cpp" />
     <ClCompile Include="MoveUpCommand.cpp" />
     <ClCompile Include="RailLane.cpp" />
+    <ClCompile Include="RankScreen.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="RenderState.cpp" />
     <ClCompile Include="Entity.cpp" />
