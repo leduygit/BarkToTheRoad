@@ -62,7 +62,7 @@ bool Character::isStanding() const {
 
 void Character::move(const COORD &pos) {
 	m_is_standing = false;
-	m_new_position = { static_cast<short>(pos.X ), pos.Y  };// / 90 * 90
+	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y / 90 * 90 };// 
 	
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / m_total_state), static_cast<short>((m_new_position.Y - m_position.Y) / m_total_state) };
 }
