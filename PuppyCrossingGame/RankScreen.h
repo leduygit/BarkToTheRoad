@@ -30,6 +30,6 @@ private:
 	std::vector<User> m_users{};
 	std::string m_key{ "" };
 	Shape* m_board{};
-	time_t ftime{};
+	time_t ftime{0};
 };
 
