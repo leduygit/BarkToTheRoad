@@ -10,6 +10,7 @@ public:
 	void render() override;
 	void clean() override;
 	void clickButton() override;
+	void initDialog();
 	void updateDialog();
 	void handleKeyPressed(WPARAM key) override;
 private:
