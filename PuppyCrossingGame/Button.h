@@ -29,6 +29,7 @@ public:
 	virtual void setShowDialog(bool& show) {}
 	COORD getPos() const;
 	virtual void setFileName(std::string filename) {}
+	virtual void setLine(int line) {};
 	void getSize(int& w, int& h) {
 		m_shape->getSize(w, h);
 	}
@@ -84,14 +85,12 @@ public:
 		std::ifstream saveFile("game_save/name.txt");
 		for (std::string line; getline(saveFile, line);)
 		{
-			std::string path = "game_save/" + line;
-			if (path == m_file_name)
-				saveFiles.push_back(saveName + ".txt");
-			else
-				saveFiles.push_back(line);
+			saveFiles.push_back(line);
 		}
-
+		while (saveFiles.size() < 3) saveFiles.push_back("empty");
 		saveFile.close();
+
+		saveFiles[m_line] = saveName;
 
 		std::ofstream out("game_save/name.txt");
 		for (int i = 0; i < 3; ++i)
@@ -102,6 +101,7 @@ public:
 
 		m_file_name = "game_save/" + saveName + ".txt";
 		
+		//*m_gp = Gameplay();
 		m_gp->saveGame(m_file_name);
 		OutputDebugString(L"Clicked\n");
 		*m_show = false;
@@ -112,10 +112,16 @@ public:
 	std::string getFileName() const {
 		return m_file_name;
 	}
+
+	void setLine(int line) {
+		m_line = line;
+	}
+
 private:
 	Gameplay* m_gp{ nullptr };
 	bool* m_show{ nullptr };
 	std::string m_file_name = "";
+	int m_line = 0;
 };
 
 class LoadGameButton : public Button {
@@ -145,12 +151,11 @@ public:
 			m_gp->loadGame(s);
 			Global::current_screen = GAME_SCREEN;
 		}*/
-
-		if (m_file_name != "") {
-			*m_gp = Gameplay{};
-			m_gp->loadGame(m_file_name);
+		if (m_file_name != "empty") {
+			*m_gp = Gameplay();
+			m_gp->loadGame("game_save/" + m_file_name + ".txt");
+			Global::current_screen = GAME_SCREEN;
 		}
-		Global::current_screen = GAME_SCREEN;
 	}
 
 	std::string getFileName() const {
@@ -161,7 +166,7 @@ public:
 		m_file_name = filename;
 	}
 private:
-	std::string m_file_name = "";
+	std::string m_file_name = "empty";
 	Gameplay* m_gp{ nullptr };
 };
 

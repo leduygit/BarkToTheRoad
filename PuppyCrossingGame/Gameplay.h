@@ -49,7 +49,7 @@ public:
 private:
 	int m_score{ 0 };
 	int m_speed = 0;
-	bool m_is_paused{ true };
+	bool m_is_paused{ false };
 	std::string m_user_name{ "" };
 	std::string m_key{ "" };
 	bool m_is_new_game{ true };

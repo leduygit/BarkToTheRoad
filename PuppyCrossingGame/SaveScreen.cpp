@@ -14,13 +14,16 @@ SaveScreen::SaveScreen(Gameplay* gp)
 		saveFiles.push_back(line);
 	}
 
+	while (saveFiles.size() < 3) saveFiles.push_back("empty");
+
 	saveFile.close();
 
 	//std::string saveName = gp->getSaveName();
 	for (int i = 0; i < 3; ++i)
 	{
-		saveGameButton[i] = new SaveGameButton(saveGameButtonState, gp, m_render_dialog, "game_save/" + saveFiles[3 - i - 1]);
+		saveGameButton[i] = new SaveGameButton(saveGameButtonState, gp, m_render_dialog, saveFiles[3 - i - 1]);
 		saveGameButton[i]->setPos({ 500, 200 + static_cast<short>(i) * 100 });
+		saveGameButton[i]->setLine(3 - i - 1);
 		if (m_savePos == -1) m_savePos = getSize();
 		addButton(saveGameButton[i]);
 
@@ -51,11 +54,13 @@ void SaveScreen::updateContent()
 		saveFiles.push_back(line);
 	}
 
+	while (saveFiles.size() < 3) saveFiles.push_back("empty");
+
 	saveFile.close();
 
 	for (int i = 0; i < 3; ++i)
 	{
-		m_buttons[m_savePos + i]->setFileName("game_save/" + saveFiles[3 - i - 1]);
+		m_buttons[m_savePos + i]->setFileName(saveFiles[3 - i - 1]);
 
 		RECT tmp;
 		int height, width;
