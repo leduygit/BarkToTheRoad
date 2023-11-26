@@ -22,11 +22,22 @@ RenderState::RenderState(int _h, int _w)
 
 RenderState::~RenderState()
 {
-    //if (m_memory)
-    //{
-    //    free(m_memory); // Free the allocated memory using free
-    //    m_memory = nullptr;
-    //}
+    VirtualFree(m_memory, 0, MEM_RELEASE);
+}
+
+RenderState& RenderState::operator=(const RenderState& _other)
+{
+    // TODO: insert return statement here
+    m_height = _other.m_height;
+    m_width = _other.m_width;
+    // allocate memory
+    int sz = m_width * m_height * 8;
+    m_memory = VirtualAlloc(0, sz, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE); // Use malloc to allocate memory
+    // copy memory
+    memcpy(m_memory, _other.m_memory, sz);
+    // copy bitmap info
+    m_bitmapinfo = _other.m_bitmapinfo;
+    return *this;
 }
 
 

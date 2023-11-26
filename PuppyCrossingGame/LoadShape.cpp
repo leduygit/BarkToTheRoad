@@ -7,7 +7,7 @@ std::vector<Shape*> DogDyingShapes(10);
 
 void initShape() {
 	MyShape[CAR_RIGHT] = new Shape{ "resources/image/car_right.bin" };
-	MyShape[CAR_LEFT] = new Shape{ "resources/image/car_left.bin" }; 
+	MyShape[CAR_LEFT] = new Shape{ "resources/image/car_left.bin" };
 	MyShape[GRASS_0] = new Shape("resources/image/grass_0.bin");
 	MyShape[GRASS_1] = new Shape("resources/image/grass_1.bin");
 	MyShape[GRASS_2] = new Shape("resources/image/grass_2.bin");
@@ -60,5 +60,29 @@ void initShape() {
 	MyShape[LEADERBOARD] = new Shape("resources/image/rank-window.bin");
 	DogMovingShapes[0] = new Shape[3]{ *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2], *MyShape[DOG_JUMP_3] };
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
-	DogDyingShapes[0] = new Shape[2]{*MyShape[DOG_DIE], *MyShape[DOG_DIE]};
+	DogDyingShapes[0] = new Shape[2]{ *MyShape[DOG_DIE], *MyShape[DOG_DIE] };
+}
+
+void deleteShape()
+{
+	for (int i = 0; i < MyShape.size(); i++)
+	{
+		if (MyShape[i] != nullptr)
+			delete MyShape[i];
+	}
+	for (int i = 0; i < DogMovingShapes.size(); i++)
+	{
+		if (DogMovingShapes[i] != nullptr)
+			delete[] DogMovingShapes[i];
+	}
+	for (int i = 0; i < DogStayingShapes.size(); i++)
+	{
+		if (DogStayingShapes[i] != nullptr)
+			delete[] DogStayingShapes[i];
+	}
+	for (int i = 0; i < DogDyingShapes.size(); i++)
+	{
+		if (DogDyingShapes[i] != nullptr)
+			delete[] DogDyingShapes[i];
+	}
 }
