@@ -28,6 +28,7 @@ void MoveUpCommand::execute(Character& c, Map& m)
 
 		
 	}
+	SoundTrack::playSound(L"resources/sound/jump.wav", L"alias_3");
 }
 
 bool MoveUpCommand::isValidMove(Character& c, Map& m)

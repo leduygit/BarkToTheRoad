@@ -19,11 +19,11 @@
 #include <mfidl.h>
 #include <Mfreadwrite.h>
 #include <audioclient.h>
+#include "Sound.h"
 
 Gameplay* gameplay = nullptr;
 Screen* s;
 ScreenRegistry sr{};
-
 LRESULT Wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	LRESULT result = 0;
 
@@ -66,7 +66,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX | WS_VISIBLE, CW_USEDEFAULT,
 		CW_USEDEFAULT, WINDOW_WIDTH - 5, 720 + 40, 0, 0, hInstance, 0);
 	Global::hdc = GetDC(Global::window);
-	PlaySound(L"resources/sound/music.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	PlaySound(L"resources/sound/music.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_ALIAS | SND_NODEFAULT);
 	AddFontResourceEx(L"resources/font/windows_command_prompt.ttf", FR_PRIVATE, 0);
 	HFONT font = CreateFontW(48, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
 		CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Windows Command Prompt"));
@@ -100,6 +100,5 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	sr.getCurrentScreen()->clean();
     //Sleep(5);
   }
-
 	DeleteObject(font);
 }

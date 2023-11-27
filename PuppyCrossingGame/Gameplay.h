@@ -12,6 +12,7 @@
 #include "Shape.h"
 #include "renderer.h"
 #include "external/encrypt.h"
+#include "Sound.h"
 
 class Gameplay
 {
