@@ -10,7 +10,7 @@ Gameplay::Gameplay() : command(nullptr)
         break;
     }
     m = Map{ fact };
-	m.addLane();
+	//m.addLane();
     Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
 	character = new Character{ {630, 0}, staying, moving, 3 };

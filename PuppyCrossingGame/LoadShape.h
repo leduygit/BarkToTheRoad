@@ -22,3 +22,4 @@ extern std::vector<Shape*> DogStayingShapes;
 extern std::vector<Shape*> DogDyingShapes;
 extern std::vector<Shape*> MyShape;
 void initShape();
+void deleteShape();
