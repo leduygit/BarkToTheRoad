@@ -14,6 +14,7 @@ class RenderState
 public:
     RenderState(int _h = 0, int _w = 0);
     ~RenderState();
+    RenderState& operator=(const RenderState& _other);
     unsigned int* getMemoryPointer(); // get m_memory
     int getWidth();
     int getHeight();

@@ -21,8 +21,9 @@ private:
 	int m_factoryType{SUMMER};
 public:
 	Map() = default;
+	~Map();
 	Map(LaneFactory* fact);
-  
+  	Map& operator=(const Map& m);
 	bool checkCollision(Character& e);
 	bool checkCollisionWithStaticObstacle(Character& e);
 	void moveObstacle(Character &c);
