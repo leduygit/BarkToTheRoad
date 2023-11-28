@@ -24,6 +24,8 @@ public:
 
 
 	Lane() = default;
+	~Lane();
+	Lane& operator=(const Lane& lane);
 	Lane(const COORD &pos);
 	Lane(const Lane& lane);
 	virtual void render(int offset = 0);

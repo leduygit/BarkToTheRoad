@@ -3,6 +3,47 @@
 constexpr int NUM_SQUARE = 14;
 
 
+Lane::~Lane()
+{
+	for (auto obs : m_obs)
+	{
+		delete obs;
+	}
+	m_obs.clear();
+}
+
+Lane& Lane::operator=(const Lane& lane)
+{
+	m_position = lane.m_position;
+	for (auto obs : lane.m_obs)
+	{
+		m_obs.push_back(new Obstacle(*obs));
+	}
+	m_light = lane.m_light;
+	direction = lane.direction;
+	m_shapeIndex = lane.m_shapeIndex;
+	m_factoryIndex = lane.m_factoryIndex;
+	switch (m_factoryIndex)
+	{
+	case AsphaltFactory:
+		m_fact = new AsphaltObstacleFactory();
+		break;
+	case GrassFactory:
+		m_fact = new GrassObstacleFactory();
+		break;
+	case RiverFactory:
+		m_fact = new RiverObstacleFactory();
+		break;
+	case RailFactory:
+		m_fact = new RailObstacleFactory();
+		break;
+	default:
+		break;
+	}
+	m_shape = lane.m_shape;
+	return *this;
+}
+
 Lane::Lane(const COORD& pos) :
 	m_position{ pos }
 {
@@ -219,34 +260,34 @@ std::istream& operator>>(std::istream& in, Lane& lane)
 		in >> x >> y >> obstacleShapeIndex >> isStanding >> speed;
 		switch (obstacleShapeIndex)
 		{
-			case CAR_RIGHT:
-				temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
-				break;
-			case CAR_LEFT:
-				temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y)}, 1);
-				break;
-			case GRASS_0:
-			case GRASS_1:
-			case GRASS_2:
-			case GRASS_3:
-			case GRASS_4:
-			case STONE:
-			case STONE_1:
-			case BUSH_2:
-				temp = new GrassObstacle({ static_cast<short>(x), static_cast<short>(y) }, obstacleShapeIndex);
-				break;
-			case TRAIN_RIGHT:
-				temp = new TrainObstacle({ static_cast<short>(x), static_cast<short>(y) });
-				break;
-			case TRAIN_LEFT:
-				temp = new TrainObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
-				break;
-			case LOG:
-				temp = new RaftObstacle({ static_cast<short>(x), static_cast<short>(y) });
-				break;
-			default:
-				temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
-				break;
+		case CAR_RIGHT:
+			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
+			break;
+		case CAR_LEFT:
+			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
+			break;
+		case GRASS_0:
+		case GRASS_1:
+		case GRASS_2:
+		case GRASS_3:
+		case GRASS_4:
+		case STONE:
+		case STONE_1:
+		case BUSH_2:
+			temp = new GrassObstacle({ static_cast<short>(x), static_cast<short>(y) }, obstacleShapeIndex);
+			break;
+		case TRAIN_RIGHT:
+			temp = new TrainObstacle({ static_cast<short>(x), static_cast<short>(y) });
+			break;
+		case TRAIN_LEFT:
+			temp = new TrainObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
+			break;
+		case LOG:
+			temp = new RaftObstacle({ static_cast<short>(x), static_cast<short>(y) });
+			break;
+		default:
+			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
+			break;
 		}
 		lane.m_obs.push_back(temp);
 	}

@@ -2,9 +2,67 @@
 #define NUM_LANE 8
 
 
+Map::~Map()
+{
+	for (int i = 0; i < MAX_LANE; ++i)
+		delete m_lane[i];
+	delete m_fact;
+}
+
 Map::Map(LaneFactory* fact)
 {
 	m_fact = fact;
+	addLane();
+}
+
+Map& Map::operator=(const Map& m)
+{
+	// TODO: insert return statement here
+	for (int i = 0; i < MAX_LANE; ++i)
+	{
+		int type = m.m_lane[i]->getFactoryIndex();
+		switch (type)
+		{
+		case AsphaltFactory:
+			m_lane[i] = new AsphaltLane();
+			break;
+		case GrassFactory:
+			m_lane[i] = new GrassLane();
+			break;
+		case RiverFactory:
+			m_lane[i] = new RiverLane();
+			break;
+		case RailFactory:
+			m_lane[i] = new RailLane();
+			break;
+		default:
+			m_lane[i] = new GrassLane();
+			break;
+		}
+		*m_lane[i] = *m.m_lane[i];
+	}
+
+	m_offset = m.m_offset;
+	m_factoryType = m.m_factoryType;
+	switch (m_factoryType)
+	{
+	case SUMMER:
+		m_fact = new SummerLaneFactory();
+		break;
+	case SPRING:
+		m_fact = new SpringLaneFactory();
+		break;
+	case WINTER:
+		//m_fact = new WinterLaneFactory();
+		break;
+	case AUTUMN:
+		//m_fact = new AutumnLaneFactory();
+		break;
+	default:
+		break;
+	}
+
+	return *this;
 }
 
 bool Map::checkCollision(Character& e)
@@ -146,7 +204,7 @@ std::istream& operator>>(std::istream& in, Map& m)
 			break;
 		default:
 			lane = new GrassLane();
-			break;	
+			break;
 		}
 		lane->setFactoryIndex(factoryIndex);
 		in >> *lane;
