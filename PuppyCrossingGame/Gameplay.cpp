@@ -148,7 +148,7 @@ bool Gameplay::getEnded() const
 
 bool Gameplay::vehicleArrived()
 {
-    return abs(m_vehicle->getPos().X - character->getPos().X) <= 30;
+    return abs(m_vehicle->getPos().X - character->getPos().X) <= 10;
 }
 
 Gameplay::~Gameplay()

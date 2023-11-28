@@ -17,11 +17,16 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 void GameScreen::render() {
 	m_gameplay->gameLogic();
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
+		if (!m_finish) {
+			Sleep(500);
+			m_finish = true;
+		}
 		updateDialog();
 		m_render_dialog = true;
 		m_init_dialog = false;
 	}
 	else if (!m_init_dialog) {
+		m_finish = false;
 		initDialog();
 	}
 
