@@ -84,7 +84,7 @@ void Gameplay::handleEndGame()
     m_is_paused = true;
     Shape* s = new Shape[2]{ *MyShape[GHOST], *MyShape[GHOST] };
     character->setShape(s);
-    m_vehicle = new Entity{ COORD{static_cast<short>(character->getPos().X + 600), character->getPos().Y}, MyShape[CAR_LEFT] };
+    m_vehicle = new Entity{ COORD{static_cast<short>(character->getPos().X + 600), character->getPos().Y}, MyShape[AMBULANCE] };
     m_vehicle->move(character->getPos());
     m_ended = true;
 }
@@ -130,6 +130,7 @@ void Gameplay::loadGame(std::string fileName)
 	in.close();
     m_is_new_game = false;
     m_is_paused = false;
+    m_ended = false;
     m_speed = 0;
 }
 

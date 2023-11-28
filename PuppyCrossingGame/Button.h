@@ -151,7 +151,6 @@ public:
 			m_gp->loadGame(s);
 			Global::current_screen = GAME_SCREEN;
 		}*/
-
 		if (m_file_name != "empty") {
 			*m_gp = Gameplay();
 			m_gp->loadGame("game_save/" + m_file_name + ".txt");

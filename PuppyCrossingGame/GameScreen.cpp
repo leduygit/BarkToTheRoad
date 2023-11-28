@@ -19,6 +19,10 @@ void GameScreen::render() {
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
 		updateDialog();
 		m_render_dialog = true;
+		m_init_dialog = false;
+	}
+	else if (!m_init_dialog) {
+		initDialog();
 	}
 
 	char score[3];
