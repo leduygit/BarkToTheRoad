@@ -108,6 +108,7 @@ void Map::removeObstacle()
 
 void Map::update()
 {
+	delete m_lane[0];
 	for (int i = 0; i < MAX_LANE - 1; ++i)
 	{
 		m_lane[i] = m_lane[i + 1];
