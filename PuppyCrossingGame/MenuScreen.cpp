@@ -18,8 +18,13 @@ MenuScreen::MenuScreen(Gameplay* gp) {
 	Button* quitButton = new QuitButton(quitButtonState);
 	quitButton->setPos({ 1000, 10 });
 
+	Shape* settingButtonState = new Shape[2]{ *MyShape[SETTING_BUTTON], *MyShape[SETTING_BUTTON] };
+	Button* settingButton = new ChangeScreenButton(settingButtonState, SETTING_SCREEN);
+	settingButton->setPos({ 1150, 650 });
+
 	addButton(newGameButton);
 	addButton(loadGameButton);
 	addButton(rankButton);
 	addButton(quitButton);
+	addButton(settingButton);
 }

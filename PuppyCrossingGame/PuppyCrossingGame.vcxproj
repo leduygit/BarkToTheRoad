@@ -170,6 +170,7 @@
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenId.h" />
     <ClInclude Include="ScreenRegistry.h" />
+    <ClInclude Include="SettingScreen.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SpringMap.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="SaveScreen.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenRegistry.cpp" />
+    <ClCompile Include="SettingScreen.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpringMap.cpp" />

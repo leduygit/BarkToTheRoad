@@ -191,3 +191,13 @@ private:
 	Gameplay* m_gp;
 	bool* m_show;
 };
+
+class ChangeSoundButton : public Button {
+public:
+	ChangeSoundButton(Shape* shape, bool& sound) : Button(shape), m_sound{ &sound } {}
+	void onClick() {
+		*m_sound = !*m_sound;
+	}
+private:
+	bool* m_sound;
+};

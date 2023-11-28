@@ -59,6 +59,9 @@ void initShape() {
 	MyShape[TEXTBOX] = new Shape("resources/image/textbox.bin");
 	MyShape[LEADERBOARD] = new Shape("resources/image/rank-window.bin");
 	MyShape[AMBULANCE] = new Shape("resources/image/ambulance.bin");
+	MyShape[SETTING_WINDOW] = new Shape("resources/image/setting-window.bin");
+	MyShape[SPEAKER] = new Shape("resources/image/speaker.bin");
+	MyShape[MUTE] = new Shape("resources/image/mute.bin");
 	DogMovingShapes[0] = new Shape[3]{ *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2], *MyShape[DOG_JUMP_3] };
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 	DogDyingShapes[0] = new Shape[2]{*MyShape[DOG_DIE], *MyShape[DOG_DIE]};
