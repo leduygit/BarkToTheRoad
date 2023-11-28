@@ -5,6 +5,7 @@ InputHandler::InputHandler() {
     move_down = new MoveDownCommand;
     move_left = new MoveLeftCommand;
     move_right = new MoveRightCommand;
+    barkCommand = new BarkCommand;
 }
 
 Command* InputHandler::handleInput(WPARAM key, const Character& c)
@@ -20,6 +21,8 @@ Command* InputHandler::handleInput(WPARAM key, const Character& c)
         return move_left;
     case VK_RIGHT:
         return move_right;
+    case 'B':
+        return barkCommand;
     default:
         return nullptr;
     }

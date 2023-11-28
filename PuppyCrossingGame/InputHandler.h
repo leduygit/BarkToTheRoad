@@ -5,6 +5,7 @@
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
 #include "MouseClickCommand.h"
+#include "BarkCommand.h"
 #include "Map.h"
 
 class InputHandler
@@ -18,5 +19,6 @@ private:
 	MoveDownCommand* move_down;
 	MoveLeftCommand* move_left;
 	MoveRightCommand* move_right;
+	BarkCommand* barkCommand;
 };
 

@@ -5,6 +5,7 @@
 #include "LoadScreen.h"
 #include "SaveScreen.h"
 #include "RankScreen.h"
+#include "SettingScreen.h"
 class ScreenRegistry
 {
 public:
@@ -18,6 +19,7 @@ public:
 		m_screens.push_back(new LoadScreen{ gp });
 		m_screens.push_back(new SaveScreen{ gp });
 		m_screens.push_back(new RankScreen{});
+		m_screens.push_back(new SettingScreen{});
 	}
 
 	void addScreen(Screen* s) {

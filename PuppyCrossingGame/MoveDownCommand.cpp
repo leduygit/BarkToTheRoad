@@ -20,6 +20,7 @@ void MoveDownCommand::execute(Character& c, Map& m)
 		c.move(newPos);
 		//c.move({ static_cast<short>(roundedNumberX * 90), static_cast<short> (roundedNumberY * 90 - 90) });
 	}
+	SoundTrack::playSound(L"resources/sound/jump.wav", L"alias_3");
 }
 
 bool MoveDownCommand::isValidMove(Character& c, Map& m)

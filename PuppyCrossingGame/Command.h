@@ -1,6 +1,7 @@
 #pragma once
 #include "Map.h"
 #include "Character.h"
+#include "Sound.h"
 class Command
 {
 public:
