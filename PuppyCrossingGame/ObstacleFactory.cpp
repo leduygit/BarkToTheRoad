@@ -9,7 +9,7 @@ Obstacle* AsphaltObstacleFactory::createObstacle(const COORD &pos)
 {
     // pos = position of the lane
 
-    int x = 0;
+    int x = randomInt(0, 1000);
     x %= 2;
     // index of the Obstacle
 

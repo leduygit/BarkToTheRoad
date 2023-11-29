@@ -26,17 +26,17 @@ std::ostream& operator<<(std::ostream& out, const Obstacle& obs)
 
 BusObstacle::BusObstacle(const COORD &pos)
 {
-	m_shape = MyShape[CAR_RIGHT];
+	m_shape = MyShape[BUS_RIGHT];
 	m_position = pos;
-	m_shapeIndex = CAR_RIGHT;
+	m_shapeIndex = BUS_RIGHT;
 	setRate(Global::MEDIUM_SPEED);
 }
 
 BusObstacle::BusObstacle(const COORD& pos, bool flag)
 {
-	m_shape = MyShape[CAR_LEFT];
+	m_shape = MyShape[BUS_LEFT];
 	m_position = pos;
-	m_shapeIndex = CAR_LEFT;
+	m_shapeIndex = BUS_LEFT;
 	setRate(Global::MEDIUM_SPEED);
 }
 
