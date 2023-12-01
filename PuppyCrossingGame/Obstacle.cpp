@@ -42,17 +42,48 @@ BusObstacle::BusObstacle(const COORD& pos, bool flag)
 
 CarObstacle::CarObstacle(const COORD &pos)
 {
-	m_shape = MyShape[CAR_RIGHT];
+	int x = rand();
+	if (x % 4 == 0)
+	{
+		m_shape = MyShape[CAR_WHITE_RIGHT];
+		m_shapeIndex = CAR_WHITE_RIGHT;
+	}
+	else if (x % 4 == 1) {
+		m_shape = MyShape[G63_RIGHT];
+		m_shapeIndex = G63_RIGHT;
+	} else if (x % 4 == 2) {
+		m_shape = MyShape[CAR_YELLOW_RIGHT];
+		m_shapeIndex = CAR_YELLOW_RIGHT;
+	}
+	else if (x % 4 == 3) {
+		m_shape = MyShape[G63_BLACK_RIGHT];
+		m_shapeIndex = G63_BLACK_RIGHT;
+	}
 	m_position = pos;
-	m_shapeIndex = CAR_RIGHT;
 	setRate(Global::HIGH_SPEED);
 }
 
 CarObstacle::CarObstacle(const COORD& pos, bool flag)
 {
-	m_shape = MyShape[CAR_LEFT];
+	int x = rand();
+	if (x % 4 == 0)
+	{
+		m_shape = MyShape[CAR_WHITE_LEFT];
+		m_shapeIndex = CAR_WHITE_LEFT;
+	}
+	else if (x % 4 == 1) {
+		m_shape = MyShape[G63_LEFT];
+		m_shapeIndex = G63_LEFT;
+	}
+	else if (x % 4 == 2) {
+		m_shape = MyShape[CAR_YELLOW_LEFT];
+		m_shapeIndex = CAR_YELLOW_LEFT;
+	}
+	else if (x % 4 == 3) {
+		m_shape = MyShape[G63_BLACK_LEFT];
+		m_shapeIndex = G63_BLACK_LEFT;
+	}
 	m_position = pos;
-	m_shapeIndex = CAR_LEFT;
 	setRate(Global::HIGH_SPEED);
 }
 

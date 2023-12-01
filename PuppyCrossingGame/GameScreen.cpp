@@ -17,11 +17,12 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 void GameScreen::render() {
 	m_gameplay->gameLogic();
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
+		updateDialog();
 		if (!m_finish) {
 			Sleep(500);
 			m_finish = true;
 		}
-		updateDialog();
+		
 		m_render_dialog = true;
 		m_init_dialog = false;
 	}
@@ -29,9 +30,6 @@ void GameScreen::render() {
 		m_finish = false;
 		initDialog();
 	}
-
-	char score[3];
-	_itoa_s(m_gameplay->getScore(), score, 10);
 
 	RECT tmp;
 	int height, width;
@@ -41,7 +39,7 @@ void GameScreen::render() {
 	tmp.right = tmp.left + width;
 	tmp.bottom = tmp.top + height;
 	m_score_board->render(500, 635);
-	addText(new Text{ score, tmp });
+	addText(new Text{ std::to_string(m_gameplay->getScore()), tmp});
 
 	auto buttons = getButtons();
 	for (int i = 0; i < buttons.size(); i++) {
@@ -91,6 +89,7 @@ void GameScreen::clickButton()
 
 void GameScreen::initDialog()
 {
+	m_init_dialog = true;
 	m_menu = new Dialog{ MyShape[PAUSE_WINDOW], {400, 200} };
 
 	Shape* resumeButtonState = new Shape[2]{ *MyShape[RESUME_BUTTON], *MyShape[RESUME_BUTTON_HOVER] };

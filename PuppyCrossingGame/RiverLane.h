@@ -10,6 +10,7 @@ public:
 	bool checkCollision(Character& e) override;
 	bool spawnRate() override;
 	bool isRiverLane() override;
+	void addObstacle() override;
 private:
 	Shape m_lanes[14];
 };
