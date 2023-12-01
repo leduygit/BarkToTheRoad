@@ -12,6 +12,10 @@ void initShape() {
 	MyShape[CAR_WHITE_LEFT] = new Shape{ "resources/image/car_white_left.bin" };
 	MyShape[G63_RIGHT] = new Shape{ "resources/image/g63_right.bin" };
 	MyShape[G63_LEFT] = new Shape{ "resources/image/g63_left.bin" };
+	MyShape[CAR_YELLOW_RIGHT] = new Shape{ "resources/image/car_yellow_right.bin" };
+	MyShape[CAR_YELLOW_LEFT] = new Shape{ "resources/image/car_yellow_left.bin" };
+	MyShape[G63_BLACK_RIGHT] = new Shape{ "resources/image/g63_black_right.bin" };
+	MyShape[G63_BLACK_LEFT] = new Shape{ "resources/image/g63_black_left.bin" };
 	MyShape[GRASS_0] = new Shape("resources/image/grass_0.bin");
 	MyShape[GRASS_1] = new Shape("resources/image/grass_1.bin");
 	MyShape[GRASS_2] = new Shape("resources/image/grass_2.bin");
