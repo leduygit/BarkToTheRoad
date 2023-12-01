@@ -167,15 +167,6 @@ void Lane::moveObstacle()
 						obs->move({ static_cast<short>(pos.X + x), pos.Y });
 					else
 						obs->stopMoving();
-					if (i > 0)
-					{
-						auto preObs = m_obs[i - 1];
-						COORD curPos = preObs->getPos();
-						COORD newPos = { curPos.X - 20, curPos.Y };
-						preObs->setPos(newPos);
-						if (preObs->isCollison(*obs)) obs->stopMoving();
-						preObs->setPos(curPos);
-					}
 				}
 			}
 			else {
@@ -184,17 +175,17 @@ void Lane::moveObstacle()
 						obs->move({ static_cast<short>(pos.X + x), pos.Y });
 					else
 						obs->stopMoving();
-					if (i > 0)
-					{
-						auto preObs = m_obs[i - 1];
-						COORD curPos = preObs->getPos();
-						COORD newPos = { curPos.X + 20, curPos.Y };
-						preObs->setPos(newPos);
-						if (preObs->isCollison(*obs)) obs->stopMoving();
-						preObs->setPos(curPos);
-					}
 				}
 			}
+		}
+		if (i > 0)
+		{
+			auto preObs = m_obs[i - 1];
+			COORD curPos = preObs->getPos();
+			COORD newPos = { curPos.X - 20 * direction, curPos.Y };
+			preObs->setPos(newPos);
+			if (preObs->isCollison(*obs)) obs->stopMoving();
+			preObs->setPos(curPos);
 		}
 	}
 }
@@ -265,6 +256,12 @@ std::istream& operator>>(std::istream& in, Lane& lane)
 			break;
 		case CAR_LEFT:
 			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
+			break;
+		case BUS_RIGHT:
+			temp = new BusObstacle({ static_cast<short>(x), static_cast<short>(y) });
+			break;
+		case BUS_LEFT:
+			temp = new BusObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
 			break;
 		case GRASS_0:
 		case GRASS_1:

@@ -19,6 +19,8 @@ void initShape() {
 	MyShape[ROAD] = new Shape("resources/image/road.bin");
 	MyShape[TRAIN_RIGHT] = new Shape("resources/image/train_right.bin");
 	MyShape[TRAIN_LEFT] = new Shape("resources/image/train_left.bin");
+	MyShape[BUS_RIGHT] = new Shape("resources/image/bus_right.bin");
+	MyShape[BUS_LEFT] = new Shape("resources/image/bus_left.bin");
 	MyShape[DOG_STAY_1] = new Shape("resources/image/sit-1.bin");
 	MyShape[DOG_STAY_2] = new Shape("resources/image/sit-2.bin");
 	MyShape[DOG_JUMP_1] = new Shape("resources/image/jump-1.bin");
