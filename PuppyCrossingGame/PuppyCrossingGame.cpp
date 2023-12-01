@@ -108,7 +108,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 	sr.getCurrentScreen()->renderText();
 	sr.getCurrentScreen()->clean();
-    Sleep(5);
+    //Sleep(5);
   }
 	DeleteObject(font);
 	deleteShape();
