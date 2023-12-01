@@ -45,7 +45,9 @@ void Gameplay::gameLogic()
 	if (command != nullptr) {
 		if (command->isValidMove(*character, m)) {
 			command->execute(*character, m);
-			m_speed = 1;
+			if (command->getType() != "bark") {
+				m_speed = 1;
+			}
 		}
 		command = nullptr;
 	}
