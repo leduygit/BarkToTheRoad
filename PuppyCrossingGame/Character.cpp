@@ -105,7 +105,7 @@ void Character::move(const COORD &pos) {
 	m_is_standing = false;
 	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y / 90 * 90 };// 
 	
-	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 9), static_cast<short>((m_new_position.Y - m_position.Y) / 9) };
+	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 6), static_cast<short>((m_new_position.Y - m_position.Y) / 9) };
 	m_old_position = m_position;
 }
 
@@ -139,6 +139,7 @@ void Character::render() {
 
 void Character::setShape(Shape* shape)
 {
+	m_is_standing = true;
 	m_standing_shape = shape;
 }
 
