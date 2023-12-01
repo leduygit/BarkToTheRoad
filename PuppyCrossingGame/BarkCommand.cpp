@@ -11,3 +11,8 @@ bool BarkCommand::isValidMove(Character& c, Map& m)
 	return true;
 }
 
+std::string BarkCommand::getType()
+{
+	return "bark";
+}
+
