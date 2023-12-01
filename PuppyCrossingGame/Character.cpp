@@ -56,6 +56,20 @@ int Character::getMaxY() const
 	return m_max_y;
 }
 
+void Character::setLeftDirection()
+{
+	m_initial_shape = DogMovingShapes[1];
+	m_standing_shape = DogStayingShapes[1];
+	m_moving_shape = DogMovingShapes[1];
+}
+
+void Character::setRightDirection()
+{
+	m_initial_shape = DogMovingShapes[0];
+	m_standing_shape = DogStayingShapes[0];
+	m_moving_shape = DogMovingShapes[0];
+}
+
 bool Character::isStanding() const {
 	return m_is_standing;
 }
@@ -64,7 +78,7 @@ void Character::move(const COORD &pos) {
 	m_is_standing = false;
 	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y / 90 * 90 };// 
 	
-	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / m_total_state), static_cast<short>((m_new_position.Y - m_position.Y) / m_total_state) };
+	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 9), static_cast<short>((m_new_position.Y - m_position.Y) / 9) };
 }
 
 void Character::moveInRaft(const COORD &pos)
@@ -90,7 +104,7 @@ void Character::render() {
 		m_shape = &m_standing_shape[r];
 	}
 
-	if (m_last_state + 1 < m_total_state && !m_is_standing) {
+	if (m_last_state + 1 < m_total_state && !m_is_standing && m_position.Y) {
 		m_shape = &m_moving_shape[m_last_state];
 		m_last_state++;
 	}

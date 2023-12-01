@@ -3,6 +3,7 @@
 void MoveLeftCommand::execute(Character& c, Map& m)
 {
 	COORD currentPostition = c.getPos();
+	c.setLeftDirection();
 	c.move({ static_cast<short>(currentPostition.X - 90), static_cast<short> (currentPostition.Y)});
 	SoundTrack::playSound(L"resources/sound/jump.wav", L"alias_3");
 }
