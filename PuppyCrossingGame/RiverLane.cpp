@@ -41,7 +41,7 @@ bool RiverLane::checkCollision(Character& e)
 bool RiverLane::spawnRate()
 {
 	int x = randomInt(1, 1000);
-	if (x <= 850)
+	if (x <= 500)
 		return true;
 	return false;
 }
@@ -49,4 +49,22 @@ bool RiverLane::spawnRate()
 bool RiverLane::isRiverLane()
 {
 	return true;
+}
+
+void RiverLane::addObstacle()
+{
+	if (!spawnRate()) return;
+	Obstacle* newObstacle = nullptr;
+	if (direction > 0)
+	{
+		newObstacle = m_fact->createObstacle(m_position);
+	}
+	else {
+		newObstacle = m_fact->createObstacle({ static_cast<short>(m_position.X + 1280), m_position.Y });
+	}
+	if (newObstacle == nullptr) return;
+	if (m_obs.size() == 0 || newObstacle->isCollison(*m_obs.back()) == false)
+		m_obs.push_back(newObstacle);
+	else
+		delete newObstacle;
 }

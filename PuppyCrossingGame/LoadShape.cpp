@@ -8,6 +8,10 @@ std::vector<Shape*> DogDyingShapes(10);
 void initShape() {
 	MyShape[CAR_RIGHT] = new Shape{ "resources/image/car_right.bin" };
 	MyShape[CAR_LEFT] = new Shape{ "resources/image/car_left.bin" };
+	MyShape[CAR_WHITE_RIGHT] = new Shape{ "resources/image/car_white_right.bin" };
+	MyShape[CAR_WHITE_LEFT] = new Shape{ "resources/image/car_white_left.bin" };
+	MyShape[G63_RIGHT] = new Shape{ "resources/image/g63_right.bin" };
+	MyShape[G63_LEFT] = new Shape{ "resources/image/g63_left.bin" };
 	MyShape[GRASS_0] = new Shape("resources/image/grass_0.bin");
 	MyShape[GRASS_1] = new Shape("resources/image/grass_1.bin");
 	MyShape[GRASS_2] = new Shape("resources/image/grass_2.bin");
@@ -33,7 +37,8 @@ void initShape() {
 	MyShape[DOG_JUMP_3_LEFT] = new Shape("resources/image/jump-3_left.bin");
 	MyShape[DOG_DIE] = new Shape("resources/image/dog_die.bin");
 	MyShape[RAIL] = new Shape("resources/image/railway_lane.bin");
-	MyShape[LOG] = new Shape("resources/image/logObstacle.bin");
+	//MyShape[LOG] = new Shape("resources/image/logObstacle.bin"); // 149x90
+	MyShape[LOG] = new Shape("resources/image/log.bin"); // 90x90
 	MyShape[RIVER] = new Shape("resources/image/river_lane.bin");
 	MyShape[RED_LIGHT] = new Shape("resources/image/red_light.bin");
 	MyShape[GREEN_LIGHT] = new Shape("resources/image/green_light.bin");
