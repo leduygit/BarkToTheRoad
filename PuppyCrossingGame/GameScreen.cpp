@@ -17,11 +17,16 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 void GameScreen::render() {
 	m_gameplay->gameLogic();
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
+		if (!m_finish) {
+			Sleep(500);
+			m_finish = true;
+		}
 		updateDialog();
 		m_render_dialog = true;
 		m_init_dialog = false;
 	}
 	else if (!m_init_dialog) {
+		m_finish = false;
 		initDialog();
 	}
 
@@ -42,6 +47,9 @@ void GameScreen::render() {
 	for (int i = 0; i < buttons.size(); i++) {
 		if (i == 0) {
 			if (!m_gameplay->getIsNewGame()) continue;
+			else {
+				m_gameplay->setPause(true);
+			}
 		}
 		buttons[i]->render();
 	}
@@ -70,11 +78,13 @@ void GameScreen::clean()
 void GameScreen::clickButton()
 {
 	Screen::clickButton();
-	auto buttons = m_menu->getButtons();
-	for (auto b : buttons) {
-		if (b->isHovering()) {
-			b->onClick();
-			break;
+	if (m_render_dialog) {
+		auto buttons = m_menu->getButtons();
+		for (auto b : buttons) {
+			if (b->isHovering()) {
+				b->onClick();
+				break;
+			}
 		}
 	}
 }
@@ -124,6 +134,7 @@ void GameScreen::updateDialog()
 
 void GameScreen::handleKeyPressed(WPARAM key)
 {
+	if (m_gameplay->getEnded()) return;
 	std::string &user_name = m_gameplay->getUserName();
 	switch (key) {
 	case 0x08:
