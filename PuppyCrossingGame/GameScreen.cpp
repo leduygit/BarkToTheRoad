@@ -17,11 +17,11 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 void GameScreen::render() {
 	m_gameplay->gameLogic();
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
+		updateDialog();
 		if (!m_finish) {
 			Sleep(500);
 			m_finish = true;
 		}
-		updateDialog();
 		m_render_dialog = true;
 		m_init_dialog = false;
 	}
@@ -66,8 +66,14 @@ void GameScreen::render() {
 		tmp.left = pos.X, tmp.top = 720 - pos.Y - 60;
 		tmp.right = tmp.left + width;
 		tmp.bottom = tmp.top + height;
-		addText(new Text{ m_gameplay->getUserName(), tmp});
+		if (!m_render_dialog) addText(new Text{ m_gameplay->getUserName(), tmp });
 	}
+}
+
+void GameScreen::renderText() const
+{
+	Screen::renderText();
+	m_menu->renderTexts();
 }
 
 void GameScreen::clean()
@@ -130,6 +136,14 @@ void GameScreen::updateDialog()
 	rankButton->setShowDialog(m_render_dialog);
 	rankButton->setPos({ 828, 240 });
 	m_menu->addButton(rankButton);
+
+	RECT tmp;
+	tmp.top = 250, tmp.left = 700;
+	tmp.bottom = 350, tmp.right = 900;
+	m_menu->addText(new Text{ m_gameplay->getUserName(), tmp });
+
+	tmp.top = 300, tmp.bottom = 400;
+	m_menu->addText(new Text{ std::to_string(m_gameplay->getScore()), tmp });
 }
 
 void GameScreen::handleKeyPressed(WPARAM key)

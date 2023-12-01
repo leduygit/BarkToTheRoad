@@ -36,7 +36,7 @@ LoadScreen::LoadScreen(Gameplay* gp)
 
 	Shape* backButtonState = new Shape[2]{ *MyShape[QUIT_BUTTON], *MyShape[QUIT_BUTTON_HOVER] };
 	Button* backButton = new ChangeScreenButton(backButtonState, MENU_SCREEN);
-	backButton->setPos({ 900, 10 });
+	backButton->setPos({ 1000, 10 });
 	addButton(backButton);
 
 
