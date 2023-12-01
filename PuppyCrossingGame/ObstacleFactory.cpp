@@ -34,9 +34,9 @@ Obstacle* GrassObstacleFactory::createObstacle(const COORD &pos) {
 
 Obstacle* RailObstacleFactory::createObstacle(const COORD &pos) {
     if (pos.X < 200)
-        return new TrainObstacle({ static_cast<short>(pos.X - 2000), pos.Y });
+        return new TrainObstacle({ static_cast<short>(pos.X - 4000), pos.Y });
     else 
-        return new TrainObstacle({ static_cast<short>(pos.X + 2000), pos.Y }, 1);
+        return new TrainObstacle({ static_cast<short>(pos.X + 4000), pos.Y }, 1);
 }
 
 Obstacle* RiverObstacleFactory::createObstacle(const COORD &pos)

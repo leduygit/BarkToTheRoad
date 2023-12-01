@@ -79,6 +79,12 @@ void Character::move(const COORD &pos) {
 	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y / 90 * 90 };// 
 	
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 9), static_cast<short>((m_new_position.Y - m_position.Y) / 9) };
+	if (m_delta.X == 0)
+	{
+		if (m_new_position.X < m_position.X) m_delta.X = -1;
+		if (m_new_position.X > m_position.X) m_delta.X = 1;
+	}
+	//if (m_delta.Y == 0 && m_position.Y != pos.Y) m_delta.Y = 1;
 }
 
 void Character::moveInRaft(const COORD &pos)
