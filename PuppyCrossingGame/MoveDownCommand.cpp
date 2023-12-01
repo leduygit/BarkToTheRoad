@@ -4,6 +4,8 @@ void MoveDownCommand::execute(Character& c, Map& m)
 {
 	COORD currentPostition = c.getPos();
 	COORD newPosition = { static_cast<short>(currentPostition.X), static_cast<short> (currentPostition.Y - 90) };
+	newPosition.X = newPosition.X / 90 * 90;
+	newPosition.Y = newPosition.Y / 90 * 90;
 	if (m.isRiverLane(newPosition))
 	{
 		c.setPos(newPosition);

@@ -98,6 +98,12 @@ void Map::addObstacle()
 	int id = randomInt(0, 100);
 	id %= m_lane_number;
 	m_lane[id]->addObstacle();
+	for (int i = 0; i < m_lane_number; ++i) {
+		if ( randomInt(0, 100) <= 30 && m_lane[i]->isRiverLane())
+		{
+			m_lane[i]->addObstacle();
+		}
+	}
 }
 
 void Map::removeObstacle()
@@ -127,6 +133,7 @@ void Map::updateOffset(int speed)
 COORD Map::jumpOnRaft(Character& c)
 {
 	COORD pos = c.getPos();
+	return pos;
 	for (SHORT k = -30; k <= 60; k += 90) {
 		c.setPos({ pos.X + k, pos.Y });
 		COORD pos = c.getPos();
@@ -137,7 +144,7 @@ COORD Map::jumpOnRaft(Character& c)
 			COORD pos = m_lane[i]->getCollision(c);
 			COORD dummy = { -1, -1 };
 			if (!(pos == dummy))
-				return { pos.X + 40, pos.Y };
+				return { pos.X + 0, pos.Y };
 		}
 	}
 	return pos;
@@ -158,8 +165,11 @@ void Map::render()
 
 void Map::addLane()
 {
-	m_lane[0] = new GrassLane({ 0, static_cast<short>(0) });
-	for (short i = 1; i < MAX_LANE; ++i)
+	for (int i = 0; i < 3; ++i)
+	{
+		m_lane[i] = new GrassLane({ 0, static_cast<short>(90 * i) });
+	}
+	for (short i = 3; i < MAX_LANE; ++i)
 	{
 		m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
 	}

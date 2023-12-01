@@ -24,6 +24,7 @@ public:
 	}
 	void setPos(COORD pos);
 	COORD getPos() const;
+	COORD getNewPos() const;
 	void stopMoving();
 	// virtual bool isImpact(const Entity& obj) const;
 	virtual bool isCollison(const Entity& e);

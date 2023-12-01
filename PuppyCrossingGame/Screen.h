@@ -27,7 +27,7 @@ public:
 	virtual void render();
 	virtual void clean();
 	void clearText();
-	void renderText() const;
+	virtual void renderText() const;
 	virtual void clickButton();
 	virtual void handleKeyPressed(WPARAM key) {
 

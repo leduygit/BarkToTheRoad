@@ -9,5 +9,6 @@ public:
 	BarkCommand();
 	void execute(Character& c, Map& m) override;
 	bool isValidMove(Character& c, Map& m) override;
+	std::string getType() override;
 };
 
