@@ -26,6 +26,11 @@ void initShape() {
 	MyShape[DOG_JUMP_1] = new Shape("resources/image/jump-1.bin");
 	MyShape[DOG_JUMP_2] = new Shape("resources/image/jump-2.bin");
 	MyShape[DOG_JUMP_3] = new Shape("resources/image/jump-3.bin");
+	MyShape[DOG_STAY_1_LEFT] = new Shape("resources/image/sit-1_left.bin");
+	MyShape[DOG_STAY_2_LEFT] = new Shape("resources/image/sit-2_left.bin");
+	MyShape[DOG_JUMP_1_LEFT] = new Shape("resources/image/jump-1_left.bin");
+	MyShape[DOG_JUMP_2_LEFT] = new Shape("resources/image/jump-2_left.bin");
+	MyShape[DOG_JUMP_3_LEFT] = new Shape("resources/image/jump-3_left.bin");
 	MyShape[DOG_DIE] = new Shape("resources/image/dog_die.bin");
 	MyShape[RAIL] = new Shape("resources/image/railway_lane.bin");
 	MyShape[LOG] = new Shape("resources/image/logObstacle.bin");
@@ -66,6 +71,8 @@ void initShape() {
 	MyShape[MUTE] = new Shape("resources/image/mute.bin");
 	DogMovingShapes[0] = new Shape[3]{ *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2], *MyShape[DOG_JUMP_3] };
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
+	DogMovingShapes[1] = new Shape[3]{ *MyShape[DOG_JUMP_1_LEFT], *MyShape[DOG_JUMP_2_LEFT], *MyShape[DOG_JUMP_3_LEFT] };
+	DogStayingShapes[1] = new Shape[2]{ *MyShape[DOG_STAY_1_LEFT], *MyShape[DOG_STAY_2_LEFT] };
 	DogDyingShapes[0] = new Shape[2]{ *MyShape[DOG_DIE], *MyShape[DOG_DIE] };
 }
 

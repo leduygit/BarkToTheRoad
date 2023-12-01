@@ -38,6 +38,8 @@ public:
 	void updateOffset(int speed);
 	COORD getPos();
 	int getMaxY() const;
+	void setLeftDirection();
+	void setRightDirection();
 	friend std::istream& operator>>(std::istream& in, Character &c);
 	friend std::ostream& operator<<(std::ostream& out, const Character &c);
 };
