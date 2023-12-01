@@ -17,11 +17,12 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 void GameScreen::render() {
 	m_gameplay->gameLogic();
 	if (m_gameplay->getEnded() && m_gameplay->vehicleArrived()) {
+		updateDialog();
 		if (!m_finish) {
 			Sleep(500);
 			m_finish = true;
 		}
-		updateDialog();
+		
 		m_render_dialog = true;
 		m_init_dialog = false;
 	}
@@ -91,6 +92,7 @@ void GameScreen::clickButton()
 
 void GameScreen::initDialog()
 {
+	m_init_dialog = true;
 	m_menu = new Dialog{ MyShape[PAUSE_WINDOW], {400, 200} };
 
 	Shape* resumeButtonState = new Shape[2]{ *MyShape[RESUME_BUTTON], *MyShape[RESUME_BUTTON_HOVER] };

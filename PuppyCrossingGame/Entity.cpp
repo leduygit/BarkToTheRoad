@@ -48,6 +48,11 @@ COORD Entity::getPos() const
 	return m_position;
 }
 
+COORD Entity::getNewPos() const
+{
+	return m_new_position;
+}
+
 void Entity::stopMoving()
 {
 	m_velo_x = 0;

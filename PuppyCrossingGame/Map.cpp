@@ -127,6 +127,7 @@ void Map::updateOffset(int speed)
 COORD Map::jumpOnRaft(Character& c)
 {
 	COORD pos = c.getPos();
+	return pos;
 	for (SHORT k = -30; k <= 60; k += 90) {
 		c.setPos({ pos.X + k, pos.Y });
 		COORD pos = c.getPos();
