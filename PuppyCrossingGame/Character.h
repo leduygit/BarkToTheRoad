@@ -13,6 +13,7 @@ private:
 	Shape* m_initial_shape;
 	Shape* m_moving_shape;
 	COORD m_delta = { 0, 0 };
+	COORD m_old_position = { 0, 0 };
 	int m_skinIndex{ 0 };
 	int m_offset{ 0 };
 public:
@@ -40,6 +41,7 @@ public:
 	int getMaxY() const;
 	void setLeftDirection();
 	void setRightDirection();
+	void makeAnimation();
 	friend std::istream& operator>>(std::istream& in, Character &c);
 	friend std::ostream& operator<<(std::ostream& out, const Character &c);
 };

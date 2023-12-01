@@ -70,6 +70,33 @@ void Character::setRightDirection()
 	m_moving_shape = DogMovingShapes[0];
 }
 
+void Character::makeAnimation()
+{
+	int distanceX = m_new_position.X - m_old_position.X;
+	int distanceY = m_new_position.Y - m_old_position.Y;
+
+	int directionX = (distanceX > 0) ? 1 : -1;
+	int directionY = (distanceY > 0) ? 1 : -1;
+
+	bool conditionX = m_position.X >= m_old_position.X + (m_last_state + 1) * distanceX / m_total_state;
+	bool conditionY = m_position.Y >= m_old_position.Y + (m_last_state + 1) * distanceY / m_total_state;
+
+	if (directionX == -1) conditionX = m_position.X <= m_old_position.X + (m_last_state + 1) * distanceX / m_total_state;
+	if (directionY == -1) conditionY = m_position.Y <= m_old_position.Y + (m_last_state + 1) * distanceY / m_total_state;
+
+	if (conditionX && conditionY)
+	{
+		if (m_last_state + 1 < m_total_state) {
+			m_shape = &m_moving_shape[m_last_state];
+			m_last_state++;
+		}
+		else if (m_last_state + 1 == m_total_state) {
+			m_last_state = 0;
+			m_shape = m_initial_shape;
+		}
+	}
+}
+
 bool Character::isStanding() const {
 	return m_is_standing;
 }
@@ -77,14 +104,9 @@ bool Character::isStanding() const {
 void Character::move(const COORD &pos) {
 	m_is_standing = false;
 	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y / 90 * 90 };// 
-	
+
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 9), static_cast<short>((m_new_position.Y - m_position.Y) / 9) };
-	if (m_delta.X == 0)
-	{
-		if (m_new_position.X < m_position.X) m_delta.X = -1;
-		if (m_new_position.X > m_position.X) m_delta.X = 1;
-	}
-	//if (m_delta.Y == 0 && m_position.Y != pos.Y) m_delta.Y = 1;
+	m_old_position = m_position;
 }
 
 void Character::moveInRaft(const COORD &pos)
@@ -110,20 +132,14 @@ void Character::render() {
 		m_shape = &m_standing_shape[r];
 	}
 
-	if (m_last_state + 1 < m_total_state && !m_is_standing && m_position.Y) {
-		m_shape = &m_moving_shape[m_last_state];
-		m_last_state++;
-	}
-	else if (m_last_state + 1 == m_total_state) {
-		m_last_state = 0;
-		m_shape = m_initial_shape;
-	}
+	if (m_is_standing == false) makeAnimation();
 
 	Entity::render(m_offset);
 }
 
 void Character::setShape(Shape* shape)
 {
+	m_is_standing = true;
 	m_standing_shape = shape;
 }
 
