@@ -42,6 +42,9 @@ void GameScreen::render() {
 	for (int i = 0; i < buttons.size(); i++) {
 		if (i == 0) {
 			if (!m_gameplay->getIsNewGame()) continue;
+			else {
+				m_gameplay->setPause(true);
+			}
 		}
 		buttons[i]->render();
 	}
