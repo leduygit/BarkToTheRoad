@@ -56,7 +56,29 @@ Shape::Shape(std::string fileName)
     ifs.close();
 }
 
-Shape::~Shape() {}
+Shape& Shape::operator=(const Shape& s)
+{
+    // TODO: insert return statement here
+    if (this == &s)
+		return *this;
+    m_width = s.m_width;
+    m_height = s.m_height;
+    m_shape = new unsigned int* [m_height];
+    for (int i = 0; i < m_height; i++)
+    {
+		m_shape[i] = new unsigned int[m_width];
+        for (int j = 0; j < m_width; j++) {
+			m_shape[i][j] = s.m_shape[i][j];
+		}
+	}
+    return *this;
+}
+
+Shape::~Shape() {
+    for (int i = 0; i < m_height; i++)
+		delete[] m_shape[i];
+	delete[] m_shape;
+}
 
 void Shape::render(int offset_x, int offset_y) {
     /*for (int x = 0; x < m_height; x++)
@@ -80,23 +102,6 @@ void Shape::render(int offset_x, int offset_y) {
 	    }
 }
 
-void Shape::loadShapeFromFile(const char* url)
-{
-    /*
-    std::ifstream ifs(url);
-    if (!ifs.is_open())
-        return ;
-    for (int i = 0; i < m_height; i++)
-    {
-        for (int j = 0; j < m_width; j++) {
-            std::string colorHex;
-            ifs >> colorHex;
-            if (sscanf_s(colorHex.c_str(), "0x%8X", &m_shape[i][j]) != 1) {
-            }
-        }
-    }
-    */
-}
 
 void Shape::getSize(int& width, int& height)
 {

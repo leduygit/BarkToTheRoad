@@ -20,9 +20,10 @@ private:
 public:
     Shape() = default;
     Shape(std::string fileName);
+
+    Shape& operator=(const Shape& s);
     ~Shape();
     void render(int offset_x, int offset_y);
-    void loadShapeFromFile(const char* url);
     void set_file_name(std::string file_name) {
         //m_fileName = file_name;
     }
