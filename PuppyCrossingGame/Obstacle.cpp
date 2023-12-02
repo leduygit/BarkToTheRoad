@@ -87,6 +87,14 @@ CarObstacle::CarObstacle(const COORD& pos, bool flag)
 	setRate(Global::HIGH_SPEED);
 }
 
+CarObstacle::CarObstacle(const COORD& pos, ShapeIndex index)
+{
+	m_shape = MyShape[index];
+	m_shapeIndex = index;
+	m_position = pos;
+	setRate(Global::HIGH_SPEED);
+}
+
 GrassObstacle::GrassObstacle(const COORD &pos)
 {
 	int random = rand() % 3;
