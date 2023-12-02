@@ -53,7 +53,7 @@ void initShape() {
 	MyShape[NEW_GAME_BUTTON] = new Shape("resources/image/newgame.bin");
 	MyShape[NEW_GAME_BUTTON_HOVER] = new Shape("resources/image/newgame-2.bin");
 	MyShape[RANK_BUTTON] = new Shape("resources/image/trophy.bin");
-	MyShape[RANK_BUTTON_HOVER] = new Shape("resources/image/trophy.bin");
+	MyShape[RANK_BUTTON_HOVER] = new Shape("resources/image/trophy_hover.bin");
 	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting.bin");
 	MyShape[SCORE] = new Shape("resources/image/score.bin");
 	MyShape[QUIT_BUTTON] = new Shape("resources/image/quit.bin");

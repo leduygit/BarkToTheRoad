@@ -1,6 +1,19 @@
 // Shape.cpp
 #include "Shape.h"
 
+Shape::Shape(const Shape& s)
+    : m_width(s.m_width), m_height(s.m_height)
+{
+    m_shape = new unsigned int* [m_height];
+    for (int i = 0; i < m_height; i++)
+    {
+        m_shape[i] = new unsigned int[m_width];
+        for (int j = 0; j < m_width; j++) {
+            m_shape[i][j] = s.m_shape[i][j];
+        }
+    }
+}
+
 bool operator==(const COORD& p1, const COORD& p2)
 {
     return p1.X == p2.X && p1.Y == p2.Y;
@@ -61,6 +74,11 @@ Shape& Shape::operator=(const Shape& s)
     // TODO: insert return statement here
     if (this == &s)
 		return *this;
+
+    for (int i = 0; i < m_height; i++)
+        delete[] m_shape[i];
+    delete[] m_shape;
+
     m_width = s.m_width;
     m_height = s.m_height;
     m_shape = new unsigned int* [m_height];
@@ -75,9 +93,12 @@ Shape& Shape::operator=(const Shape& s)
 }
 
 Shape::~Shape() {
-    for (int i = 0; i < m_height; i++)
-		delete[] m_shape[i];
-	delete[] m_shape;
+    if (m_shape) {
+        for (int i = 0; i < m_height; i++)
+            if (m_shape[i])
+                delete[] m_shape[i];
+        delete[] m_shape;
+    }
 }
 
 void Shape::render(int offset_x, int offset_y) {
@@ -89,19 +110,17 @@ void Shape::render(int offset_x, int offset_y) {
             
         }
     }*/
-
-        unsigned int* pixels = Global::default_render_state.getMemoryPointer();
-        for (int x = 0; x < m_height; x++)
-        {
-            for (int y = 0; y < m_width; y++) {
-                if (offset_x + y <= 0 || offset_x + y >= Global::default_render_state.getWidth() || offset_y + m_height - x - 1 <= 0 || offset_y + m_height - x - 1 >= Global::default_render_state.getHeight())
-					continue;
-			    if (m_shape[x][y] != 0x00000000)
-				    pixels[(offset_x + y) + (offset_y + m_height - x - 1) * Global::default_render_state.getWidth()] = m_shape[x][y];
-		    }
-	    }
+    unsigned int* pixels = Global::default_render_state.getMemoryPointer();
+    for (int x = 0; x < m_height; x++)
+    {
+        for (int y = 0; y < m_width; y++) {
+            if (offset_x + y <= 0 || offset_x + y >= Global::default_render_state.getWidth() || offset_y + m_height - x - 1 <= 0 || offset_y + m_height - x - 1 >= Global::default_render_state.getHeight())
+				continue;
+			if (m_shape[x][y] != 0x00000000)
+				pixels[(offset_x + y) + (offset_y + m_height - x - 1) * Global::default_render_state.getWidth()] = m_shape[x][y];
+		}
+	}
 }
-
 
 void Shape::getSize(int& width, int& height)
 {
