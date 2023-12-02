@@ -55,7 +55,7 @@ class NewGameButton : public Button {
 public:
 	NewGameButton(Shape* shape, Gameplay* gp) : Button(shape), m_gp{ gp } {}
 	void onClick() {
-		*m_gp = Gameplay{};
+		*m_gp = Gameplay();
 		Global::current_screen = GAME_SCREEN;
 	}
 private:
@@ -103,7 +103,7 @@ public:
 		
 		//*m_gp = Gameplay();
 		m_gp->saveGame(m_file_name);
-		OutputDebugString(L"Clicked\n");
+		//OutputDebugString(L"Clicked\n");
 		*m_show = false;
 		Global::current_screen = MENU_SCREEN;
 

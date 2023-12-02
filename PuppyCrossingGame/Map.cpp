@@ -67,6 +67,7 @@ Map& Map::operator=(const Map& m)
 
 bool Map::checkCollision(Character& e)
 {
+	if (e.isStanding() == false) return false;
 	COORD pos = e.getPos();
 	int i = pos.Y / 90;
 	if (i >= m_lane_number || i < 0) return false;
@@ -87,6 +88,7 @@ bool Map::checkCollisionWithStaticObstacle(Character& e)
 void Map::moveObstacle(Character& c)
 {
 	for (int i = 0; i < m_lane_number; ++i) {
+		if (i >= 10) continue;
 		m_lane[i]->moveObstacle();
 		m_lane[i]->moveObstacle(c);
 	}
@@ -125,29 +127,9 @@ void Map::update()
 	m_offset -= 90;
 }
 
-void Map::updateOffset(int speed)
+void Map::updateOffset(const int &speed)
 {
 	m_offset += speed;
-}
-
-COORD Map::jumpOnRaft(Character& c)
-{
-	COORD pos = c.getPos();
-	return pos;
-	for (SHORT k = -30; k <= 60; k += 90) {
-		c.setPos({ pos.X + k, pos.Y });
-		COORD pos = c.getPos();
-		int i = pos.Y / 90;
-		if (i >= m_lane_number || i < 0) continue;
-		if (m_lane[i]->isRiverLane())
-		{
-			COORD pos = m_lane[i]->getCollision(c);
-			COORD dummy = { -1, -1 };
-			if (!(pos == dummy))
-				return { pos.X + 0, pos.Y };
-		}
-	}
-	return pos;
 }
 
 bool Map::isRiverLane(COORD pos)
@@ -160,7 +142,7 @@ bool Map::isRiverLane(COORD pos)
 void Map::render()
 {
 	for (int i = 0; i < m_lane_number; ++i)
-		m_lane[i]->render(m_offset);
+		if (i < 11) m_lane[i]->render(m_offset);
 }
 
 void Map::addLane()
@@ -174,21 +156,6 @@ void Map::addLane()
 		m_lane[i] = m_fact->createLane({ 0 , static_cast<short>(90 * i) });
 	}
 	return;
-}
-
-void Map::loadGame(std::ifstream& fin)
-{
-
-}
-
-void Map::saveGame(std::ofstream& fout)
-{
-	// output game state to file
-	fout << m_lane_number << std::endl;
-	for (int i = 0; i < m_lane_number; ++i)
-	{
-		//m_lane[i]->saveGame(fout);
-	}
 }
 
 std::istream& operator>>(std::istream& in, Map& m)

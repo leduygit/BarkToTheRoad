@@ -78,7 +78,8 @@ bool Gameplay::isStart()
 bool Gameplay::isEnd()
 {
 	if (m_is_paused) return false;
-	if (character->getPos().Y <= -90 || m.checkCollision(*character))
+	COORD character_pos = character->getPos();
+	if (character_pos.X <= -90 || character_pos.X >= 1370 || character_pos.Y <= -90 || m.checkCollision(*character))
 		return true;
 	return false;
 }

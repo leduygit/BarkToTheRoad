@@ -106,6 +106,10 @@ void Character::move(const COORD &pos) {
 	m_new_position = { static_cast<short>(pos.X / 90 * 90), pos.Y / 90 * 90 };// 
 
 	m_delta = { static_cast<short>((m_new_position.X - m_position.X) / 9), static_cast<short>((m_new_position.Y - m_position.Y) / 9) };
+	
+	if (m_new_position.X != m_position.X && m_delta.X == 0) m_delta.X = (m_new_position.X > m_position.X) ? 1 : -1;
+	if (m_new_position.Y != m_position.Y && m_delta.Y == 0) m_delta.Y = (m_new_position.Y > m_position.Y) ? 1 : -1;
+	
 	m_old_position = m_position;
 }
 

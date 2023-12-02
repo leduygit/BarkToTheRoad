@@ -30,19 +30,12 @@ public:
 	void addObstacle();
 	void removeObstacle();
 	void update();
-	void updateOffset(int speed);
-	COORD jumpOnRaft(Character &c);
+	void updateOffset(const int &speed);
 
 	bool isRiverLane(COORD pos);
 
 	void render();
 	void addLane();
-
-	// load game from file
-	void loadGame(std::ifstream& fin);
-
-	// save game to file
-	void saveGame(std::ofstream& fout);
 
 	friend std::istream& operator>>(std::istream& in, Map &m);
 	friend std::ostream& operator<<(std::ostream& out, const Map &m);
