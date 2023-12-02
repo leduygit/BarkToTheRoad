@@ -34,6 +34,7 @@ class CarObstacle :public Obstacle
 {
 public:
 	CarObstacle(const COORD &pos = { 0, 0 });
+	CarObstacle(const COORD& pos, ShapeIndex index);
 	CarObstacle(const COORD& pos, bool flag);
 };
 

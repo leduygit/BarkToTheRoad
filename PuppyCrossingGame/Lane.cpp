@@ -252,10 +252,16 @@ std::istream& operator>>(std::istream& in, Lane& lane)
 		switch (obstacleShapeIndex)
 		{
 		case CAR_RIGHT:
-			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) });
-			break;
 		case CAR_LEFT:
-			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) }, 1);
+		case CAR_WHITE_LEFT:
+		case CAR_WHITE_RIGHT:
+		case CAR_YELLOW_LEFT:
+		case CAR_YELLOW_RIGHT:
+		case G63_BLACK_LEFT:
+		case G63_BLACK_RIGHT:
+		case G63_LEFT:
+		case G63_RIGHT:
+			temp = new CarObstacle({ static_cast<short>(x), static_cast<short>(y) }, (ShapeIndex)obstacleShapeIndex);
 			break;
 		case BUS_RIGHT:
 			temp = new BusObstacle({ static_cast<short>(x), static_cast<short>(y) });
