@@ -146,7 +146,7 @@ void GameScreen::updateDialog()
 
 void GameScreen::handleKeyPressed(WPARAM key)
 {
-	if (m_gameplay->getEnded()) return;
+	if (m_gameplay->getEnded() || m_render_dialog || !m_gameplay->getIsNewGame()) return;
 	std::string &user_name = m_gameplay->getUserName();
 	switch (key) {
 	case 0x08:
