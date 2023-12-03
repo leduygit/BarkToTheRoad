@@ -1,5 +1,5 @@
 #include "RailLane.h"
-
+#include "Sound.h"
 void RailLane::addObstacle()
 {
 	if (m_obs.size() >= 1) return;
@@ -19,7 +19,13 @@ void RailLane::addObstacle()
 
 void RailLane::moveObstacle()
 {
-	if (!m_light.isRed() && m_obs.size() == 1) m_light.setRedLight();
+	if (!m_light.isRed() && m_obs.size() == 1) 
+	{
+		m_light.setRedLight();
+		if (randomInt(0, 1000) <= 500) {
+			SoundTrack::playSound(L"resources/sound/train_sound.wav", L"alias_train_horn");
+		}
+	}
 	else if (m_light.isRed() && m_obs.size() == 0) m_light.setGreenLight();
 	
 	for (auto obs : m_obs) 

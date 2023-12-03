@@ -135,6 +135,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="CreditScreen.h" />
     <ClInclude Include="Dialog.h" />
     <ClInclude Include="EndScreen.h" />
     <ClInclude Include="external\Base64.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Command.cpp" />
+    <ClCompile Include="CreditScreen.cpp" />
     <ClCompile Include="Dialog.cpp" />
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="external\Base64.cpp" />
