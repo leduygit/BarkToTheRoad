@@ -20,6 +20,7 @@ private:
 public:
     Shape() = default;
     Shape(std::string fileName);
+    Shape(const Shape& s);
 
     Shape& operator=(const Shape& s);
     ~Shape();

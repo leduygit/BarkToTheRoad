@@ -53,7 +53,7 @@ void initShape() {
 	MyShape[NEW_GAME_BUTTON] = new Shape("resources/image/newgame.bin");
 	MyShape[NEW_GAME_BUTTON_HOVER] = new Shape("resources/image/newgame-2.bin");
 	MyShape[RANK_BUTTON] = new Shape("resources/image/trophy.bin");
-	MyShape[RANK_BUTTON_HOVER] = new Shape("resources/image/trophy.bin");
+	MyShape[RANK_BUTTON_HOVER] = new Shape("resources/image/trophy_hover.bin");
 	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting.bin");
 	MyShape[SCORE] = new Shape("resources/image/score.bin");
 	MyShape[QUIT_BUTTON] = new Shape("resources/image/quit.bin");
@@ -78,6 +78,9 @@ void initShape() {
 	MyShape[SETTING_WINDOW] = new Shape("resources/image/setting-window.bin");
 	MyShape[SPEAKER] = new Shape("resources/image/speaker.bin");
 	MyShape[MUTE] = new Shape("resources/image/mute.bin");
+	MyShape[CREDIT_BUTTON] = new Shape("resources/image/credit.bin");
+	MyShape[CREDIT_BUTTON_HOVER] = new Shape("resources/image/credit_hover.bin");
+	MyShape[CREDIT_WINDOW] = new Shape("resources/image/credit_window.bin");
 	DogMovingShapes[0] = new Shape[3]{ *MyShape[DOG_JUMP_1], *MyShape[DOG_JUMP_2], *MyShape[DOG_JUMP_3] };
 	DogStayingShapes[0] = new Shape[2]{ *MyShape[DOG_STAY_1], *MyShape[DOG_STAY_2] };
 	DogMovingShapes[1] = new Shape[3]{ *MyShape[DOG_JUMP_1_LEFT], *MyShape[DOG_JUMP_2_LEFT], *MyShape[DOG_JUMP_3_LEFT] };
