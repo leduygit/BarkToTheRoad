@@ -6,7 +6,7 @@ GameScreen::GameScreen(Gameplay* gp) : m_gameplay{ gp }
 	Shape* inputButtonState = new Shape[2]{ *MyShape[TEXTBOX], *MyShape[TEXTBOX] };
 	Button* input = new Button{ {465, 353}, inputButtonState };
 	addButton(input);
-	Shape* pauseButtonState = new Shape[2]{ *MyShape[PAUSE], *MyShape[PAUSE] };
+	Shape* pauseButtonState = new Shape[2]{ *MyShape[PAUSE], *MyShape[PAUSE_HOVER] };
 	Button* open_dialog = new OpenDialogButton(pauseButtonState, m_render_dialog);
 	open_dialog->setPos({ 1200, 650 });
 	addButton(open_dialog);
@@ -129,10 +129,10 @@ void GameScreen::updateDialog()
 	returnHome->setPos({ 907, 240 });
 	m_menu->addButton(returnHome);
 
-	Shape* rankButtonState = new Shape[2]{ *MyShape[TROPHY_SMALL], *MyShape[TROPHY_SMALL] };
+	Shape* rankButtonState = new Shape[2]{ *MyShape[TROPHY_SMALL], *MyShape[TROPHY_SMALL_HOVER] };
 	Button* rankButton = new ChangeScreenButton{ rankButtonState, RANK_SCREEN };
 	rankButton->setShowDialog(m_render_dialog);
-	rankButton->setPos({ 828, 240 });
+	rankButton->setPos({ 829, 239 });
 	m_menu->addButton(rankButton);
 
 	RECT tmp;

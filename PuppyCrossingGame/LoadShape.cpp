@@ -40,7 +40,7 @@ void initShape() {
 	MyShape[DOG_JUMP_2_LEFT] = new Shape("resources/image/jump-2_left.bin");
 	MyShape[DOG_JUMP_3_LEFT] = new Shape("resources/image/jump-3_left.bin");
 	MyShape[DOG_DIE] = new Shape("resources/image/dog_die.bin");
-	MyShape[RAIL] = new Shape("resources/image/railway_lane.bin");
+	MyShape[RAIL] = new Shape("resources/image/railway.bin");
 	//MyShape[LOG] = new Shape("resources/image/logObstacle.bin"); // 149x90
 	MyShape[LOG] = new Shape("resources/image/log.bin"); // 90x90
 	MyShape[RIVER] = new Shape("resources/image/river_lane.bin");
@@ -59,10 +59,11 @@ void initShape() {
 	MyShape[QUIT_BUTTON] = new Shape("resources/image/quit.bin");
 	MyShape[QUIT_BUTTON_HOVER] = new Shape("resources/image/quit-2.bin");
 	MyShape[PAUSE] = new Shape("resources/image/pause.bin");
-	MyShape[PAUSE_HOVER] = new Shape("resources/image/pause.bin");
+	MyShape[PAUSE_HOVER] = new Shape("resources/image/pause_hover.bin");
 	MyShape[SAVE_GAME_BUTTON] = new Shape("resources/image/savegame-2.bin");
 	MyShape[SAVE_GAME_BUTTON_HOVER] = new Shape("resources/image/savegame.bin");
-	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting2.bin");
+	MyShape[SETTING_BUTTON] = new Shape("resources/image/setting.bin");
+	MyShape[SETTING_BUTTON_HOVER] = new Shape("resources/image/setting_hover.bin");
 	MyShape[HOME] = new Shape("resources/image/home.bin");
 	MyShape[HOME_HOVER] = new Shape("resources/image/home-2.bin");
 	MyShape[PAUSE_WINDOW] = new Shape("resources/image/pause-window.bin");
@@ -72,6 +73,7 @@ void initShape() {
 	MyShape[GHOST] = new Shape("resources/image/ghost.bin");
 	MyShape[GAME_OVER] = new Shape("resources/image/gameover.bin");
 	MyShape[TROPHY_SMALL] = new Shape("resources/image/trophy-2.bin");
+	MyShape[TROPHY_SMALL_HOVER] = new Shape("resources/image/trophy_small_hover.bin");
 	MyShape[TEXTBOX] = new Shape("resources/image/textbox.bin");
 	MyShape[LEADERBOARD] = new Shape("resources/image/rank-window.bin");
 	MyShape[AMBULANCE] = new Shape("resources/image/ambulance.bin");

@@ -18,9 +18,9 @@ MenuScreen::MenuScreen(Gameplay* gp) {
 	Button* quitButton = new QuitButton(quitButtonState);
 	quitButton->setPos({ 1000, 10 });
 
-	Shape* settingButtonState = new Shape[2]{ *MyShape[SETTING_BUTTON], *MyShape[SETTING_BUTTON] };
+	Shape* settingButtonState = new Shape[2]{ *MyShape[SETTING_BUTTON], *MyShape[SETTING_BUTTON_HOVER] };
 	Button* settingButton = new ChangeScreenButton(settingButtonState, SETTING_SCREEN);
-	settingButton->setPos({ 1150, 650 });
+	settingButton->setPos({ 1165, 650 });
 
 	Shape* creditButtonState = new Shape[2]{ *MyShape[CREDIT_BUTTON], *MyShape[CREDIT_BUTTON_HOVER] };
 	Button* creditButton = new ChangeScreenButton(creditButtonState, CREDIT_SCREEN);
