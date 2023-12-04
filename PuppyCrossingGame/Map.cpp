@@ -96,7 +96,7 @@ void Map::moveObstacle(Character& c)
 
 void Map::addObstacle()
 {
-	if (randomInt(0, 100) <= 90) return;
+	//if (randomInt(0, 100) <= 50) return;
 	int id = randomInt(0, 100);
 	id %= m_lane_number;
 	m_lane[id]->addObstacle();

@@ -2,7 +2,7 @@
 #include "LaneFactory.h"
 #include "Character.h"
 
-constexpr int MAX_LANE = 15;
+constexpr int MAX_LANE = 30;
 
 enum FactoryType {
 	SUMMER,
@@ -14,7 +14,7 @@ enum FactoryType {
 class Map
 {
 private:
-	int m_lane_number{ 15 };
+	int m_lane_number{ 30 };
 	std::vector<Lane*> m_lane{ MAX_LANE };
 	LaneFactory* m_fact{ nullptr };
 	int m_offset = 0;
