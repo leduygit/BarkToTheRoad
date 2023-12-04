@@ -27,7 +27,7 @@ public:
 	bool checkCollision(Character& e);
 	bool checkCollisionWithStaticObstacle(Character& e);
 	void moveObstacle(Character &c);
-	void addObstacle();
+	void addObstacle(int spawnRate, int raftRate);
 	void removeObstacle();
 	void update();
 	void updateOffset(const int &speed);

@@ -41,7 +41,7 @@ bool RiverLane::checkCollision(Character& e)
 bool RiverLane::spawnRate()
 {
 	int x = randomInt(1, 1000);
-	if (x <= 500)
+	if (x <= 400)
 		return true;
 	return false;
 }

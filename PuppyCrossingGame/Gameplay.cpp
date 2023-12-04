@@ -37,8 +37,11 @@ void Gameplay::gameLogic()
 	if (character->update())
 		m.update();
 
-
-	m.addObstacle();
+	int level = m_score / 10;
+	int not_spawn_rate = 90 - level * 8;
+	int raftRate = 30 - 4 * level;
+	if (raftRate < 1) raftRate = 1;
+	m.addObstacle(not_spawn_rate , raftRate);
 	m.moveObstacle(*character);
 	m.removeObstacle();
 
