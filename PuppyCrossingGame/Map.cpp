@@ -94,14 +94,18 @@ void Map::moveObstacle(Character& c)
 	}
 }
 
-void Map::addObstacle()
+void Map::addObstacle(int not_spawnRate, int raftRate)
 {
-	//if (randomInt(0, 100) <= 50) return;
-	int id = randomInt(0, 100);
-	id %= m_lane_number;
-	m_lane[id]->addObstacle();
+	if (randomInt(0, 100) <= not_spawnRate) return;
+	for (int k = 0; k < 3; ++k)
+	{
+		int id = randomInt(0, 100);
+		id %= m_lane_number;
+		if (m_lane[id]->isRiverLane() == false) m_lane[id]->addObstacle();
+	}
+
 	for (int i = 0; i < m_lane_number; ++i) {
-		if ( randomInt(0, 100) <= 30 && m_lane[i]->isRiverLane())
+		if ( randomInt(0, 100) <= raftRate && m_lane[i]->isRiverLane())
 		{
 			m_lane[i]->addObstacle();
 		}

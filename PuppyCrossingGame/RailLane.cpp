@@ -4,7 +4,7 @@ void RailLane::addObstacle()
 {
 	if (m_obs.size() >= 1) return;
 	int x = randomInt(0, 1000);
-	if (x < 850) return;
+	if (x < 950) return;
 	Obstacle* newObstacle = nullptr;
 	if (direction > 0)
 	{
