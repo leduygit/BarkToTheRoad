@@ -106,7 +106,6 @@ public:
 		//OutputDebugString(L"Clicked\n");
 		*m_show = false;
 		Global::current_screen = MENU_SCREEN;
-
 	}
 	
 	std::string getFileName() const {
