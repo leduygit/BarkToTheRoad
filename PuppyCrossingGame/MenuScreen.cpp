@@ -23,7 +23,7 @@ MenuScreen::MenuScreen(Gameplay* gp) {
 	settingButton->setPos({ 1165, 650 });
 
 	Shape* creditButtonState = new Shape[2]{ *MyShape[CREDIT_BUTTON], *MyShape[CREDIT_BUTTON_HOVER] };
-	Button* creditButton = new ChangeScreenButton(creditButtonState, CREDIT_SCREEN);
+	Button* creditButton = new ChangeScreenButton(creditButtonState, CREDIT_SCREEN_0);
 	creditButton->setPos({ 50, 650 });
 
 	addButton(newGameButton);

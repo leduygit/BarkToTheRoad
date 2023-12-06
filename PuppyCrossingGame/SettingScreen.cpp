@@ -8,8 +8,8 @@ SettingScreen::SettingScreen(): m_board{MyShape[SETTING_WINDOW]}
 	Button* homeButton = new ChangeScreenButton{ homeButtonState, MENU_SCREEN };
 	homeButton->setPos({ 570, 220 });
 
-	Shape* speakerButtonState = new Shape[2]{ *MyShape[SPEAKER], *MyShape[SPEAKER] };
-	Shape* muteButtonState = new Shape[2]{ *MyShape[MUTE], *MyShape[MUTE] };
+	Shape* speakerButtonState = new Shape[2]{ *MyShape[SPEAKER], *MyShape[SPEAKER_HOVER] };
+	Shape* muteButtonState = new Shape[2]{ *MyShape[MUTE], *MyShape[MUTE_HOVER] };
 	m_music = new ChangeSoundButton{ speakerButtonState, Global::is_music_muted };
 	m_music->setPos({ 450, 300 });
 	m_music_muted = new ChangeSoundButton{ muteButtonState, Global::is_music_muted };

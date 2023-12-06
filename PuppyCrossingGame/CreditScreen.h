@@ -3,8 +3,8 @@
 class CreditScreen : public Screen
 {
 public:
-	CreditScreen();
-	void render();
+	CreditScreen(int id = 0);
+	void render() override;
 private:
 	Shape* m_board{};
 };

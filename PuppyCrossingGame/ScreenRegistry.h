@@ -21,7 +21,9 @@ public:
 		m_screens.push_back(new SaveScreen{ gp });
 		m_screens.push_back(new RankScreen{});
 		m_screens.push_back(new SettingScreen{});
-		m_screens.push_back(new CreditScreen{});
+		m_screens.push_back(new CreditScreen{0});
+		m_screens.push_back(new CreditScreen{1});
+		m_screens.push_back(new CreditScreen{2});
 	}
 
 	void addScreen(Screen* s) {
