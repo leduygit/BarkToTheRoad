@@ -2,6 +2,7 @@
 
 Gameplay::Gameplay() : command(nullptr)
 {
+	LaneFactory* fact = nullptr;
 	switch (m_fact_type) {
 	case SUMMER:
 		fact = new SummerLaneFactory{};
@@ -10,7 +11,6 @@ Gameplay::Gameplay() : command(nullptr)
 		break;
 	}
 	m = Map{ fact };
-	//m.addLane();
 	Shape* moving = DogMovingShapes[0];
 	Shape* staying = DogStayingShapes[0];
 	character = new Character{ {630, 0}, staying, moving, 3 };
@@ -21,12 +21,10 @@ Gameplay::Gameplay() : command(nullptr)
 	ifstream in("key.txt");
 	in >> m_key;
 	in.close();
-	//m.addLane();
 }
 
 void Gameplay::gameLogic()
 {
-
 	render();
 	if (m_is_paused) return;
 
@@ -103,6 +101,8 @@ void Gameplay::handleEndGame()
 	m_vehicle->move(character->getPos());
 	SoundTrack::playSound(L"resources/sound/ambulance.wav", L"alias_ambulance");
 	m_ended = true;
+	//delete s;
+	//delete m_vehicle;
 }
 
 void Gameplay::exportScore()

@@ -20,7 +20,6 @@ public:
 	InputHandler ih{};
 	Command* command{ nullptr };
 	Character* character{nullptr};
-	LaneFactory* fact;
 	Map m{};
 
 	bool haveStarted = false;

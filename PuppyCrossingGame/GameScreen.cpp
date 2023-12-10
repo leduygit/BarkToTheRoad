@@ -121,27 +121,28 @@ void GameScreen::initDialog()
 
 void GameScreen::updateDialog()
 {
-	m_menu = new Dialog{ MyShape[GAME_OVER], {400, 200 } };
+	m_menu = new Dialog{ MyShape[GAME_OVER], {330, 200 } };
 
 	Shape* returnHomeButtonState = new Shape[2]{ *MyShape[HOME], *MyShape[HOME_HOVER] };
 	Button* returnHome = new ChangeScreenButton{ returnHomeButtonState, MENU_SCREEN };
 	returnHome->setShowDialog(m_render_dialog);
-	returnHome->setPos({ 907, 240 });
+	returnHome->setPos({ 837, 240 });
 	m_menu->addButton(returnHome);
 
 	Shape* rankButtonState = new Shape[2]{ *MyShape[TROPHY_SMALL], *MyShape[TROPHY_SMALL_HOVER] };
 	Button* rankButton = new ChangeScreenButton{ rankButtonState, RANK_SCREEN };
 	rankButton->setShowDialog(m_render_dialog);
-	rankButton->setPos({ 829, 239 });
+	rankButton->setPos({ 759, 239 });
 	m_menu->addButton(rankButton);
 
 	RECT tmp;
-	tmp.top = 250, tmp.left = 700;
+	tmp.top = 250, tmp.left = 600;
 	tmp.bottom = 350, tmp.right = 900;
 	m_menu->addText(new Text{ m_gameplay->getUserName(), tmp });
 
 	tmp.top = 300, tmp.bottom = 400;
-	m_menu->addText(new Text{ std::to_string(m_gameplay->getScore()), tmp });
+	tmp.left = 600;
+	m_menu->addText(new Text{ "Your score: " + std::to_string(m_gameplay->getScore()), tmp});
 }
 
 void GameScreen::handleKeyPressed(WPARAM key)
